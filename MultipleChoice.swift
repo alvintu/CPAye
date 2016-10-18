@@ -10,16 +10,25 @@ import UIKit
 
 class MultipleChoice: NSObject {
     
+    let question  : String
     let a  : String
     let b  : String
     let c  : String
     let d  : String
+    let correctAnswer : String
+    let info : String
+
+
     
-    init(ChoiceA:String,ChoiceB:String,ChoiceC:String,ChoiceD:String) {
-        self.a = ChoiceA
-        self.b = ChoiceB
-        self.c = ChoiceC
-        self.d = ChoiceD
+    init(question:String,a:String,b:String,c:String,d:String,correctAnswer:String,info:String) {
+        
+        self.question = question
+        self.a = a
+        self.b = b
+        self.c = c
+        self.d = d
+        self.correctAnswer = correctAnswer
+        self.info = info
 
     }
 
