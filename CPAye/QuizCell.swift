@@ -10,5 +10,5 @@ import UIKit
 
 class QuizCell: UITableViewCell {
 
-    @IBOutlet weak var questionInfoLabel: UILabel!
+    @IBOutlet weak var questionInfoTextView: UITextView!
 }

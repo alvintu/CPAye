@@ -50,20 +50,23 @@
                                             <rect key="frame" x="0.0" y="0.0" width="620" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yOX-DY-DOD">
-                                                    <rect key="frame" x="279" y="11" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Aop-pL-sga">
+                                                    <rect key="frame" x="8" y="8" width="594" height="27"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="yOX-DY-DOD" firstAttribute="centerY" secondItem="ORb-MG-0D2" secondAttribute="centerY" id="ZGH-Z0-mmL"/>
-                                                <constraint firstItem="yOX-DY-DOD" firstAttribute="centerX" secondItem="ORb-MG-0D2" secondAttribute="centerX" id="enT-Zs-kSA"/>
+                                                <constraint firstItem="Aop-pL-sga" firstAttribute="top" secondItem="ORb-MG-0D2" secondAttribute="topMargin" id="4H5-Gq-FHo"/>
+                                                <constraint firstItem="Aop-pL-sga" firstAttribute="bottom" secondItem="ORb-MG-0D2" secondAttribute="bottomMargin" id="fau-fk-iEB"/>
+                                                <constraint firstItem="Aop-pL-sga" firstAttribute="leading" secondItem="ORb-MG-0D2" secondAttribute="leadingMargin" id="o3u-9P-HgG"/>
+                                                <constraint firstItem="Aop-pL-sga" firstAttribute="trailing" secondItem="ORb-MG-0D2" secondAttribute="trailingMargin" constant="-10" id="oMo-oH-yoP"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="questionInfoLabel" destination="yOX-DY-DOD" id="1Ue-M6-e6k"/>
+                                            <outlet property="questionInfoTextView" destination="Aop-pL-sga" id="Vns-N5-deV"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -82,6 +85,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kq8-5j-zPc"/>
+                    <connections>
+                        <outlet property="tableView" destination="qy8-Aq-tPe" id="0to-Cg-ree"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dys-uQ-7aP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

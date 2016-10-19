@@ -9,13 +9,15 @@
 import UIKit
 import Foundation
 
-class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSource{
+class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UITextViewDelegate{
     
     let dao = DAO.sharedInstance;
     var infoButton = UIButton()
     var nextButton = UIButton()
-
     
+    
+    @IBOutlet weak var tableView: UITableView!
+
     override func viewDidLoad() {
         
         print("quiz");
@@ -23,7 +25,6 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
 
         addInfoAndNextButton()
-
         
     }
     
@@ -33,30 +34,42 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         let cell = tableView.dequeueReusableCellWithIdentifier("quizCell", forIndexPath: indexPath) as! QuizCell
         cell.selectionStyle = UITableViewCellSelectionStyle.Default
+        cell.questionInfoTextView.textColor = UIColor(red:0.00, green:0.48, blue:1.00, alpha:1.0)
+
+        cell.questionInfoTextView.userInteractionEnabled = false
+        let fixedWidth = cell.questionInfoTextView.frame.size.width
+        cell.questionInfoTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
+        let newSize = cell.questionInfoTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
+        var newFrame = cell.questionInfoTextView.frame
+        newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
+        cell.questionInfoTextView.frame = newFrame;
+
+        
+        cell.questionInfoTextView.delegate = self
         
         switch indexPath {
         case NSIndexPath(forRow: 0, inSection: 0) :
-            //cell.titleLabel.text = "\(currentShop.categoryDeal) - 09/12/2016 - Hunter College" //specifics later
-            cell.questionInfoLabel.textColor = UIColor.blackColor()
-            cell.questionInfoLabel.text = dao.currentQuestion.question
+    
+            cell.questionInfoTextView.textColor = UIColor.blackColor()
+            cell.questionInfoTextView.text = dao.currentQuestion.question
             
         case NSIndexPath(forRow: 1, inSection: 0) :
-            cell.questionInfoLabel.text = dao.currentQuestion.a
+            cell.questionInfoTextView.text = dao.currentQuestion.a
     
         case NSIndexPath(forRow: 2, inSection: 0) :
             
-            cell.questionInfoLabel.text = dao.currentQuestion.b
+            cell.questionInfoTextView.text = dao.currentQuestion.b
         case NSIndexPath(forRow: 3, inSection: 0) :
             
-            cell.questionInfoLabel.text = dao.currentQuestion.c
+            cell.questionInfoTextView.text = dao.currentQuestion.c
             
         case NSIndexPath(forRow: 4, inSection: 0) :
             
-            cell.questionInfoLabel.text = dao.currentQuestion.d
+            cell.questionInfoTextView.text = dao.currentQuestion.d
             
         default:
 
-            cell.questionInfoLabel.text = ""
+            cell.questionInfoTextView.text = ""
             
         }
             return cell
@@ -113,23 +126,40 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         
+        
         let selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
         selectedCell.contentView.backgroundColor = UIColor.redColor()
         
-        infoButton.hidden = false
-        nextButton.hidden = false
+        let tempCell = selectedCell as! QuizCell
+        
+        UIView.animateWithDuration(1.0, animations: {
+            
+            self.infoButton.hidden = true
+            self.nextButton.hidden = true
 
 
+        self.infoButton.hidden = false
+        self.nextButton.hidden = false
+
+            })
+        
         switch indexPath {
             //cell.titleLabel.text = "\(currentShop.categoryDeal) - 09/12/2016 - Hunter College" //specifics later
             
             
-        case NSIndexPath(forRow: 1, inSection: 0) :
+        case NSIndexPath(forRow: 0, inSection: 0) :
+
+            selectedCell.contentView.backgroundColor = UIColor.whiteColor()
 
             
+        case NSIndexPath(forRow: 1, inSection: 0) :
+
+            tempCell.questionInfoTextView.textColor = UIColor.whiteColor()
+
             
                     if(dao.currentQuestion.correctAnswer == "a"){
                         UIView.animateWithDuration(0.5, animations: {
+                            
                             selectedCell.contentView.backgroundColor = UIColor.whiteColor()
 
                         selectedCell.contentView.backgroundColor = UIColor.greenColor()
@@ -150,6 +180,8 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
             
         case NSIndexPath(forRow: 2, inSection: 0) :
+            tempCell.questionInfoTextView.textColor = UIColor.whiteColor()
+
         
                 if(dao.currentQuestion.correctAnswer == "b"){
                     UIView.animateWithDuration(0.5, animations: {
@@ -174,6 +206,8 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
             
         case NSIndexPath(forRow: 3, inSection: 0) :
+            tempCell.questionInfoTextView.textColor = UIColor.whiteColor()
+
             
             if(dao.currentQuestion.correctAnswer == "c"){
                 UIView.animateWithDuration(0.5, animations: {
@@ -200,6 +234,8 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 
             }
         case NSIndexPath(forRow: 4, inSection: 0) :
+            tempCell.questionInfoTextView.textColor = UIColor.whiteColor()
+
             
             if(dao.currentQuestion.correctAnswer == "d"){
                 UIView.animateWithDuration(0.5, animations: {
@@ -224,6 +260,8 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             }
             
             
+
+            
         default:
             print("default")
             
@@ -236,6 +274,25 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
      func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         let cellToDeSelect:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
         cellToDeSelect.contentView.backgroundColor = UIColor.whiteColor()
+        
+        
+        
+        let tempCell = cellToDeSelect as! QuizCell
+        
+        
+        switch indexPath {
+            //cell.titleLabel.text = "\(currentShop.categoryDeal) - 09/12/2016 - Hunter College" //specifics later
+            
+            
+        case NSIndexPath(forRow: 0, inSection: 0) :
+            tempCell.questionInfoTextView.textColor =  UIColor.blackColor()
+        
+        default:
+
+        
+        tempCell.questionInfoTextView.textColor = UIColor(red:0.00, green:0.48, blue:1.00, alpha:1.0)
+        
+        }
     }
 
     
@@ -287,15 +344,62 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 //            currentQuestionLabel.textColor = UIColor.whiteColor()
 //
 //        }
-//        
-//        
+    
+        
 //    }
-//    
+    
     
     func nextQuestion(){
         
-        print("next")
+
+        let currentQuestionIndex = dao.questions.indexOf(dao.currentQuestion)
+        let nextQuestionIndex = currentQuestionIndex! + 1
         
+        let lastObject = dao.questions.last
+        let lastQuestionIndex = dao.questions.indexOf(lastObject!)
+        
+        if(currentQuestionIndex < lastQuestionIndex){
+            
+            dao.currentQuestion = dao.questions[nextQuestionIndex]
+            
+            
+
+        }
+        
+        else{
+print("Do we get here?")
+            
+            
+            
+            
+        
+            dao.currentQuestion.question = "End of Quiz! If you don't feel comfortable,try the Flash Cards or Review tab and try again!"
+            dao.currentQuestion.a = ""
+            dao.currentQuestion.b = ""
+            dao.currentQuestion.c = ""
+            dao.currentQuestion.d = ""
+            
+
+            
+        }
+        
+tableView.reloadData()
+        
+        
+        
+        
+        
+        UIView.animateWithDuration(10.0, animations: {
+            
+            self.infoButton.hidden = false
+            self.nextButton.hidden = false
+            
+            
+            self.infoButton.hidden = true
+            self.nextButton.hidden = true
+            
+        })
+
     }
     
     
@@ -311,9 +415,12 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         
         infoButton = UIButton(frame: CGRect(x: 0, y: self.view.frame.height-100, width: self.view.frame.width/2, height: 50))
-        infoButton.backgroundColor = .blueColor()
+        infoButton.backgroundColor = UIColor(red:0.00, green:0.48, blue:1.00, alpha:1.0)
+        
+
         infoButton.setTitle("Info", forState: .Normal)
         infoButton.addTarget(self, action: #selector(infoOnQuestion), forControlEvents: .TouchUpInside)
+        infoButton.layer.cornerRadius = 10.0
         
         self.view.addSubview(infoButton)
         
@@ -321,6 +428,7 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         nextButton.backgroundColor = .greenColor()
         nextButton.setTitle("Next", forState: .Normal)
         nextButton.addTarget(self, action: #selector(nextQuestion), forControlEvents: .TouchUpInside)
+        nextButton.layer.cornerRadius = 10.0
         
         self.view.addSubview(nextButton)
         
