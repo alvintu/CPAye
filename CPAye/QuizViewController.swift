@@ -12,6 +12,8 @@ import Foundation
 class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSource{
     
     let dao = DAO.sharedInstance;
+    var infoButton = UIButton()
+    var nextButton = UIButton()
 
     
     override func viewDidLoad() {
@@ -20,12 +22,8 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         print("\(dao.questions.count) is the number of questions")
         
 
-//        currentQuestionLabel.text = dao.currentQuestion.question
-//        answerALabel.text = dao.currentQuestion.a
-//        answerBLabel.text = dao.currentQuestion.b
-//        answerCLabel.text = dao.currentQuestion.c
-//        answerDLabel.text = dao.currentQuestion.d
-//
+        addInfoAndNextButton()
+
         
     }
     
@@ -39,7 +37,7 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         switch indexPath {
         case NSIndexPath(forRow: 0, inSection: 0) :
             //cell.titleLabel.text = "\(currentShop.categoryDeal) - 09/12/2016 - Hunter College" //specifics later
-
+            cell.questionInfoLabel.textColor = UIColor.blackColor()
             cell.questionInfoLabel.text = dao.currentQuestion.question
             
         case NSIndexPath(forRow: 1, inSection: 0) :
@@ -89,23 +87,23 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         //cell.titleLabel.text = "\(currentShop.categoryDeal) - 09/12/2016 - Hunter College" //specifics later
         rowHeight = self.view.frame.height/4
         case NSIndexPath(forRow: 1, inSection: 0) :
-        rowHeight = self.view.frame.height/8
+        rowHeight = self.view.frame.height/9
 
         
         case NSIndexPath(forRow: 2, inSection: 0) :
         
-            rowHeight = self.view.frame.height/8
+            rowHeight = self.view.frame.height/9
         case NSIndexPath(forRow: 3, inSection: 0) :
         
-            rowHeight = self.view.frame.height/8
+            rowHeight = self.view.frame.height/9
         
         case NSIndexPath(forRow: 4, inSection: 0) :
         
-            rowHeight = self.view.frame.height/8
+            rowHeight = self.view.frame.height/9
         
         default:
         
-            rowHeight = self.view.frame.height/8
+            rowHeight = self.view.frame.height/9
         
     }
     
@@ -117,6 +115,9 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         let selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
         selectedCell.contentView.backgroundColor = UIColor.redColor()
+        
+        infoButton.hidden = false
+        nextButton.hidden = false
 
 
         switch indexPath {
@@ -190,7 +191,7 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 UIView.animateWithDuration(0.5, animations: {
                     selectedCell.contentView.backgroundColor = UIColor.whiteColor()
                     
-                    selectedCell.contentView.backgroundColor = UIColor.greenColor()
+                    selectedCell.contentView.backgroundColor = UIColor.redColor()
                 })
                 
                 
@@ -216,7 +217,7 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 UIView.animateWithDuration(0.5, animations: {
                     selectedCell.contentView.backgroundColor = UIColor.whiteColor()
                     
-                    selectedCell.contentView.backgroundColor = UIColor.greenColor()
+                    selectedCell.contentView.backgroundColor = UIColor.redColor()
                 })
                 
                 
@@ -224,8 +225,9 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
             
         default:
+            print("default")
             
-            selectedCell.contentView.backgroundColor = UIColor.whiteColor()
+//            selectedCell.contentView.backgroundColor = UIColor.whiteColor()
             
         }
 
@@ -289,9 +291,47 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 //        
 //    }
 //    
-    func quizLogic(){
-        //question1
-        //wenderlich once
+    
+    func nextQuestion(){
+        
+        print("next")
+        
     }
+    
+    
+    
+    func infoOnQuestion(){
+        
+        print("info")
+    }
+    
+    
+    
+    func addInfoAndNextButton(){
+        
+        
+        infoButton = UIButton(frame: CGRect(x: 0, y: self.view.frame.height-100, width: self.view.frame.width/2, height: 50))
+        infoButton.backgroundColor = .blueColor()
+        infoButton.setTitle("Info", forState: .Normal)
+        infoButton.addTarget(self, action: #selector(infoOnQuestion), forControlEvents: .TouchUpInside)
+        
+        self.view.addSubview(infoButton)
+        
+        nextButton = UIButton(frame: CGRect(x: self.view.frame.width/2, y: self.view.frame.height-100, width: self.view.frame.width/2, height: 50))
+        nextButton.backgroundColor = .greenColor()
+        nextButton.setTitle("Next", forState: .Normal)
+        nextButton.addTarget(self, action: #selector(nextQuestion), forControlEvents: .TouchUpInside)
+        
+        self.view.addSubview(nextButton)
+        
+        
+        infoButton.hidden = true
+        nextButton.hidden = true
+
+
+    
+    }
+    
+    
     
 }
