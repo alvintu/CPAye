@@ -20,7 +20,7 @@ class MultipleChoice: NSObject {
 
     init(question:String,a:String,b:String,c:String,d:String,correctAnswer:String,info:String) {
         
-        self.question = question
+        self.question = "\n\n" + question
         self.a = a
         self.b = b
         self.c = c

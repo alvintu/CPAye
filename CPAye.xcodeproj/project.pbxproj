@@ -12,7 +12,6 @@
 		C88406B41DB1A26A0041F49E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C88406B31DB1A26A0041F49E /* Assets.xcassets */; };
 		C88406B71DB1A26A0041F49E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C88406B51DB1A26A0041F49E /* LaunchScreen.storyboard */; };
 		C88406C91DB3CF170041F49E /* MultipleChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88406C81DB3CF170041F49E /* MultipleChoice.swift */; };
-		C88406CB1DB3CF2B0041F49E /* TrueFalse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88406CA1DB3CF2B0041F49E /* TrueFalse.swift */; };
 		C88406CD1DB66B960041F49E /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88406CC1DB66B960041F49E /* QuizViewController.swift */; };
 		C88406CF1DB66BA20041F49E /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88406CE1DB66BA20041F49E /* ReviewViewController.swift */; };
 		C88406D11DB66BAD0041F49E /* FlashCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88406D01DB66BAD0041F49E /* FlashCardViewController.swift */; };
@@ -29,7 +28,6 @@
 		C88406B61DB1A26A0041F49E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C88406B81DB1A26A0041F49E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C88406C81DB3CF170041F49E /* MultipleChoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultipleChoice.swift; path = ../MultipleChoice.swift; sourceTree = "<group>"; };
-		C88406CA1DB3CF2B0041F49E /* TrueFalse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrueFalse.swift; path = ../TrueFalse.swift; sourceTree = "<group>"; };
 		C88406CC1DB66B960041F49E /* QuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		C88406CE1DB66BA20041F49E /* ReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		C88406D01DB66BAD0041F49E /* FlashCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashCardViewController.swift; sourceTree = "<group>"; };
@@ -70,7 +68,6 @@
 			children = (
 				C88406AA1DB1A2690041F49E /* AppDelegate.swift */,
 				C88406C81DB3CF170041F49E /* MultipleChoice.swift */,
-				C88406CA1DB3CF2B0041F49E /* TrueFalse.swift */,
 				C88406CC1DB66B960041F49E /* QuizViewController.swift */,
 				C88406CE1DB66BA20041F49E /* ReviewViewController.swift */,
 				C88406D01DB66BAD0041F49E /* FlashCardViewController.swift */,
@@ -163,7 +160,6 @@
 				C88406CF1DB66BA20041F49E /* ReviewViewController.swift in Sources */,
 				C88406D31DB66C6E0041F49E /* InfoViewController.swift in Sources */,
 				C88406D11DB66BAD0041F49E /* FlashCardViewController.swift in Sources */,
-				C88406CB1DB3CF2B0041F49E /* TrueFalse.swift in Sources */,
 				C88406CD1DB66B960041F49E /* QuizViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,6 +310,7 @@
 				C88406BD1DB1A26A0041F49E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

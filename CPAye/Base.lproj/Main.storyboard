@@ -40,29 +40,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qy8-Aq-tPe">
-                                <rect key="frame" x="0.0" y="44" width="620" height="527"/>
+                                <rect key="frame" x="0.0" y="-1" width="600" height="572"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="quizCell" id="80t-c3-F4t" customClass="QuizCell" customModule="CPAye" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="620" height="44"/>
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="80t-c3-F4t" id="ORb-MG-0D2">
-                                            <rect key="frame" x="0.0" y="0.0" width="620" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Aop-pL-sga">
-                                                    <rect key="frame" x="8" y="8" width="594" height="27"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Aop-pL-sga">
+                                                    <rect key="frame" x="-2" y="-7" width="604" height="57"/>
+                                                    <color key="backgroundColor" red="0.84313725490196079" green="0.84313725490196079" blue="0.84313725490196079" alpha="1" colorSpace="calibratedRGB"/>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstItem="Aop-pL-sga" firstAttribute="top" secondItem="ORb-MG-0D2" secondAttribute="topMargin" id="4H5-Gq-FHo"/>
-                                                <constraint firstItem="Aop-pL-sga" firstAttribute="bottom" secondItem="ORb-MG-0D2" secondAttribute="bottomMargin" id="fau-fk-iEB"/>
-                                                <constraint firstItem="Aop-pL-sga" firstAttribute="leading" secondItem="ORb-MG-0D2" secondAttribute="leadingMargin" id="o3u-9P-HgG"/>
-                                                <constraint firstItem="Aop-pL-sga" firstAttribute="trailing" secondItem="ORb-MG-0D2" secondAttribute="trailingMargin" constant="-10" id="oMo-oH-yoP"/>
+                                                <constraint firstItem="Aop-pL-sga" firstAttribute="top" secondItem="ORb-MG-0D2" secondAttribute="topMargin" constant="-15" id="4H5-Gq-FHo"/>
+                                                <constraint firstItem="Aop-pL-sga" firstAttribute="bottom" secondItem="ORb-MG-0D2" secondAttribute="bottomMargin" constant="15" id="fau-fk-iEB"/>
+                                                <constraint firstItem="Aop-pL-sga" firstAttribute="leading" secondItem="ORb-MG-0D2" secondAttribute="leadingMargin" constant="-10" id="o3u-9P-HgG"/>
+                                                <constraint firstItem="Aop-pL-sga" firstAttribute="trailing" secondItem="ORb-MG-0D2" secondAttribute="trailingMargin" constant="10" id="oMo-oH-yoP"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -79,8 +81,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="0fS-hZ-GEu" firstAttribute="top" secondItem="qy8-Aq-tPe" secondAttribute="bottom" constant="-20" id="00c-mT-nHn"/>
-                            <constraint firstItem="qy8-Aq-tPe" firstAttribute="top" secondItem="vc4-AL-ksp" secondAttribute="bottom" constant="-20" id="08u-hp-MNS"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="qy8-Aq-tPe" secondAttribute="trailing" constant="-40" id="121-AB-r7c"/>
+                            <constraint firstItem="qy8-Aq-tPe" firstAttribute="top" secondItem="vc4-AL-ksp" secondAttribute="bottom" constant="-65" id="08u-hp-MNS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qy8-Aq-tPe" secondAttribute="trailing" constant="-20" id="121-AB-r7c"/>
                             <constraint firstItem="qy8-Aq-tPe" firstAttribute="leading" secondItem="caK-e5-ZaH" secondAttribute="leadingMargin" constant="-20" id="veS-9f-bFz"/>
                         </constraints>
                     </view>

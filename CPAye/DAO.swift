@@ -20,6 +20,28 @@ class DAO: NSObject{
     override init(){
         super.init()
         
+//        let question1 = MultipleChoice(question: "which animal can swim?", a: "Parastratiosphecomyia sphecomyioides", b: "cat", c: "fish", d: "giraffe", correctAnswer: "c", info: "only the fish can swim! the other animals are land animals!")
+//        
+//        let question2 = MultipleChoice(question: "which animal can jump?", a: "dog", b: "turtle", c: "fish", d: "hippo", correctAnswer: "d", info: "only the dog can jump!")
+//        let question3 = MultipleChoice(question: "which animal can bark?", a: "dog", b: "cat", c: "fish", d: "giraffe", correctAnswer: "a", info: "only the dog can bark!")
+//        
+//        let question4 = MultipleChoice(question: "which animal is nocturnal?", a: "owl", b: "giraffe", c: "dog", d: "cat", correctAnswer: "b", info: "only the owl is nocturnal!")
+//        
+//        
+//
+//        questions.append(question1)
+//        questions.append(question2)
+//        questions.append(question3)
+//        questions.append(question4)
+        
+        self.loadQuestions()
+        self.currentQuestion = questions[0]
+}
+    
+
+    
+    
+    func loadQuestions(){
         let question1 = MultipleChoice(question: "which animal can swim?", a: "Parastratiosphecomyia sphecomyioides", b: "cat", c: "fish", d: "giraffe", correctAnswer: "c", info: "only the fish can swim! the other animals are land animals!")
         
         let question2 = MultipleChoice(question: "which animal can jump?", a: "dog", b: "turtle", c: "fish", d: "hippo", correctAnswer: "d", info: "only the dog can jump!")
@@ -28,12 +50,12 @@ class DAO: NSObject{
         let question4 = MultipleChoice(question: "which animal is nocturnal?", a: "owl", b: "giraffe", c: "dog", d: "cat", correctAnswer: "b", info: "only the owl is nocturnal!")
         
         
-
         questions.append(question1)
         questions.append(question2)
         questions.append(question3)
         questions.append(question4)
-        self.currentQuestion = questions[0]
-}
 
+        
+
+    }
 }
