@@ -12,21 +12,18 @@ import Foundation
 class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UITextViewDelegate{
     
     let dao = DAO.sharedInstance;
+    let prefs = NSUserDefaults.standardUserDefaults()
+    var currentQuestion : MultipleChoice = MultipleChoice(question: "", a: "", b: "", c: "", d: "", correctAnswer: "", info: "")
+
+    let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
     var infoButton = UIButton()
     var nextButton = UIButton()
     var restartButton = UIButton()
-    var currentQuestion : MultipleChoice = MultipleChoice(question: "", a: "", b: "", c: "", d: "", correctAnswer: "", info: "")
     
-    let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
     var infoVC = UIViewController()
     var openedInfo : Bool  = false
-    let prefs = NSUserDefaults.standardUserDefaults()
 
-    
-    //lets try to do this without removing all objects in the array
-    //i should able to make it work by resetting a counter
-    //for some reason resetting a counter breaks it;
-   var currentQuestionIndex = 0
+    var currentQuestionIndex = 0
 
     
     
@@ -38,9 +35,7 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         self.navigationController?.navigationBar.barTintColor = UIColor(red:0.78, green:0.78, blue:0.80, alpha:1.0)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
 
-        print("\(dao.questions.count) is the number of questions")
         
-//        currentQuestionIndex = dao.questions.indexOf(dao.currentQuestion)!
 
         addInfoAndNextButton()
         loadInfoVC()
@@ -49,7 +44,6 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         currentQuestionIndex = prefs.integerForKey("currentQuestionIndex")
         dao.currentQuestion = dao.questions[currentQuestionIndex]
-        print("currentQuestionIndex afterview didLoad is \(currentQuestionIndex)")
         tableView.reloadData()
 
         
@@ -70,49 +64,16 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         print(currentQuestionIndex)
         
-        //setting int value when index is incremented
-        
-        
-//        
-//        if currentQuestionIndex == prefs.integerForKey("currentQuestionIndex"){
-//            print("nsuserdefaults currentquestionindex is:\(currentQuestionIndex)")
-//        }else{
-//            //Nothing stored in NSUserDefaults yet. Set a value.
-//            print("error")
-////            prefs.setValue("Berlin", forKey: "userCity")
-//        }
-
-        
-        //reading it right away..pass condition down
-        
-        
-//        let currentQuestionIndex = dao.questions.indexOf(dao.currentQuestion)
-        
-        
-//        let nextQuestionIndex = currentQuestionIndex! + 1
-        
-        
-//        let count = dao.questions.last
-//        let lastQuestionIndex = dao.questions.indexOf(lastObject!)
-//        
-        
+  
         if(currentQuestionIndex < dao.questions.count){
             
             dao.currentQuestion = dao.questions[currentQuestionIndex]
-            print(dao.currentQuestion.question)
             self.tableView.reloadData()
-
             
         }
             
         else{
-        
-            print(currentQuestionIndex)
-            print(dao.questions.count)
-            
-            
-            
-            
+   
             
             tableView.allowsSelection = false
             tableView.separatorStyle = .None
@@ -144,60 +105,48 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             fadeEM()
     }
     
+    
+    
     func restartQuiz(){
-        print("restart")
+
         tableView.allowsSelection = true
         tableView.separatorStyle = .SingleLine
         restartButton.hidden = true
-//        dao.restartQuiz()
         
-    currentQuestionIndex = 0
-    prefs.setValue(currentQuestionIndex, forKey: "currentQuestionIndex")
-
-    dao.currentQuestion = dao.questions[0]
-
-        print(dao.questions.count)
+        currentQuestionIndex = 0
+        prefs.setValue(currentQuestionIndex, forKey: "currentQuestionIndex")
+        dao.currentQuestion = dao.questions[0]
         
         
-        
-    
         infoVC.viewDidLoad()
-
         tableView.reloadData()
         
     }
     
     //tableview delegate methods
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("quizCell", forIndexPath: indexPath) as! QuizCell
         cell.selectionStyle = UITableViewCellSelectionStyle.Default
         cell.questionInfoTextView.delegate = self
-
+        
         
         cell.questionInfoTextView.userInteractionEnabled = false
         cell.questionInfoTextView.textColor = UIColor(red:0.00, green:0.48, blue:1.00, alpha:1.0)
-        
-//        cell.contentView.layer.borderColor = UIColor.lightGrayColor().CGColor
-//        cell.contentView.layer.borderWidth = 2.0
-//        
-        
-        
-
         
         cell.questionInfoTextView.delegate = self
         
         switch indexPath {
         case NSIndexPath(forRow: 0, inSection: 0) :
             
-
+            
             cell.questionInfoTextView.text = dao.currentQuestion.question
             
         case NSIndexPath(forRow: 0, inSection: 1) :
             cell.questionInfoTextView.textColor = UIColor(red:0.00, green:0.48, blue:1.00, alpha:1.0)
-
+            
             cell.questionInfoTextView.text = dao.currentQuestion.a
-    
+            
         case NSIndexPath(forRow: 0, inSection: 2) :
             
             cell.questionInfoTextView.text = dao.currentQuestion.b
@@ -210,13 +159,12 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             cell.questionInfoTextView.text = dao.currentQuestion.d
             
         default:
-            print("wot mate")
-
+            
             cell.questionInfoTextView.textColor = UIColor(red:0.00, green:0.48, blue:1.00, alpha:1.0)
             
-//        }
+            //        }
         }
-            return cell
+        return cell
     }
     
     
@@ -365,11 +313,8 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     })
                     
                     
-                    print("correct")
-                    
                 }
                 else{
-                    print("incorrect")
 
                     UIView.animateWithDuration(0.5, animations: {
                         selectedCell.contentView.backgroundColor = UIColor.whiteColor()
@@ -399,11 +344,9 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 })
                 
                 
-                print("correct")
                 
             }
             else{
-                print("incorrect")
 
                 UIView.animateWithDuration(0.5, animations: {
                     selectedCell.contentView.backgroundColor = UIColor.whiteColor()
@@ -412,7 +355,6 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                     })
                 
                 
-                print("correct")
                 
                 
             }
@@ -433,11 +375,9 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 
                 
                 
-                print("correct")
                 
             }
             else{
-                print("incorrect")
 
                 UIView.animateWithDuration(0.5, animations: {
                     selectedCell.contentView.backgroundColor = UIColor.whiteColor()
@@ -629,7 +569,6 @@ fadeEM()
             
             
             UIView .animateWithDuration(0.3, animations: {
-//                self.mapButton.setImage(UIImage(named: "tableView"), forState: UIControlState.Normal)
                 
                 self.infoVC.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/1.33)
                 
@@ -638,7 +577,6 @@ fadeEM()
             
         }
         
-        //        navigationController?.pushViewController(dao.mapVC, animated: true)
     }
     
     func loadInfoVC(){
