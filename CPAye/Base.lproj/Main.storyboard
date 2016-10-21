@@ -108,7 +108,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Review" id="v7f-Gp-WAt"/>
+                    <tabBarItem key="tabBarItem" title="Review" image="Review" id="v7f-Gp-WAt"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7QD-mT-tLX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -127,7 +127,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Flash Cards" id="dLF-ie-z6R"/>
+                    <tabBarItem key="tabBarItem" title="Flash Cards" image="flash cards" id="dLF-ie-z6R"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gqL-CL-Lqr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -145,7 +145,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Info" id="BgS-SB-Fpy"/>
+                    <tabBarItem key="tabBarItem" title="Info" image="Info" id="BgS-SB-Fpy"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4ga-aZ-i6j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -155,7 +155,7 @@
         <scene sceneID="NeI-2u-TlR">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Au5-51-2Ou" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Quiz" id="V6M-CZ-QYv"/>
+                    <tabBarItem key="tabBarItem" title="Quiz" image="Quiz" id="V6M-CZ-QYv"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ERY-k6-fDi">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -185,7 +185,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Lxb-lR-rm4">
                                 <rect key="frame" x="20" y="120" width="560" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -206,4 +206,10 @@
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="Info" width="25" height="25"/>
+        <image name="Quiz" width="24" height="24"/>
+        <image name="Review" width="25" height="25"/>
+        <image name="flash cards" width="25" height="25"/>
+    </resources>
 </document>

@@ -68,17 +68,19 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         currentQuestionIndex+=1
         prefs.setValue(currentQuestionIndex, forKey: "currentQuestionIndex")
         
+        print(currentQuestionIndex)
+        
         //setting int value when index is incremented
         
         
-        
-        if currentQuestionIndex == prefs.integerForKey("currentQuestionIndex"){
-            print("nsuserdefaults currentquestionindex is:\(currentQuestionIndex)")
-        }else{
-            //Nothing stored in NSUserDefaults yet. Set a value.
-            print("error")
-//            prefs.setValue("Berlin", forKey: "userCity")
-        }
+//        
+//        if currentQuestionIndex == prefs.integerForKey("currentQuestionIndex"){
+//            print("nsuserdefaults currentquestionindex is:\(currentQuestionIndex)")
+//        }else{
+//            //Nothing stored in NSUserDefaults yet. Set a value.
+//            print("error")
+////            prefs.setValue("Berlin", forKey: "userCity")
+//        }
 
         
         //reading it right away..pass condition down
@@ -150,6 +152,8 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 //        dao.restartQuiz()
         
     currentQuestionIndex = 0
+    prefs.setValue(currentQuestionIndex, forKey: "currentQuestionIndex")
+
     dao.currentQuestion = dao.questions[0]
 
         print(dao.questions.count)
