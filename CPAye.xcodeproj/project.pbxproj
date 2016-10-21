@@ -18,6 +18,7 @@
 		C88406D31DB66C6E0041F49E /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88406D21DB66C6E0041F49E /* InfoViewController.swift */; };
 		C88406D51DB66E9B0041F49E /* DAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88406D41DB66E9B0041F49E /* DAO.swift */; };
 		C88406D71DB7CDB10041F49E /* QuizCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88406D61DB7CDB10041F49E /* QuizCell.swift */; };
+		C8F7EDF41DB92DDC005A9BE6 /* QuestionInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F7EDF31DB92DDC005A9BE6 /* QuestionInfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		C88406D21DB66C6E0041F49E /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		C88406D41DB66E9B0041F49E /* DAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAO.swift; sourceTree = "<group>"; };
 		C88406D61DB7CDB10041F49E /* QuizCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizCell.swift; sourceTree = "<group>"; };
+		C8F7EDF31DB92DDC005A9BE6 /* QuestionInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionInfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 				C88406D21DB66C6E0041F49E /* InfoViewController.swift */,
 				C88406D41DB66E9B0041F49E /* DAO.swift */,
 				C88406B01DB1A2690041F49E /* Main.storyboard */,
+				C8F7EDF31DB92DDC005A9BE6 /* QuestionInfoViewController.swift */,
 				C88406D61DB7CDB10041F49E /* QuizCell.swift */,
 				C88406B31DB1A26A0041F49E /* Assets.xcassets */,
 				C88406B51DB1A26A0041F49E /* LaunchScreen.storyboard */,
@@ -153,6 +156,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8F7EDF41DB92DDC005A9BE6 /* QuestionInfoViewController.swift in Sources */,
 				C88406D71DB7CDB10041F49E /* QuizCell.swift in Sources */,
 				C88406D51DB66E9B0041F49E /* DAO.swift in Sources */,
 				C88406C91DB3CF170041F49E /* MultipleChoice.swift in Sources */,

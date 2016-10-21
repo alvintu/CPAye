@@ -16,7 +16,12 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var nextButton = UIButton()
     var restartButton = UIButton()
     var currentQuestion : MultipleChoice = MultipleChoice(question: "", a: "", b: "", c: "", d: "", correctAnswer: "", info: "")
-//lets try to do this without removing all objects in the array
+    
+    let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+    var infoVC = UIViewController()
+    var openedInfo : Bool  = false
+    
+    //lets try to do this without removing all objects in the array
     //i should able to make it work by resetting a counter
     //for some reason resetting a counter breaks it;
    var currentQuestionIndex = 0
@@ -33,7 +38,7 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 //        currentQuestionIndex = dao.questions.indexOf(dao.currentQuestion)!
 
         addInfoAndNextButton()
-        
+        loadInfoVC()
         self.navigationController?.navigationBar.barTintColor = UIColor(red:0.78, green:0.78, blue:0.80, alpha:1.0)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
 
@@ -45,6 +50,7 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     
     func nextQuestion(){
+        
         
         print(currentQuestionIndex)
 
@@ -93,6 +99,20 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
         }
         
+        
+        if(openedInfo){
+            openedInfo = false
+            
+            
+            UIView .animateWithDuration(0.3, animations: {
+                self.infoVC.view.frame = CGRectMake(0, -700, self.view.frame.size.width, self.view.frame.size.height/1.33)
+                
+            })
+        }
+        
+        infoVC.viewDidLoad()
+
+
             fadeEM()
     }
     
@@ -462,7 +482,8 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     func infoOnQuestion(){
         
-        print("info")
+        slideInfoUpOrDown()
+        
     }
     
     
@@ -557,6 +578,52 @@ fadeEM()
         nextButton.alpha = 1.0
         infoButton.userInteractionEnabled = true
         nextButton.userInteractionEnabled = true
+    }
+    
+    
+    func slideInfoUpOrDown(){
+        
+        if(openedInfo){
+            openedInfo = false
+            
+            
+            UIView .animateWithDuration(0.3, animations: {
+                self.infoVC.view.frame = CGRectMake(0, -700, self.view.frame.size.width, self.view.frame.size.height/1.33)
+                
+            })
+            
+        }
+        else{
+            openedInfo = true
+            
+            
+            UIView .animateWithDuration(0.3, animations: {
+//                self.mapButton.setImage(UIImage(named: "tableView"), forState: UIControlState.Normal)
+                
+                self.infoVC.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/1.33)
+                
+                
+            })
+            
+        }
+        
+        //        navigationController?.pushViewController(dao.mapVC, animated: true)
+    }
+    
+    func loadInfoVC(){
+        
+        infoVC = mainStoryboard.instantiateViewControllerWithIdentifier("infoViewController")
+    
+        self .addChildViewController(infoVC) //popover content is settingsvc
+        
+        infoVC.view.frame = CGRectMake(0, -700, self.view.frame.size.width, self.view.frame.size.height/1.33)
+        
+        self.view.addSubview(infoVC.view)
+        
+        
+        
+        
+        
     }
     
     

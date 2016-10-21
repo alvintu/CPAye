@@ -170,5 +170,40 @@
             </objects>
             <point key="canvasLocation" x="-645" y="211"/>
         </scene>
+        <!--Question Info View Controller-->
+        <scene sceneID="Jpp-Ah-DlE">
+            <objects>
+                <viewController storyboardIdentifier="infoViewController" id="4dv-iT-aLF" customClass="QuestionInfoViewController" customModule="CPAye" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mne-K0-Uw0"/>
+                        <viewControllerLayoutGuide type="bottom" id="HVH-BU-gID"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ltk-ju-piK">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Lxb-lR-rm4">
+                                <rect key="frame" x="20" y="120" width="560" height="480"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="HVH-BU-gID" firstAttribute="top" secondItem="Lxb-lR-rm4" secondAttribute="bottom" id="4VL-DH-JKL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Lxb-lR-rm4" secondAttribute="trailing" id="9OZ-c4-IFi"/>
+                            <constraint firstItem="Lxb-lR-rm4" firstAttribute="leading" secondItem="Ltk-ju-piK" secondAttribute="leadingMargin" id="UXW-J2-ssi"/>
+                            <constraint firstItem="Lxb-lR-rm4" firstAttribute="top" secondItem="mne-K0-Uw0" secondAttribute="bottom" constant="100" id="ld2-dt-bSj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="infoTextView" destination="Lxb-lR-rm4" id="AIr-xJ-awL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ev4-Xd-Vw1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
 </document>
