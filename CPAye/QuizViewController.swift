@@ -131,7 +131,8 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         
     
-        
+        infoVC.viewDidLoad()
+
         tableView.reloadData()
         
     }
