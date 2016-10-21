@@ -20,6 +20,8 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
     var infoVC = UIViewController()
     var openedInfo : Bool  = false
+    let prefs = NSUserDefaults.standardUserDefaults()
+
     
     //lets try to do this without removing all objects in the array
     //i should able to make it work by resetting a counter
@@ -32,17 +34,25 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 
     override func viewDidLoad() {
         
-        print("quiz");
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor(red:0.78, green:0.78, blue:0.80, alpha:1.0)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+
         print("\(dao.questions.count) is the number of questions")
         
 //        currentQuestionIndex = dao.questions.indexOf(dao.currentQuestion)!
 
         addInfoAndNextButton()
         loadInfoVC()
-        self.navigationController?.navigationBar.barTintColor = UIColor(red:0.78, green:0.78, blue:0.80, alpha:1.0)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
 
         self.title = "Quiz"
+        
+        currentQuestionIndex = prefs.integerForKey("currentQuestionIndex")
+        dao.currentQuestion = dao.questions[currentQuestionIndex]
+        print("currentQuestionIndex afterview didLoad is \(currentQuestionIndex)")
+        tableView.reloadData()
+
+        
         
     }
     
@@ -56,6 +66,22 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 
         
         currentQuestionIndex+=1
+        prefs.setValue(currentQuestionIndex, forKey: "currentQuestionIndex")
+        
+        //setting int value when index is incremented
+        
+        
+        
+        if currentQuestionIndex == prefs.integerForKey("currentQuestionIndex"){
+            print("nsuserdefaults currentquestionindex is:\(currentQuestionIndex)")
+        }else{
+            //Nothing stored in NSUserDefaults yet. Set a value.
+            print("error")
+//            prefs.setValue("Berlin", forKey: "userCity")
+        }
+
+        
+        //reading it right away..pass condition down
         
         
 //        let currentQuestionIndex = dao.questions.indexOf(dao.currentQuestion)
