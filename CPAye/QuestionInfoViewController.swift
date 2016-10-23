@@ -22,6 +22,8 @@ class QuestionInfoViewController: UIViewController {
     infoTextView.text =  dao.currentQuestion.info
         
         
+        infoTextView.textColor = UIColor(red:0.00, green:0.48, blue:1.00, alpha:1.0)
+
     }
 
     

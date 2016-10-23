@@ -14,7 +14,8 @@ class DAO: NSObject{
     
     var questions :[MultipleChoice] = []
     var currentQuestion : MultipleChoice = MultipleChoice(question: "", a: "", b: "", c: "", d: "", correctAnswer: "", info: "")
-    
+    var review :[ReviewSection] = []
+
     
     
     override init(){
@@ -36,9 +37,26 @@ class DAO: NSObject{
         
         self.loadQuestions()
         self.currentQuestion = questions[0]
+        
+        
+        self.loadReview()
 }
     
 
+    
+    func loadReview(){
+        let review1 = ReviewSection.init(title: "Individual Taxation", info: ["you","will","be","tax"])
+        let review2 = ReviewSection.init(title: "Corporation Taxation", info: ["you","will","be","corporate"])
+        let review3 = ReviewSection.init(title: "Estate Taxation", info: ["you","will","be","estated"])
+        
+        review.append(review1)
+
+        review.append(review2)
+
+        review.append(review3)
+
+
+    }
     
     
     func loadQuestions(){

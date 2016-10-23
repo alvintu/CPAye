@@ -11,7 +11,7 @@ import Foundation
 
 class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UITextViewDelegate{
     
-    let dao = DAO.sharedInstance;
+    let dao = DAO.sharedInstance
     let prefs = NSUserDefaults.standardUserDefaults()
     var currentQuestion : MultipleChoice = MultipleChoice(question: "", a: "", b: "", c: "", d: "", correctAnswer: "", info: "")
 
