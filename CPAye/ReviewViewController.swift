@@ -11,8 +11,7 @@ import UIKit
 class ReviewViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     let dao = DAO.sharedInstance
     let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-
-
+    var reviewInfoVC = UIViewController()
     override func viewDidLoad() {
         print("review");
     }
@@ -123,12 +122,17 @@ class ReviewViewController: UIViewController,UITableViewDelegate,UITableViewData
         
         return rowHeight
     }
-    
+
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         
         print(dao.review[indexPath.row].info)
         
+        reviewInfoVC = mainStoryboard.instantiateViewControllerWithIdentifier("reviewInfo")
+        
+        let currentReviewSection = dao.review[indexPath.row]
+        dao.currentReviewSection = currentReviewSection
+        self.navigationController?.pushViewController(reviewInfoVC, animated: true)
         
 //        let selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
 //        selectedCell.contentView.backgroundColor = UIColor(red:0.98, green:0.17, blue:0.41, alpha:1.0)

@@ -15,7 +15,8 @@ class DAO: NSObject{
     var questions :[MultipleChoice] = []
     var currentQuestion : MultipleChoice = MultipleChoice(question: "", a: "", b: "", c: "", d: "", correctAnswer: "", info: "")
     var review :[ReviewSection] = []
-
+    
+    var currentReviewSection : ReviewSection = ReviewSection.init(title: "", info: [])
     
     
     override init(){
@@ -38,8 +39,10 @@ class DAO: NSObject{
         self.loadQuestions()
         self.currentQuestion = questions[0]
         
-        
         self.loadReview()
+        self.currentReviewSection = review[0]
+        
+        
 }
     
 
