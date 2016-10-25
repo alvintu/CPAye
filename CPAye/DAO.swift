@@ -18,7 +18,8 @@ class DAO: NSObject{
     var review :[ReviewSection] = []
     var currentReviewSection : ReviewSection = ReviewSection.init(title: "", info: [])
     
-//    var flashCard : FlashCardClass = FlashCard
+    var flashCards : [FlashCardClass] = []
+    var currentFlashCard : FlashCardClass = FlashCardClass.init(concept: "",definition: "")
     
     
     override init(){
@@ -38,6 +39,15 @@ class DAO: NSObject{
     
     
     func loadFlashCards(){
+        
+        let flashCard1 = FlashCardClass.init(concept: "accounting concept 1", definition: "accounting definition 1")
+        
+        let flashCard2 = FlashCardClass.init(concept: "accounting defintion 2", definition: "accounting definition 2")
+    
+        
+        flashCards.append(flashCard1)
+        flashCards.append(flashCard2)
+
         
     }
 
