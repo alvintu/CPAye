@@ -14,27 +14,15 @@ class DAO: NSObject{
     
     var questions :[MultipleChoice] = []
     var currentQuestion : MultipleChoice = MultipleChoice(question: "", a: "", b: "", c: "", d: "", correctAnswer: "", info: "")
-    var review :[ReviewSection] = []
     
+    var review :[ReviewSection] = []
     var currentReviewSection : ReviewSection = ReviewSection.init(title: "", info: [])
+    
+//    var flashCard : FlashCardClass = FlashCard
     
     
     override init(){
         super.init()
-        
-//        let question1 = MultipleChoice(question: "which animal can swim?", a: "Parastratiosphecomyia sphecomyioides", b: "cat", c: "fish", d: "giraffe", correctAnswer: "c", info: "only the fish can swim! the other animals are land animals!")
-//        
-//        let question2 = MultipleChoice(question: "which animal can jump?", a: "dog", b: "turtle", c: "fish", d: "hippo", correctAnswer: "d", info: "only the dog can jump!")
-//        let question3 = MultipleChoice(question: "which animal can bark?", a: "dog", b: "cat", c: "fish", d: "giraffe", correctAnswer: "a", info: "only the dog can bark!")
-//        
-//        let question4 = MultipleChoice(question: "which animal is nocturnal?", a: "owl", b: "giraffe", c: "dog", d: "cat", correctAnswer: "b", info: "only the owl is nocturnal!")
-//        
-//        
-//
-//        questions.append(question1)
-//        questions.append(question2)
-//        questions.append(question3)
-//        questions.append(question4)
         
         self.loadQuestions()
         self.currentQuestion = questions[0]
@@ -42,13 +30,20 @@ class DAO: NSObject{
         self.loadReview()
         self.currentReviewSection = review[0]
         
+        self.loadFlashCards()
+        
+        
         
 }
     
+    
+    func loadFlashCards(){
+        
+    }
 
     
     func loadReview(){
-        let review1 = ReviewSection.init(title: "Individual Taxation", info: ["you","will","be","tax"])
+        let review1 = ReviewSection.init(title: "Individual Taxation", info: ["hello sir s of being a good person  hello hello that was a new line","wiasdfads hello there my name is mjr johnsonll","be","tasdkjhaskl  kdashflkashfdlha s lkfhaslf  sdalfhasljkfhaslkfjdhdalsdkfh x"])
         let review2 = ReviewSection.init(title: "Corporation Taxation", info: ["you","will","be","corporate"])
         let review3 = ReviewSection.init(title: "Estate Taxation", info: ["you","will","be","estated"])
         
