@@ -22,6 +22,8 @@ class DAO: NSObject{
     var currentFlashCard : FlashCardClass = FlashCardClass.init(concept: "",definition: "")
     
     
+    
+    
     override init(){
         super.init()
         
@@ -32,6 +34,8 @@ class DAO: NSObject{
         self.currentReviewSection = review[0]
         
         self.loadFlashCards()
+        self.currentFlashCard = flashCards[0]
+
         
         
         

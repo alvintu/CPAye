@@ -1,5 +1,5 @@
 //
-//  FlashCardCell.swift
+//  FlashCardInfoCell.swift
 //  CPAye
 //
 //  Created by Jo Tu on 10/25/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FlashCardCell: UITableViewCell {
-    @IBOutlet weak var conceptLabel: UILabel!
+class FlashCardInfoCell: UITableViewCell {
     
+    @IBOutlet weak var definitionLabel: UITextView!
 }

@@ -1,26 +1,31 @@
 //
-//  FlashCardViewController.swift
+//  FlashCardInfoViewController.swift
 //  CPAye
 //
-//  Created by Jo Tu on 10/18/16.
+//  Created by Jo Tu on 10/25/16.
 //  Copyright © 2016 alvorithms. All rights reserved.
 //
+
 //
-//  ReviewViewController.swift
+//  ReviewInfoViewController.swift
 //  CPAye
 //
-//  Created by Jo Tu on 10/18/16.
+//  Created by Jo Tu on 10/23/16.
 //  Copyright © 2016 alvorithms. All rights reserved.
 //
+
 
 import UIKit
 
-class FlashCardViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class FlashCardInfoViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UITextViewDelegate {
     let dao = DAO.sharedInstance
     let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-    var flashCardInfoVC = UIViewController()
+    
     
     override func viewDidLoad() {
+        
+        
+        print("review");
     }
     
     
@@ -31,10 +36,15 @@ class FlashCardViewController: UIViewController,UITableViewDelegate,UITableViewD
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("flashCard", forIndexPath: indexPath) as! FlashCardCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("flashCardInfo", forIndexPath: indexPath) as! FlashCardInfoCell
         
         
-        cell.conceptLabel.text = dao.flashCards[indexPath.row].concept
+        cell.definitionLabel.delegate = self
+        
+        cell.definitionLabel.text = dao.currentFlashCard.definition
+        
+
+        
         
         return cell
     }
@@ -60,7 +70,7 @@ class FlashCardViewController: UIViewController,UITableViewDelegate,UITableViewD
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
         
-        let rowHeight :CGFloat = 50.0
+        let rowHeight :CGFloat = 75.0
         
         
         return rowHeight
@@ -69,27 +79,22 @@ class FlashCardViewController: UIViewController,UITableViewDelegate,UITableViewD
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         
+        //pressing action should just be pushed back to previous flash card concept
+        //the main flash card vc should have a navcontroller and a way to go to next flash card 
+        //maybe a swipe gesture to see the next flashcard concept oder  ..... 
+        //data persistence to keep track of current flash card
+        //fuc with scrambling questions
         
-        flashCardInfoVC = mainStoryboard.instantiateViewControllerWithIdentifier("flashCardInfo")
-        
-        let currentFlashCard = dao.flashCards[indexPath.row]
-        dao.currentFlashCard = currentFlashCard
-        self.navigationController?.pushViewController(flashCardInfoVC, animated: true)
+//        print(dao.review[indexPath.row].info)
         
         
-        //
     }
     
-
-func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-    let cellToDeSelect:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
-    cellToDeSelect.contentView.backgroundColor = UIColor.whiteColor()
     
     
     
-}
-
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
 
 }
-
-
