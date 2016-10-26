@@ -344,9 +344,59 @@
                     <view key="view" contentMode="scaleToFill" id="zkz-jO-8fL">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rs3-hJ-rJB">
+                                <rect key="frame" x="40" y="70" width="520" height="250"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xbA-rI-A6A">
+                                        <rect key="frame" x="0.0" y="0.0" width="520" height="100"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="h4P-oS-X6M"/>
+                                        </constraints>
+                                        <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to see meaning -&gt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z6d-RR-XRB">
+                                        <rect key="frame" x="0.0" y="100" width="520" height="150"/>
+                                        <color key="backgroundColor" red="0.85882352941176465" green="0.8666666666666667" blue="0.87058823529411766" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.53725490196078429" green="0.5490196078431373" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="xbA-rI-A6A" firstAttribute="top" secondItem="Rs3-hJ-rJB" secondAttribute="top" id="4xB-Qw-ZCO"/>
+                                    <constraint firstAttribute="bottom" secondItem="z6d-RR-XRB" secondAttribute="bottom" id="UuY-hc-Qre"/>
+                                    <constraint firstAttribute="trailing" secondItem="xbA-rI-A6A" secondAttribute="trailing" id="WJy-sk-qaj"/>
+                                    <constraint firstAttribute="trailing" secondItem="z6d-RR-XRB" secondAttribute="trailing" id="b76-rj-Zf1"/>
+                                    <constraint firstItem="z6d-RR-XRB" firstAttribute="leading" secondItem="Rs3-hJ-rJB" secondAttribute="leading" id="eFH-vB-Zko"/>
+                                    <constraint firstItem="xbA-rI-A6A" firstAttribute="leading" secondItem="Rs3-hJ-rJB" secondAttribute="leading" id="hAu-UI-9MV"/>
+                                    <constraint firstAttribute="height" constant="250" id="kwG-tX-3It"/>
+                                    <constraint firstItem="z6d-RR-XRB" firstAttribute="top" secondItem="xbA-rI-A6A" secondAttribute="bottom" id="nji-Ca-5Dv"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.3529411764705882" green="0.83137254901960778" blue="0.15294117647058825" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Rs3-hJ-rJB" firstAttribute="top" secondItem="Jla-Pm-FbS" secondAttribute="bottom" constant="50" id="5Jr-R2-jko"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Rs3-hJ-rJB" secondAttribute="trailing" constant="20" id="BbH-ks-jH0"/>
+                            <constraint firstItem="Rs3-hJ-rJB" firstAttribute="leading" secondItem="zkz-jO-8fL" secondAttribute="leadingMargin" constant="20" id="pQ7-mj-Lek"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Flash Cards" image="flash cards" id="qCe-S4-w3D"/>
+                    <connections>
+                        <outlet property="flashCardContainerView" destination="Rs3-hJ-rJB" id="ZUI-aT-jHd"/>
+                        <outlet property="flashCardTextView" destination="xbA-rI-A6A" id="viJ-Ah-YPD"/>
+                        <outlet property="frontTapLabel" destination="z6d-RR-XRB" id="cAs-3h-HHn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bsw-t5-PbP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
