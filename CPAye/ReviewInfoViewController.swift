@@ -12,7 +12,7 @@ import UIKit
 
 class ReviewInfoViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UITextViewDelegate {
     let dao = DAO.sharedInstance
-    let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//    let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
     
     
     override func viewDidLoad() {
@@ -30,12 +30,13 @@ class ReviewInfoViewController: UIViewController,UITableViewDelegate,UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("review", forIndexPath: indexPath) as! ReviewInfoCell
-        cell.reviewInfo.delegate = self
 
         
         
         
         cell.reviewInfo.text  = dao.currentReviewSection.info[indexPath.row] as! String
+        cell.reviewInfo.delegate = self
+
         
 
         return cell
@@ -62,8 +63,7 @@ class ReviewInfoViewController: UIViewController,UITableViewDelegate,UITableView
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
         
-        let rowHeight :CGFloat = 75.0
- 
+        let rowHeight :CGFloat = 100.0
         
         return rowHeight
     }

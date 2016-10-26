@@ -37,16 +37,45 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 
         
 
-        addInfoAndNextButton()
+//        addInfoAndNextButton()
         loadInfoVC()
 
         self.title = "Quiz"
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(QuizViewController.rotated), name: UIDeviceOrientationDidChangeNotification, object: nil)
+
+//        addInfoAndNextButton()
+
+        
+        rotated()
+        
         
         currentQuestionIndex = prefs.integerForKey("currentQuestionIndex")
         dao.currentQuestion = dao.questions[currentQuestionIndex]
         tableView.reloadData()
 
         
+        
+    }
+    
+    func rotated()
+    {
+        if(UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation))
+        {
+            print("landscape")
+            addInfoAndNextButtonForLandScape()
+
+
+        }
+        
+        if(UIDeviceOrientationIsPortrait(UIDevice.currentDevice().orientation))
+        {
+            print("Portrait")
+//            addInfoAndNextButton()
+            addInfoAndNextButton()
+
+
+        }
         
     }
     
@@ -134,7 +163,6 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         cell.questionInfoTextView.userInteractionEnabled = false
         cell.questionInfoTextView.textColor = UIColor(red:0.00, green:0.48, blue:1.00, alpha:1.0)
         
-        cell.questionInfoTextView.delegate = self
         
         switch indexPath {
         case NSIndexPath(forRow: 0, inSection: 0) :
@@ -459,9 +487,75 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     
     
+    func addInfoAndNextButtonForLandScape(){
+        
+        infoButton.removeFromSuperview()
+        nextButton.removeFromSuperview()
+        restartButton.removeFromSuperview()
+        
+        
+        infoButton = UIButton(frame: CGRect(x: 0, y: self.view.frame.height-100, width: self.view.frame.width/2, height: 50))
+        infoButton.backgroundColor = UIColor(red:0.20, green:0.67, blue:0.86, alpha:1.0)
+        
+        
+        infoButton.setTitle("Info", forState: .Normal)
+        infoButton.addTarget(self, action: #selector(infoOnQuestion), forControlEvents: .TouchUpInside)
+        infoButton.layer.cornerRadius = 10.0
+        
+        self.view.addSubview(infoButton)
+        
+        nextButton = UIButton(frame: CGRect(x: self.view.frame.width/2, y: self.view.frame.height-100, width: self.view.frame.width/2, height: 50))
+        nextButton.backgroundColor = UIColor(red:0.35, green:0.83, blue:0.15, alpha:1.0)
+        
+        
+        nextButton.setTitle("Next", forState: .Normal)
+        nextButton.addTarget(self, action: #selector(nextQuestion), forControlEvents: .TouchUpInside)
+        nextButton.layer.cornerRadius = 10.0
+        
+        self.view.addSubview(nextButton)
+        
+        
+        
+        restartButton = UIButton(frame: CGRect(x: self.view.frame.width/2-50, y: self.view.frame.height/2, width: 100, height: 100))
+        restartButton.backgroundColor = .redColor()
+        restartButton.setTitle("Restart", forState: .Normal)
+        restartButton.addTarget(self, action: #selector(restartQuiz), forControlEvents: .TouchUpInside)
+        restartButton.layer.cornerRadius = 10.0
+        
+        self.view.addSubview(restartButton)
+        
+        
+        
+        
+        
+        
+        
+        //
+        //        infoButton.hidden = true
+        //        nextButton.hidden = true
+        
+        fadeEM()
+        
+        //
+        
+        restartButton.hidden = true
+        
+        
+        
+        
+    }
+    
+    
+    
   
     
     func addInfoAndNextButton(){
+        
+        
+        infoButton.removeFromSuperview()
+        nextButton.removeFromSuperview()
+        restartButton.removeFromSuperview()
+
         
         
         infoButton = UIButton(frame: CGRect(x: 0, y: self.view.frame.height-160, width: self.view.frame.width/2, height: 100))

@@ -43,7 +43,22 @@ class FlashCardInfoViewController: UIViewController,UITableViewDelegate,UITableV
         
         cell.definitionLabel.text = dao.currentFlashCard.definition
         
-
+        
+        //navigation controller clear and navigation text should beb gcolor
+//tableview row 0 black text white bg
+    //row 1 dark grey text light gray bg
+        
+        //ui
+    //mastered label (kvo)
+        //mastered gauge  (kvo)
+        //revieing label
+        //lgauge
+        //learning label
+        //learning gauge
+        
+        //you have mastered-5 times
+        //reviewing know concept 1-2 times
+        //learning don't know this word
         
         
         return cell

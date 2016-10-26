@@ -13,7 +13,13 @@ class ReviewViewController: UIViewController,UITableViewDelegate,UITableViewData
     let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
     var reviewInfoVC = UIViewController()
     override func viewDidLoad() {
-        print("review");
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor(red:0.78, green:0.78, blue:0.80, alpha:1.0)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
+        self.title = "Review"
+        
+
     }
     
     
@@ -25,6 +31,8 @@ class ReviewViewController: UIViewController,UITableViewDelegate,UITableViewData
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("review", forIndexPath: indexPath) as! ReviewCell
+        
+    
         
         
         cell.sectionNameLabel.text = dao.review[indexPath.row].title

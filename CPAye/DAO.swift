@@ -57,7 +57,7 @@ class DAO: NSObject{
 
     
     func loadReview(){
-        let review1 = ReviewSection.init(title: "Individual Taxation", info: ["hello sir s of being a good person  hello hello that was a new line","wiasdfads hello there my name is mjr johnsonll","be","tasdkjhaskl  kdashflkashfdlha s lkfhaslf  sdalfhasljkfhaslkfjdhdalsdkfh x"])
+        let review1 = ReviewSection.init(title: "Individual Taxation", info: ["can a nigga get more than two lines, can a nigga get more than 3, can a nigga get more than 4 lines?,can a nigga get more than two lines, can a nigga get more than 3, can a nigga get more than 4 lines?,can a nigga get more than two lines, can a nigga get more than 3, can a nigga get more than 4 lines?","wiasdfads hello there my name is mjr johnsonll","be","tasdkjhaskl  kdashflkashfdlha s lkfhaslf  sdalfhasljkfhaslkfjdhdalsdkfh x"])
         let review2 = ReviewSection.init(title: "Corporation Taxation", info: ["you","will","be","corporate"])
         let review3 = ReviewSection.init(title: "Estate Taxation", info: ["you","will","be","estated"])
         
