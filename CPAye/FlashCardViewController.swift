@@ -53,7 +53,6 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
 
        
 
-        
 
 
 
@@ -107,12 +106,61 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
         
         print("I know")
         
-    }
+        //know counter on flashCard
+        //
+        let originalFrame = self.flashCardContainerView.frame
+        
+        UIView.animateWithDuration(0.6, delay: 0, options: [], animations: {
+            self.flashCardContainerView.frame = CGRectMake(-800, self.flashCardContainerView.frame.origin.y, self.flashCardContainerView.frame.size.width, self.flashCardContainerView.frame.size.height)
+//            self.flashCardContainerView.hidden = true
+
+
+            }, completion: {_ in
+                UIView.animateWithDuration(0.1, delay: 0, options:[], animations: {
+                
+                        self.flashCardContainerView.hidden = true
+                
+                self.flashCardContainerView.frame = CGRectMake(900, self.flashCardContainerView.frame.origin.y, self.flashCardContainerView.frame.size.width, self.flashCardContainerView.frame.size.height)
+                
+                
+                
+                    },completion:{ _ in
+                        
+                        UIView .animateWithDuration(0.4, delay: 0, options:[], animations: {
+                            self.flashCardContainerView.hidden = false
+                            
+                            
+                            self.flashCardContainerView.frame = CGRectMake(originalFrame.origin.x, originalFrame.origin.y, originalFrame.size.width, originalFrame.size.height)
+                            
+                        },completion: nil)
+                        
+                        
+                    }
+            )
+        })
+
     
+            
+
+            
+        
+
+        
+        
+//        self.flashCardContainerView.hidden = true
+
+
+        
+        
+  
+        
+    }
+
     func dontKnowThisWord(){
         
         print("I don't know.")
         
+        //put the same information
     }
     
     
@@ -121,6 +169,7 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
     }
     
     func tapped() {
+
         print("tapped")
 
         
@@ -150,7 +199,6 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
 
         
     }
-        
         loadHiddenButtons()
 
     
