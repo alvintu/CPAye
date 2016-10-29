@@ -47,75 +47,24 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
     
     override func viewDidLoad() {
         
-        
-        
-        flashCardContainerView = UIView.init(frame: CGRectMake(0, 0, view.frame.size.width/1.25, view.frame.height/2))
-        
-        
-        flashCardTextView = UITextView.init(frame: CGRectMake(0, 0,view.frame.size.width/1.25, view.frame.height/4))
-        frontTapLabel =  UILabel.init(frame: CGRectMake(0,flashCardTextView.frame.size.height/2 ,flashCardTextView.frame.size.width, flashCardTextView.frame.height/2))
-        
-        
-        flashCardContainerView.center = view.center
-        
-        flashCardTextView.editable = false
-        flashCardTextView.selectable = false
-        flashCardTextView.userInteractionEnabled = false 
-
-        
-        frontTapLabel.text = "Tap to see meaning ->"
-        frontTapLabel.layer.cornerRadius = 10.0
-        
-        frontTapLabel.textAlignment = NSTextAlignment.Center
-        frontTapLabel.adjustsFontSizeToFitWidth = true
-        frontTapLabel.backgroundColor = UIColor.grayColor()
-
-        flashCardContainerView.addSubview(flashCardTextView)
-        flashCardTextView.addSubview(frontTapLabel)
-        view.addSubview(flashCardContainerView)
 
         
         
         
-        back =  UITextView(frame: CGRect(x: flashCardTextView.frame.origin.x, y: flashCardTextView.frame.origin.y, width: flashCardTextView.frame.size.width, height: flashCardTextView.frame.size.height * 1.5  ))
-        
-        
-        back.layer.cornerRadius = 10.0
-
-
-        back.delegate = self
-        back.editable = false
-        back.selectable = false
-
-        back.userInteractionEnabled = false
-        
-//        flashCardContainerView.layer.cornerRadius = 10.0
-        flashCardTextView.layer.cornerRadius = 10.0
-        
-        
-        let attrs = [NSFontAttributeName : UIFont.boldSystemFontOfSize(26)]
-        let boldString = NSMutableAttributedString(string:dao.currentFlashCard.concept, attributes:attrs)
-        
-        
-        flashCardTextView.attributedText = boldString
-        flashCardTextView.textAlignment = .Center
-        
-
-
-
-         singleTap = UITapGestureRecognizer(target: self, action: #selector(tapped))
-        singleTap.numberOfTapsRequired = 1
-        
-        flashCardContainerView.addGestureRecognizer(singleTap)
 
         
-        currentFlashCardIndex = prefs.integerForKey("currentQuestionIndex")
+        currentFlashCardIndex = prefs.integerForKey("currentFlashCardIndex")
         dao.currentFlashCard = dao.flashCards[currentFlashCardIndex]
+        print(currentFlashCardIndex)
 
+        
+        loadBasicUI()
+        loadConceptFromSingleton()
+
+        
 
 
         
-        flashCardContainerView.layer.cornerRadius = 10.0
 //        loadHiddenButtons()
         
         print("flashCard")
@@ -133,18 +82,27 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
         
         
         
-//
-//        currentFlashCardIndex+=1
-//        prefs.setValue(currentFlashCardIndex, forKey: "currentQuestionIndex")
-//
 
-//       
-//        if(currentFlashCardIndex < dao.flashCards.count){
-//            
-//            dao.currentFlashCard = dao.flashCards[currentFlashCardIndex]
-//
-//
-//        }
+        currentFlashCardIndex+=1
+
+
+       
+        if(currentFlashCardIndex < dao.flashCards.count){
+            
+            dao.currentFlashCard = dao.flashCards[currentFlashCardIndex]
+
+
+        }
+        else{
+            dao.currentFlashCard = dao.flashCards[0]
+            currentFlashCardIndex = 0
+
+            
+        }
+        prefs.setValue(currentFlashCardIndex, forKey: "currentFlashCardIndex")
+
+        
+        loadConceptFromSingleton()
         
         slideFlashCard()
 
@@ -195,7 +153,6 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
 
             showingAnswer = true
             
-//            flashCardContainerView.removeGestureRecognizer(singleTap)
 
         
     }
@@ -231,6 +188,7 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
                     self.showingAnswer = false
                     self.knowButton.hidden = true
                     self.dontKnowButton.hidden = true
+                    
         
                     
                     self.flashCardContainerView.frame = CGRectMake(900, self.flashCardContainerView.frame.origin.y, self.flashCardContainerView.frame.size.width, self.flashCardContainerView.frame.size.height)
@@ -257,13 +215,7 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
         
     }
 
-    
-    func removeButtons(){
-        knowButton.removeFromSuperview()
-        dontKnowButton.removeFromSuperview()
-        flashCardContainerView.addSubview(front)
 
-    }
     
     
     
@@ -287,6 +239,74 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
         dontKnowButton.addTarget(self, action: #selector(dontKnowThisWord), forControlEvents: .TouchUpInside)
         
         self.flashCardContainerView.addSubview(dontKnowButton)
+    }
+    
+    func loadConceptFromSingleton(){
+        let attrs = [NSFontAttributeName : UIFont.boldSystemFontOfSize(20)]
+        let boldString = NSMutableAttributedString(string:dao.currentFlashCard.concept, attributes:attrs)
+        
+        
+        flashCardTextView.attributedText = boldString
+        
+        
+
+    }
+    
+    func loadBasicUI(){
+        
+        
+        flashCardContainerView = UIView.init(frame: CGRectMake(0, 0, view.frame.size.width/1.25, view.frame.height/2))
+        
+        
+        flashCardTextView = UITextView.init(frame: CGRectMake(0, 0,view.frame.size.width/1.25, view.frame.height/4))
+        frontTapLabel =  UILabel.init(frame: CGRectMake(0,flashCardTextView.frame.size.height/2 ,flashCardTextView.frame.size.width, flashCardTextView.frame.height/2))
+        
+        
+        flashCardContainerView.center = view.center
+        
+        
+        flashCardTextView.editable = false
+        flashCardTextView.selectable = false
+        flashCardTextView.userInteractionEnabled = false
+        flashCardTextView.textAlignment = .Center
+        
+        
+        
+        
+        frontTapLabel.text = "Tap to see meaning ->"
+        frontTapLabel.layer.cornerRadius = 10.0
+        frontTapLabel.textAlignment = NSTextAlignment.Center
+        frontTapLabel.adjustsFontSizeToFitWidth = true
+        frontTapLabel.backgroundColor = UIColor.grayColor()
+        
+        flashCardContainerView.addSubview(flashCardTextView)
+        flashCardTextView.addSubview(frontTapLabel)
+        view.addSubview(flashCardContainerView)
+        
+        
+        
+        
+        back =  UITextView(frame: CGRect(x: flashCardTextView.frame.origin.x, y: flashCardTextView.frame.origin.y, width: flashCardTextView.frame.size.width, height: flashCardTextView.frame.size.height * 1.5  ))
+        
+        
+        
+        
+        back.layer.cornerRadius = 10.0
+        
+        
+        back.delegate = self
+        back.editable = false
+        back.selectable = false
+        
+        back.userInteractionEnabled = false
+        
+        //        flashCardContainerView.layer.cornerRadius = 10.0
+        flashCardTextView.layer.cornerRadius = 10.0
+        flashCardContainerView.layer.cornerRadius = 10.0
+        singleTap = UITapGestureRecognizer(target: self, action: #selector(tapped))
+        singleTap.numberOfTapsRequired = 1
+        flashCardContainerView.addGestureRecognizer(singleTap)
+
     }
     
     

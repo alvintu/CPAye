@@ -44,13 +44,34 @@ class DAO: NSObject{
     
     func loadFlashCards(){
         
-        let flashCard1 = FlashCardClass.init(concept: "accounting concept 1", definition: "accounting definition 1")
+        let flashCard1 = FlashCardClass.init(concept: "IFRS Qualitative characteristics of Financial Statement", definition:"1)Understandability2) Relevance3) Reliability4) Comparability")
+        
+        
         
         let flashCard2 = FlashCardClass.init(concept: "accounting defintion 2", definition: "accounting definition 2")
+        
+        let flashCard3 = FlashCardClass.init(concept: "10 Basic Elements of Financial Statement", definition: "1) Assets; 2) Liabilities; 3) Equity; 4) Revenues; 5) Expenses 6) Gains (losses); 7) Accrual accounting; 8) Investments by owners; 9) Distributions to owners; 10) Comprehensiveincome")
+        
+        
+        
+        let flashCard4 = FlashCardClass.init(concept: "Characteristics of Useful Information", definition: "Relevance, Reliability")
+        
+        
+        
+        let flashCard5 = FlashCardClass.init(concept: "Pervasive Constraint", definition: "Cost/Benefit constraint")
+        
+        
+        
+
+        
     
         
         flashCards.append(flashCard1)
         flashCards.append(flashCard2)
+        flashCards.append(flashCard3)
+        flashCards.append(flashCard4)
+        flashCards.append(flashCard5)
+
 
         
     }
