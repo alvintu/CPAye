@@ -109,6 +109,10 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
             restartButton.hidden = false
             
+        currentQuestionIndex = 0
+            prefs.setValue(currentQuestionIndex, forKey: "currentQuestionIndex")
+
+            
             dao.currentQuestion = MultipleChoice(question: "End of Quiz!\nIf you don't feel comfortable,try the Flash Cards or Review tab and try again!", a: "", b: "", c: "", d: "", correctAnswer: "", info: "")
             
             self.tableView.reloadData()
@@ -140,10 +144,9 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         tableView.allowsSelection = true
         tableView.separatorStyle = .SingleLine
         restartButton.hidden = true
+
         
-        currentQuestionIndex = 0
-        prefs.setValue(currentQuestionIndex, forKey: "currentQuestionIndex")
-        dao.currentQuestion = dao.questions[0]
+        dao.currentQuestion = dao.questions[currentQuestionIndex]
         
         
         infoVC.viewDidLoad()
@@ -484,13 +487,14 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
     }
     
-    
+
     
     func addInfoAndNextButtonForLandScape(){
         
         infoButton.removeFromSuperview()
         nextButton.removeFromSuperview()
         restartButton.removeFromSuperview()
+
         
         
         infoButton = UIButton(frame: CGRect(x: 0, y: self.view.frame.height-100, width: self.view.frame.width/2, height: 50))
@@ -524,6 +528,8 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         self.view.addSubview(restartButton)
         
         
+        
+
         
         
         
@@ -591,6 +597,15 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         
         
+        
+
+        
+        
+        
+        
+        
+        
+
         
         
 //        

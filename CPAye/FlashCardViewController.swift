@@ -20,16 +20,15 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
     let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
     var flashCardInfoVC = UIViewController()
     
-    var flashCardContainerView: UIView!
-    var flashCardTextView: UITextView!
-    var frontTapLabel: UILabel!
+    var flashCardContainerView = UIView()
+    var flashCardTextView = UITextView()
+    var frontTapLabel = UILabel()
     let prefs = NSUserDefaults.standardUserDefaults()
     
     
     
     
-    var back: UITextView!
-    var front: UITextView!
+    var back = UITextView()
 
     var knowButton : UIButton!
     var dontKnowButton : UIButton!
@@ -49,7 +48,8 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
         
 
         
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FlashCardViewController.rotated), name: UIDeviceOrientationDidChangeNotification, object: nil)
+
         
 
         
@@ -58,8 +58,7 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
         print(currentFlashCardIndex)
 
         
-        loadBasicUI()
-        loadConceptFromSingleton()
+        rotated()
 
         
 
@@ -70,6 +69,40 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
         print("flashCard")
     }
     
+    
+    func rotated()
+    {
+        if(UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation))
+        {
+            print("landscape")
+
+            loadBasicUI()
+            loadConceptFromSingleton()
+            
+            if(showingAnswer)
+            {
+                loadHiddenButtons()
+
+            
+        }
+        }
+        
+        if(UIDeviceOrientationIsPortrait(UIDevice.currentDevice().orientation))
+        {
+            print("Portrait")
+            //            addInfoAndNextButton()
+
+            loadBasicUI()
+            loadConceptFromSingleton()
+            
+            if(showingAnswer){
+                loadHiddenButtons()
+            }
+
+            
+        }
+        
+    }
     
     
     
@@ -254,6 +287,12 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
     
     func loadBasicUI(){
         
+    
+        
+        flashCardContainerView.removeFromSuperview()
+        flashCardTextView.removeFromSuperview()
+        frontTapLabel.removeFromSuperview()
+        back.removeFromSuperview()
         
         flashCardContainerView = UIView.init(frame: CGRectMake(0, 0, view.frame.size.width/1.25, view.frame.height/2))
         
@@ -268,7 +307,7 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
         flashCardTextView.editable = false
         flashCardTextView.selectable = false
         flashCardTextView.userInteractionEnabled = false
-        flashCardTextView.textAlignment = .Center
+        flashCardTextView.textAlignment = NSTextAlignment.Center
         
         
         

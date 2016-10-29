@@ -29,5 +29,7 @@ class MultipleChoice: NSObject {
         self.info = info
 
     }
+    
+    
 
 }

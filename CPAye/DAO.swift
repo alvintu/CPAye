@@ -6,11 +6,16 @@
 //  Copyright © 2016 alvorithms. All rights reserved.
 //
 import Foundation
+import GameplayKit
+
 
 class DAO: NSObject{
     
     
+    
     static let sharedInstance = DAO()
+    let prefs = NSUserDefaults.standardUserDefaults()
+
     
     var questions :[MultipleChoice] = []
     var currentQuestion : MultipleChoice = MultipleChoice(question: "", a: "", b: "", c: "", d: "", correctAnswer: "", info: "")
@@ -26,6 +31,7 @@ class DAO: NSObject{
     
     override init(){
         super.init()
+        
         
         self.loadQuestions()
         self.currentQuestion = questions[0]
@@ -110,4 +116,15 @@ class DAO: NSObject{
         
 
     }
+    
+    
+    func shuffleQuestons() {
+        questions = GKRandomSource.sharedRandom().arrayByShufflingObjectsInArray(questions) as! [MultipleChoice]
+        
+        //this method is not being used
+        //it properly shuffles but because nsuserdefaults cannot store custom objects like an array full of custom objects
+        //implemented is still possible just takes some work with nscoding
+    }
+    
+
 }
