@@ -20,28 +20,78 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
     let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
     var flashCardInfoVC = UIViewController()
     
-    @IBOutlet weak var flashCardContainerView: UIView!
-    @IBOutlet weak var flashCardTextView: UITextView!
-    @IBOutlet weak var frontTapLabel: UILabel!
+    var flashCardContainerView: UIView!
+    var flashCardTextView: UITextView!
+    var frontTapLabel: UILabel!
+    let prefs = NSUserDefaults.standardUserDefaults()
+    
+    
+    
     
     var back: UITextView!
+    var front: UITextView!
+
     var knowButton : UIButton!
     var dontKnowButton : UIButton!
     var singleTap  = UITapGestureRecognizer()
+    var frontTapLabelCopy : UILabel!
     
     var showingAnswer = false
+
+    
+    var currentFlashCardIndex = 0
+    
 
 
     
     
     override func viewDidLoad() {
         
-        back =  UITextView(frame: CGRect(x: flashCardTextView.frame.origin.x, y: flashCardTextView.frame.origin.y, width: flashCardTextView.frame.size.width, height: flashCardTextView.frame.size.height * 2.5))
+        
+        
+        flashCardContainerView = UIView.init(frame: CGRectMake(0, 0, view.frame.size.width/1.25, view.frame.height/2))
+        
+        
+        flashCardTextView = UITextView.init(frame: CGRectMake(0, 0,view.frame.size.width/1.25, view.frame.height/4))
+        frontTapLabel =  UILabel.init(frame: CGRectMake(0,flashCardTextView.frame.size.height/2 ,flashCardTextView.frame.size.width, flashCardTextView.frame.height/2))
+        
+        
+        flashCardContainerView.center = view.center
+        
+        flashCardTextView.editable = false
+        flashCardTextView.selectable = false
+        flashCardTextView.userInteractionEnabled = false 
+
+        
+        frontTapLabel.text = "Tap to see meaning ->"
+        frontTapLabel.layer.cornerRadius = 10.0
+        
+        frontTapLabel.textAlignment = NSTextAlignment.Center
+        frontTapLabel.adjustsFontSizeToFitWidth = true
+        frontTapLabel.backgroundColor = UIColor.grayColor()
+
+        flashCardContainerView.addSubview(flashCardTextView)
+        flashCardTextView.addSubview(frontTapLabel)
+        view.addSubview(flashCardContainerView)
+
+        
+        
+        
+        back =  UITextView(frame: CGRect(x: flashCardTextView.frame.origin.x, y: flashCardTextView.frame.origin.y, width: flashCardTextView.frame.size.width, height: flashCardTextView.frame.size.height * 1.5  ))
+        
+        
+        back.layer.cornerRadius = 10.0
+
 
         back.delegate = self
         back.editable = false
         back.selectable = false
+
         back.userInteractionEnabled = false
+        
+//        flashCardContainerView.layer.cornerRadius = 10.0
+        flashCardTextView.layer.cornerRadius = 10.0
+        
         
         let attrs = [NSFontAttributeName : UIFont.boldSystemFontOfSize(26)]
         let boldString = NSMutableAttributedString(string:dao.currentFlashCard.concept, attributes:attrs)
@@ -51,10 +101,6 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
         flashCardTextView.textAlignment = .Center
         
 
-       
-
-
-
 
 
          singleTap = UITapGestureRecognizer(target: self, action: #selector(tapped))
@@ -62,8 +108,14 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
         
         flashCardContainerView.addGestureRecognizer(singleTap)
 
+        
+        currentFlashCardIndex = prefs.integerForKey("currentQuestionIndex")
+        dao.currentFlashCard = dao.flashCards[currentFlashCardIndex]
+
+
 
         
+        flashCardContainerView.layer.cornerRadius = 10.0
 //        loadHiddenButtons()
         
         print("flashCard")
@@ -72,87 +124,30 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
     
     
     
-    
-    func loadHiddenButtons(){
-        
-//        knowButton.removeFromSuperview()
-//        dontKnowButton.removeFromSuperview()
-//        
-        
 
-        
-        
-        knowButton = UIButton(frame: CGRect(x: 0, y: (back.frame.height - back.frame.height/2), width: back.frame.width/1.5, height: back.frame.height/4))
-        knowButton.backgroundColor = UIColor.greenColor()
-        knowButton.setTitle("I know this word", forState: .Normal)
-        knowButton.addTarget(self, action: #selector(knowThisWord), forControlEvents: .TouchUpInside)
-        
-        self.flashCardContainerView.addSubview(knowButton)
-        
-        dontKnowButton = UIButton(frame: CGRect(x:0, y: (knowButton.frame.origin.y + knowButton.frame.size.height), width: knowButton.frame.width, height: knowButton.frame.height))
-        dontKnowButton.backgroundColor = UIColor.redColor()
-        
-        dontKnowButton.setTitle("I don't know this word", forState: .Normal)
-        dontKnowButton.addTarget(self, action: #selector(dontKnowThisWord), forControlEvents: .TouchUpInside)
-        
-        self.flashCardContainerView.addSubview(dontKnowButton)
-
-
-//        knowButton.hidden = fa
-//        dontKnowButton.hidden = true
-        
-    }
     func knowThisWord(){
         
         print("I know")
         
-        //know counter on flashCard
-        //
-        let originalFrame = self.flashCardContainerView.frame
-        
-        UIView.animateWithDuration(0.6, delay: 0, options: [], animations: {
-            self.flashCardContainerView.frame = CGRectMake(-800, self.flashCardContainerView.frame.origin.y, self.flashCardContainerView.frame.size.width, self.flashCardContainerView.frame.size.height)
-//            self.flashCardContainerView.hidden = true
-
-
-            }, completion: {_ in
-                UIView.animateWithDuration(0.1, delay: 0, options:[], animations: {
-                
-                        self.flashCardContainerView.hidden = true
-                
-                self.flashCardContainerView.frame = CGRectMake(900, self.flashCardContainerView.frame.origin.y, self.flashCardContainerView.frame.size.width, self.flashCardContainerView.frame.size.height)
-                
-                
-                
-                    },completion:{ _ in
-                        
-                        UIView .animateWithDuration(0.4, delay: 0, options:[], animations: {
-                            self.flashCardContainerView.hidden = false
-                            
-                            
-                            self.flashCardContainerView.frame = CGRectMake(originalFrame.origin.x, originalFrame.origin.y, originalFrame.size.width, originalFrame.size.height)
-                            
-                        },completion: nil)
-                        
-                        
-                    }
-            )
-        })
-
-    
-            
-
-            
-        
-
         
         
-//        self.flashCardContainerView.hidden = true
-
-
         
         
-  
+//
+//        currentFlashCardIndex+=1
+//        prefs.setValue(currentFlashCardIndex, forKey: "currentQuestionIndex")
+//
+
+//       
+//        if(currentFlashCardIndex < dao.flashCards.count){
+//            
+//            dao.currentFlashCard = dao.flashCards[currentFlashCardIndex]
+//
+//
+//        }
+        
+        slideFlashCard()
+
         
     }
 
@@ -186,6 +181,8 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
         
         back.attributedText = boldString
         back.textAlignment = .Left
+        
+        
 
 
 
@@ -193,20 +190,17 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
 
         if(!showingAnswer){
         UIView.transitionFromView(flashCardTextView, toView: back, duration: 1, options: UIViewAnimationOptions.TransitionFlipFromRight, completion: nil)
+            
+            loadHiddenButtons()
+
             showingAnswer = true
             
-            flashCardContainerView.removeGestureRecognizer(singleTap)
+//            flashCardContainerView.removeGestureRecognizer(singleTap)
 
         
     }
-        loadHiddenButtons()
-
-    
-        
 
         
-
-
 
     }
     
@@ -216,12 +210,86 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
     
     
     
+    func slideFlashCard(){
+        
+        
+        
+        let originalFrame = self.flashCardContainerView.frame
+        
+        UIView.animateWithDuration(0.6, delay: 0, options: [], animations: {
+            self.flashCardContainerView.frame = CGRectMake(-800, self.flashCardContainerView.frame.origin.y, self.flashCardContainerView.frame.size.width, self.flashCardContainerView.frame.size.height)
+            //            self.flashCardContainerView.hidden = true
+            
+            
+            }, completion: {_ in
+                UIView.animateWithDuration(0.1, delay: 0, options:[], animations: {
+                    
+                    self.flashCardContainerView.hidden = true
+                    
 
+                    UIView.transitionFromView(self.back, toView: self.flashCardTextView, duration: 1, options: UIViewAnimationOptions.TransitionFlipFromRight, completion: nil)
+                    self.showingAnswer = false
+                    self.knowButton.hidden = true
+                    self.dontKnowButton.hidden = true
+        
+                    
+                    self.flashCardContainerView.frame = CGRectMake(900, self.flashCardContainerView.frame.origin.y, self.flashCardContainerView.frame.size.width, self.flashCardContainerView.frame.size.height)
+                    
+                    
+                    
+                    },completion:{ _ in
+                        
+                        UIView .animateWithDuration(0.4, delay: 0, options:[], animations: {
+                            self.flashCardContainerView.hidden = false
+                            self.frontTapLabel.hidden = false
+
+                            
+                            
+                            self.flashCardContainerView.frame = CGRectMake(originalFrame.origin.x, originalFrame.origin.y, originalFrame.size.width, originalFrame.size.height)
+                            
+                            },completion: nil)
+                    }
+                )
+        })
+        
+        
+        
+        
+    }
+
+    
+    func removeButtons(){
+        knowButton.removeFromSuperview()
+        dontKnowButton.removeFromSuperview()
+        flashCardContainerView.addSubview(front)
+
+    }
     
     
     
-
-
+    func loadHiddenButtons(){
+        
+        
+        frontTapLabel.hidden = true
+        
+        
+        knowButton = UIButton(frame: CGRect(x: 0, y: (back.frame.height - back.frame.height/2), width: back.frame.width, height: back.frame.height/4))
+        knowButton.backgroundColor = UIColor.greenColor()
+        knowButton.setTitle("I know this word", forState: .Normal)
+        knowButton.addTarget(self, action: #selector(knowThisWord), forControlEvents: .TouchUpInside)
+        
+        self.flashCardContainerView.addSubview(knowButton)
+        
+        dontKnowButton = UIButton(frame: CGRect(x:0, y: (knowButton.frame.origin.y + knowButton.frame.size.height), width: knowButton.frame.width, height: knowButton.frame.height))
+        dontKnowButton.backgroundColor = UIColor.redColor()
+        
+        dontKnowButton.setTitle("I don't know this word", forState: .Normal)
+        dontKnowButton.addTarget(self, action: #selector(dontKnowThisWord), forControlEvents: .TouchUpInside)
+        
+        self.flashCardContainerView.addSubview(dontKnowButton)
+    }
+    
+    
 }
 
 

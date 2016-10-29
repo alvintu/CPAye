@@ -91,7 +91,6 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         currentQuestionIndex+=1
         prefs.setValue(currentQuestionIndex, forKey: "currentQuestionIndex")
         
-        print(currentQuestionIndex)
         
   
         if(currentQuestionIndex < dao.questions.count){
