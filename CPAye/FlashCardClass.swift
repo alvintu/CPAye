@@ -15,12 +15,14 @@ class FlashCardClass: NSObject {
     
     var concept  : String
     var definition : String
+    var grade : Int
     
     init(concept:String,definition:String) {
         
         self.concept = concept
         self.definition = definition
-        
+        self.grade = 0
+        //initialized grade at 0
     }
     
 }

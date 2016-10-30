@@ -49,6 +49,7 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         rotated()
         
+
         
         currentQuestionIndex = prefs.integerForKey("currentQuestionIndex")
         dao.currentQuestion = dao.questions[currentQuestionIndex]
@@ -60,11 +61,12 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     func rotated()
     {
+        
+        
         if(UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation))
         {
             print("landscape")
             addInfoAndNextButtonForLandScape()
-
 
         }
         
@@ -77,6 +79,11 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 
         }
         
+        
+        
+        UIView .animateWithDuration(0.3, animations: {
+            self.infoVC.view.frame = CGRectMake(0, -700, self.view.frame.size.width, self.view.frame.size.height/1.33)})
+    
     }
     
     
