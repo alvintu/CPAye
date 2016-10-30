@@ -33,12 +33,26 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
     var knowButton : UIButton!
     var dontKnowButton : UIButton!
     var singleTap  = UITapGestureRecognizer()
-    var frontTapLabelCopy : UILabel!
     
     var showingAnswer = false
 
     
     var currentFlashCardIndex = 0
+    
+    
+    var masteredLabel : UILabel!
+    var reviewingLabel : UILabel!
+    var learningLabel : UILabel!
+    
+    var masteredProgressView : UIProgressView!
+    var reviewingProgressView : UIProgressView!
+    var learningProgressView : UIProgressView!
+
+    var masterCounter = 0
+    var reviewCounter = 0
+    var learningCounter = 0
+
+
     
 
 
@@ -60,7 +74,7 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
         
         rotated()
 
-        
+        loadProgressLabelAndProgressViews()
 
 
         
@@ -348,6 +362,66 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
 
     }
     
+    func loadProgressLabelAndProgressViews(){
+        ///
+        masteredLabel = UILabel.init(frame: CGRectMake(0, view.frame.height/1.75, view.frame.width, 20))
+        masteredLabel.text = "Master of: \(masterCounter) out of \(dao.flashCards.count) concepts"
+        masteredLabel.textAlignment = NSTextAlignment.Center
+        
+        
+        masteredProgressView = UIProgressView.init(progressViewStyle: .Default)
+        masteredProgressView.frame = CGRectMake(masteredLabel.frame.origin.x, masteredLabel.frame.origin.y + 30, view.frame.width/1.25, 1)
+        masteredProgressView.center.x = view.center.x
+        masteredProgressView.transform = CGAffineTransformMakeScale(1.0, 5.0) //this allows me to change the height
+        masteredProgressView.progressTintColor = UIColor.greenColor()
+        masteredProgressView.progress = 5.0/10.0  //dummy progress
+        
+        
+        //////
+        
+        reviewingLabel = UILabel.init(frame: CGRectMake(0, masteredProgressView.frame.origin.y + 30, view.frame.width, 20))
+        reviewingLabel.text = "Reviewing: \(reviewCounter) out of \(dao.flashCards.count) concepts"
+        reviewingLabel.textAlignment = NSTextAlignment.Center
+
+        reviewingProgressView = UIProgressView.init(progressViewStyle: .Default)
+        reviewingProgressView.frame = CGRectMake(reviewingLabel.frame.origin.x, reviewingLabel.frame.origin.y + 30, view.frame.width/1.25, 1)
+        reviewingProgressView.center.x = view.center.x
+        reviewingProgressView.transform = CGAffineTransformMakeScale(1.0, 5.0) //this allows me to change the height
+        reviewingProgressView.progressTintColor = UIColor.orangeColor()
+        reviewingProgressView.progress = 5.0/10.0  //dummy progress
+        
+        
+        /////
+        
+        learningLabel = UILabel.init(frame: CGRectMake(0, reviewingProgressView.frame.origin.y + 30, view.frame.width, 20))
+        learningLabel.text = "Still Learning: \(learningCounter) out of \(dao.flashCards.count) concepts"
+        learningLabel.textAlignment = NSTextAlignment.Center
+        
+        learningProgressView = UIProgressView.init(progressViewStyle: .Default)
+        learningProgressView.frame = CGRectMake(learningLabel.frame.origin.x, learningLabel.frame.origin.y + 30, view.frame.width/1.25, 1)
+        learningProgressView.center.x = view.center.x
+        learningProgressView.transform = CGAffineTransformMakeScale(1.0, 5.0) //this allows me to change the height
+        learningProgressView.progressTintColor = UIColor.redColor()
+        learningProgressView.progress = 5.0/10.0  //dummy progress
+
+
+        
+        
+        view.addSubview(masteredLabel)
+        view.addSubview(masteredProgressView)
+        view.addSubview(reviewingLabel)
+        view.addSubview(reviewingProgressView)
+        view.addSubview(learningLabel)
+        view.addSubview(learningProgressView)
+        
+
+        
+        
+    }
+    
+    
+    
+
     
 }
 
