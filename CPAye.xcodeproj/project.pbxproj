@@ -23,7 +23,6 @@
 		C893A1891DBD272700487F11 /* ReviewInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C893A1881DBD272700487F11 /* ReviewInfoViewController.swift */; };
 		C893A18B1DBD27C100487F11 /* ReviewInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C893A18A1DBD27C100487F11 /* ReviewInfoCell.swift */; };
 		C893A18F1DBFD1B300487F11 /* FlashCardClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C893A18E1DBFD1B300487F11 /* FlashCardClass.swift */; };
-		C893A1921DBFD93B00487F11 /* FlashCardInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C893A1911DBFD93B00487F11 /* FlashCardInfoViewController.swift */; };
 		C8F7EDF41DB92DDC005A9BE6 /* QuestionInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F7EDF31DB92DDC005A9BE6 /* QuestionInfoViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,7 +45,6 @@
 		C893A1881DBD272700487F11 /* ReviewInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewInfoViewController.swift; sourceTree = "<group>"; };
 		C893A18A1DBD27C100487F11 /* ReviewInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewInfoCell.swift; sourceTree = "<group>"; };
 		C893A18E1DBFD1B300487F11 /* FlashCardClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashCardClass.swift; sourceTree = "<group>"; };
-		C893A1911DBFD93B00487F11 /* FlashCardInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashCardInfoViewController.swift; sourceTree = "<group>"; };
 		C8F7EDF31DB92DDC005A9BE6 /* QuestionInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionInfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,7 +119,6 @@
 			isa = PBXGroup;
 			children = (
 				C88406D01DB66BAD0041F49E /* FlashCardViewController.swift */,
-				C893A1911DBFD93B00487F11 /* FlashCardInfoViewController.swift */,
 				C893A18E1DBFD1B300487F11 /* FlashCardClass.swift */,
 			);
 			name = "Flash-Cards";
@@ -210,7 +207,6 @@
 				C88406AB1DB1A2690041F49E /* AppDelegate.swift in Sources */,
 				C88406CF1DB66BA20041F49E /* ReviewViewController.swift in Sources */,
 				C88406D31DB66C6E0041F49E /* InfoViewController.swift in Sources */,
-				C893A1921DBFD93B00487F11 /* FlashCardInfoViewController.swift in Sources */,
 				C88406D11DB66BAD0041F49E /* FlashCardViewController.swift in Sources */,
 				C88406CD1DB66B960041F49E /* QuizViewController.swift in Sources */,
 			);
