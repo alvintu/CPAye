@@ -62,7 +62,6 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
         
 
         
-        NotificationCenter.default.addObserver(self, selector: #selector(FlashCardViewController.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
 
         
 
@@ -73,7 +72,8 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
 
         loadProgressLabelAndProgressViews()
 
-        rotated()
+        loadBasicUI()
+        loadConceptFromSingleton()
 
 progressCounter()
 
@@ -83,57 +83,7 @@ progressCounter()
         print("flashCard")
     }
     
-    
-    func rotated()
-    {
-        if(UIDeviceOrientationIsLandscape(UIDevice.current.orientation))
-        {
-            print("landscape")
 
-            loadBasicUI()
-            loadConceptFromSingleton()
-            
-            if(showingAnswer)
-            {
-                
-                loadHiddenButtons()
-                loadProgressViewsWhenInfoClicked()
-
-            }
-            
-            else{
-                reloadProgressViewWhenGradeCounterSet()
-            }
-            
-            
-        }
-        
-        if(UIDeviceOrientationIsPortrait(UIDevice.current.orientation))
-        {
-            print("Portrait")
-            //            addInfoAndNextButton()
-
-            loadBasicUI()
-            loadConceptFromSingleton()
-            
-            if(showingAnswer){
-                loadHiddenButtons()
-                loadProgressViewsWhenInfoClicked()
-
-            }
-            
-            else{
-                reloadProgressViewWhenGradeCounterSet()
-}
-
- 
-        }
-        
-        
-
-        
-    }
-    
     
     
 
@@ -333,7 +283,7 @@ progressCounter()
     func slideFlashCard(){
         
         
-        
+
         let originalFrame = self.flashCardContainerView.frame
         
         UIView.animate(withDuration: 0.6, delay: 0, options: [], animations: {
@@ -673,10 +623,7 @@ progressCounter()
         
     }
     
-    
-    
 
-    
 }
 
 

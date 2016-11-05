@@ -43,12 +43,11 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         self.title = "Quiz"
         tableView.isScrollEnabled = false
         
-        NotificationCenter.default.addObserver(self, selector: #selector(QuizViewController.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
 
 //        addInfoAndNextButton()
 
         
-        rotated()
+        addInfoAndNextButton()
 
         
         
@@ -59,33 +58,7 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         
     }
-    
-    func rotated()
-    {
-        
-        
-        if(UIDeviceOrientationIsLandscape(UIDevice.current.orientation))
-        {
-            print("landscape")
-            addInfoAndNextButtonForLandScape()
 
-        }
-        
-        if(UIDeviceOrientationIsPortrait(UIDevice.current.orientation))
-        {
-            print("Portrait")
-//            addInfoAndNextButton()
-            addInfoAndNextButton()
-
-
-        }
-        
-        
-        
-        UIView .animate(withDuration: 0.3, animations: {
-            self.infoVC.view.frame = CGRect(x: 0, y: -700, width: self.view.frame.size.width, height: self.view.frame.size.height/1.33)})
-    
-    }
     
     
     
@@ -179,6 +152,7 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
             
             cell.questionInfoTextView.text = dao.currentQuestion.question
+            cell.tag = 0
             
         case IndexPath(row: 0, section: 1) :
             cell.questionInfoTextView.textColor = UIColor(red:0.00, green:0.48, blue:1.00, alpha:1.0)
