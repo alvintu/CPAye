@@ -89,7 +89,7 @@ progressCounter()
 
     func knowThisWord(){
         
-        print("I know")
+        print("√ I know")
         
 
         
@@ -133,7 +133,7 @@ progressCounter()
 
     func dontKnowThisWord(){
         
-        print("I don't know.")
+        print("X I don't know.")
         
         
         
@@ -341,15 +341,15 @@ progressCounter()
         
         knowButton = UIButton(frame: CGRect(x: 0, y: (back.frame.height - back.frame.height/2), width: back.frame.width, height: back.frame.height/4))
         knowButton.backgroundColor = UIColor.green
-        knowButton.setTitle("I know this word", for: UIControlState())
+        knowButton.setTitle("✅ I know this word", for: UIControlState())
         knowButton.addTarget(self, action: #selector(knowThisWord), for: .touchUpInside)
         
         self.flashCardContainerView.addSubview(knowButton)
         
         dontKnowButton = UIButton(frame: CGRect(x:0, y: (knowButton.frame.origin.y + knowButton.frame.size.height), width: knowButton.frame.width, height: knowButton.frame.height))
-        dontKnowButton.backgroundColor = UIColor.red
+        dontKnowButton.backgroundColor = UIColor(red:1.00, green:0.48, blue:0.48, alpha:1.0)
         
-        dontKnowButton.setTitle("I don't know this word", for: UIControlState())
+        dontKnowButton.setTitle("❌ I don't know this word", for: UIControlState())
         dontKnowButton.addTarget(self, action: #selector(dontKnowThisWord), for: .touchUpInside)
         
         self.flashCardContainerView.addSubview(dontKnowButton)
@@ -533,10 +533,11 @@ progressCounter()
         
         
         frontTapLabel.text = "Tap to see meaning ->"
+        frontTapLabel.textColor = UIColor.white
         frontTapLabel.layer.cornerRadius = 10.0
         frontTapLabel.textAlignment = NSTextAlignment.center
         frontTapLabel.adjustsFontSizeToFitWidth = true
-        frontTapLabel.backgroundColor = UIColor.gray
+        frontTapLabel.backgroundColor = UIColor.lightGray
         
         flashCardContainerView.addSubview(flashCardTextView)
         flashCardTextView.addSubview(frontTapLabel)

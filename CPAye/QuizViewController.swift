@@ -42,6 +42,7 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 
         self.title = "Quiz"
         tableView.isScrollEnabled = false
+        tableView.separatorStyle = .none
         
 
 //        addInfoAndNextButton()
@@ -169,6 +170,7 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         case IndexPath(row: 0, section: 4) :
             
             cell.questionInfoTextView.text = dao.currentQuestion.d
+            
             
         default:
             
