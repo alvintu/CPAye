@@ -12,16 +12,19 @@ import Foundation
 
 
 class FlashCardClass: NSObject {
-    
+    let prefs = UserDefaults.standard
+
     var concept  : String
     var definition : String
     var grade : Int
+
     
     init(concept:String,definition:String) {
         
         self.concept = concept
         self.definition = definition
-        self.grade = 0
+        self.grade = prefs.integer(forKey: concept + "\n" + definition)
+
         //initialized grade at 0
     }
     

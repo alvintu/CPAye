@@ -23,7 +23,7 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
     var flashCardContainerView = UIView()
     var flashCardTextView = UITextView()
     var frontTapLabel = UILabel()
-    let prefs = NSUserDefaults.standardUserDefaults()
+    let prefs = UserDefaults.standard
     
     
     
@@ -62,12 +62,12 @@ class FlashCardViewController: UIViewController,UITextViewDelegate {
         
 
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FlashCardViewController.rotated), name: UIDeviceOrientationDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(FlashCardViewController.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
 
         
 
         
-        currentFlashCardIndex = prefs.integerForKey("currentFlashCardIndex")
+        currentFlashCardIndex = prefs.integer(forKey: "currentFlashCardIndex")
         dao.currentFlashCard = dao.flashCards[currentFlashCardIndex]
         print(currentFlashCardIndex)
 
@@ -86,7 +86,7 @@ progressCounter()
     
     func rotated()
     {
-        if(UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation))
+        if(UIDeviceOrientationIsLandscape(UIDevice.current.orientation))
         {
             print("landscape")
 
@@ -95,13 +95,20 @@ progressCounter()
             
             if(showingAnswer)
             {
+                
                 loadHiddenButtons()
+                loadProgressViewsWhenInfoClicked()
 
+            }
+            
+            else{
+                reloadProgressViewWhenGradeCounterSet()
+            }
+            
             
         }
-        }
         
-        if(UIDeviceOrientationIsPortrait(UIDevice.currentDevice().orientation))
+        if(UIDeviceOrientationIsPortrait(UIDevice.current.orientation))
         {
             print("Portrait")
             //            addInfoAndNextButton()
@@ -111,13 +118,17 @@ progressCounter()
             
             if(showingAnswer){
                 loadHiddenButtons()
+                loadProgressViewsWhenInfoClicked()
 
             }
+            
+            else{
+                reloadProgressViewWhenGradeCounterSet()
+}
 
  
         }
         
-        reloadProgressViewWhenGradeCounterSet()
         
 
         
@@ -130,9 +141,12 @@ progressCounter()
         
         print("I know")
         
-        
+
         
         dao.currentFlashCard.grade+=1
+        
+        prefs.set(dao.currentFlashCard.grade, forKey: (dao.currentFlashCard.concept + "\n" + dao.currentFlashCard.definition))
+
         
 
         currentFlashCardIndex+=1
@@ -176,8 +190,15 @@ progressCounter()
         
         dao.currentFlashCard.grade-=1
         
+        prefs.set(dao.currentFlashCard.grade, forKey: (dao.currentFlashCard.concept + "\n" + dao.currentFlashCard.definition))
+
+        
         
         currentFlashCardIndex+=1
+        
+        
+        
+        
         
         
         
@@ -274,13 +295,13 @@ progressCounter()
         
         let attributedString = NSMutableAttributedString(string:normalText)
         
-        let attrs = [NSFontAttributeName : UIFont.boldSystemFontOfSize(15)]
+        let attrs = [NSFontAttributeName : UIFont.boldSystemFont(ofSize: 15)]
         let boldString = NSMutableAttributedString(string:boldText, attributes:attrs)
         
-        boldString.appendAttributedString(attributedString)
+        boldString.append(attributedString)
         
         back.attributedText = boldString
-        back.textAlignment = .Left
+        back.textAlignment = .left
         
         
 
@@ -289,7 +310,7 @@ progressCounter()
 //        back.backgroundColor = UIColor.blackColor()
 
         if(!showingAnswer){
-        UIView.transitionFromView(flashCardTextView, toView: back, duration: 1, options: UIViewAnimationOptions.TransitionFlipFromRight, completion: nil)
+        UIView.transition(from: flashCardTextView, to: back, duration: 1, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
             loadProgressViewsWhenInfoClicked()
             loadHiddenButtons()
 
@@ -315,38 +336,38 @@ progressCounter()
         
         let originalFrame = self.flashCardContainerView.frame
         
-        UIView.animateWithDuration(0.6, delay: 0, options: [], animations: {
-            self.flashCardContainerView.frame = CGRectMake(-800, self.flashCardContainerView.frame.origin.y, self.flashCardContainerView.frame.size.width, self.flashCardContainerView.frame.size.height)
+        UIView.animate(withDuration: 0.6, delay: 0, options: [], animations: {
+            self.flashCardContainerView.frame = CGRect(x: -800, y: self.flashCardContainerView.frame.origin.y, width: self.flashCardContainerView.frame.size.width, height: self.flashCardContainerView.frame.size.height)
             //            self.flashCardContainerView.hidden = true
             
             
             }, completion: {_ in
-                UIView.animateWithDuration(0.1, delay: 0, options:[], animations: {
+                UIView.animate(withDuration: 0.1, delay: 0, options:[], animations: {
                     
-                    self.flashCardContainerView.hidden = true
+                    self.flashCardContainerView.isHidden = true
                     
 
-                    UIView.transitionFromView(self.back, toView: self.flashCardTextView, duration: 1, options: UIViewAnimationOptions.TransitionFlipFromRight, completion: nil)
+                    UIView.transition(from: self.back, to: self.flashCardTextView, duration: 1, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
                     self.showingAnswer = false
-                    self.knowButton.hidden = true
-                    self.dontKnowButton.hidden = true
+                    self.knowButton.isHidden = true
+                    self.dontKnowButton.isHidden = true
                     
                     
         
                     
-                    self.flashCardContainerView.frame = CGRectMake(900, self.flashCardContainerView.frame.origin.y, self.flashCardContainerView.frame.size.width, self.flashCardContainerView.frame.size.height)
+                    self.flashCardContainerView.frame = CGRect(x: 900, y: self.flashCardContainerView.frame.origin.y, width: self.flashCardContainerView.frame.size.width, height: self.flashCardContainerView.frame.size.height)
                     
                     
                     
                     },completion:{ _ in
                         
-                        UIView .animateWithDuration(0.4, delay: 0, options:[], animations: {
-                            self.flashCardContainerView.hidden = false
-                            self.frontTapLabel.hidden = false
+                        UIView .animate(withDuration: 0.4, delay: 0, options:[], animations: {
+                            self.flashCardContainerView.isHidden = false
+                            self.frontTapLabel.isHidden = false
 
                             
                             
-                            self.flashCardContainerView.frame = CGRectMake(originalFrame.origin.x, originalFrame.origin.y, originalFrame.size.width, originalFrame.size.height)
+                            self.flashCardContainerView.frame = CGRect(x: originalFrame.origin.x, y: originalFrame.origin.y, width: originalFrame.size.width, height: originalFrame.size.height)
                             
                             },completion: nil)
                     }
@@ -365,27 +386,27 @@ progressCounter()
     func loadHiddenButtons(){
         
         
-        frontTapLabel.hidden = true
+        frontTapLabel.isHidden = true
         
         
         knowButton = UIButton(frame: CGRect(x: 0, y: (back.frame.height - back.frame.height/2), width: back.frame.width, height: back.frame.height/4))
-        knowButton.backgroundColor = UIColor.greenColor()
-        knowButton.setTitle("I know this word", forState: .Normal)
-        knowButton.addTarget(self, action: #selector(knowThisWord), forControlEvents: .TouchUpInside)
+        knowButton.backgroundColor = UIColor.green
+        knowButton.setTitle("I know this word", for: UIControlState())
+        knowButton.addTarget(self, action: #selector(knowThisWord), for: .touchUpInside)
         
         self.flashCardContainerView.addSubview(knowButton)
         
         dontKnowButton = UIButton(frame: CGRect(x:0, y: (knowButton.frame.origin.y + knowButton.frame.size.height), width: knowButton.frame.width, height: knowButton.frame.height))
-        dontKnowButton.backgroundColor = UIColor.redColor()
+        dontKnowButton.backgroundColor = UIColor.red
         
-        dontKnowButton.setTitle("I don't know this word", forState: .Normal)
-        dontKnowButton.addTarget(self, action: #selector(dontKnowThisWord), forControlEvents: .TouchUpInside)
+        dontKnowButton.setTitle("I don't know this word", for: UIControlState())
+        dontKnowButton.addTarget(self, action: #selector(dontKnowThisWord), for: .touchUpInside)
         
         self.flashCardContainerView.addSubview(dontKnowButton)
     }
     
     func loadConceptFromSingleton(){
-        let attrs = [NSFontAttributeName : UIFont.boldSystemFontOfSize(20)]
+        let attrs = [NSFontAttributeName : UIFont.boldSystemFont(ofSize: 20)]
         let boldString = NSMutableAttributedString(string:dao.currentFlashCard.concept, attributes:attrs)
         
         
@@ -399,26 +420,26 @@ progressCounter()
     
     func reloadProgressViewWhenGradeCounterSet(){
         
-        masteredProgressView.hidden = true
-        reviewingProgressView.hidden = true
-        learningProgressView.hidden = true
+        masteredProgressView.isHidden = true
+        reviewingProgressView.isHidden = true
+        learningProgressView.isHidden = true
         
-        masteredLabel.hidden = true
-        reviewingLabel.hidden = true
-        learningLabel.hidden = true
+        masteredLabel.isHidden = true
+        reviewingLabel.isHidden = true
+        learningLabel.isHidden = true
         
         
-        UIView .animateWithDuration(1.0, delay: 0, options:[], animations: {
+        UIView .animate(withDuration: 1.0, delay: 0, options:[], animations: {
             
             
             
             
-            self.masteredLabel.frame = CGRectMake(0, self.view.frame.height/1.75, self.view.frame.width, 20)
+            self.masteredLabel.frame = CGRect(x: 0, y: self.view.frame.height/1.75, width: self.view.frame.width, height: 20)
             //        masteredLabel.text = "Master of: \(masterCounter) out of \(dao.flashCards.count) concepts"
-            self.masteredLabel.textAlignment = NSTextAlignment.Center
+            self.masteredLabel.textAlignment = NSTextAlignment.center
             
             
-            self.masteredProgressView.frame = CGRectMake(self.masteredLabel.frame.origin.x, self.masteredLabel.frame.origin.y + 30, self.view.frame.width/1.25, 1)
+            self.masteredProgressView.frame = CGRect(x: self.masteredLabel.frame.origin.x, y: self.masteredLabel.frame.origin.y + 30, width: self.view.frame.width/1.25, height: 1)
             self.masteredProgressView.center.x = self.view.center.x
             //        self.masteredProgressView.progressTintColor = UIColor.greenColor()
             //        masteredProgressView.progress = 0.0
@@ -426,13 +447,13 @@ progressCounter()
             
             //////
             
-            self.reviewingLabel.frame = CGRectMake(0, self.masteredProgressView.frame.origin.y + 30, self.view.frame.width, 20)
+            self.reviewingLabel.frame = CGRect(x: 0, y: self.masteredProgressView.frame.origin.y + 30, width: self.view.frame.width, height: 20)
             
             //        reviewingLabel.text = "Reviewing: \(reviewCounter) out of \(dao.flashCards.count) concepts"
-            self.reviewingLabel.textAlignment = NSTextAlignment.Center
+            self.reviewingLabel.textAlignment = NSTextAlignment.center
             
             //        reviewingProgressView = UIProgressView.init(progressViewStyle: .Default)
-            self.reviewingProgressView.frame = CGRectMake(self.reviewingLabel.frame.origin.x, self.reviewingLabel.frame.origin.y + 30, self.view.frame.width/1.25, 1)
+            self.reviewingProgressView.frame = CGRect(x: self.reviewingLabel.frame.origin.x, y: self.reviewingLabel.frame.origin.y + 30, width: self.view.frame.width/1.25, height: 1)
             self.reviewingProgressView.center.x = self.view.center.x
             //        reviewingProgressView.progressTintColor = UIColor.orangeColor()
             //        reviewingProgressView.progress = 0.0  //dummy progress
@@ -440,24 +461,24 @@ progressCounter()
             
             /////
             
-            self.learningLabel.frame = CGRectMake(0, self.reviewingProgressView.frame.origin.y + 30, self.view.frame.width, 20)
+            self.learningLabel.frame = CGRect(x: 0, y: self.reviewingProgressView.frame.origin.y + 30, width: self.view.frame.width, height: 20)
             //        learningLabel.text = "Still Learning: \(learningCounter) out of \(dao.flashCards.count) concepts"
-            self.learningLabel.textAlignment = NSTextAlignment.Center
+            self.learningLabel.textAlignment = NSTextAlignment.center
             
             //        learningProgressView = UIProgressView.init(progressViewStyle: .Default)
-            self.learningProgressView.frame = CGRectMake(self.learningLabel.frame.origin.x, self.learningLabel.frame.origin.y + 30, self.view.frame.width/1.25, 1)
+            self.learningProgressView.frame = CGRect(x: self.learningLabel.frame.origin.x, y: self.learningLabel.frame.origin.y + 30, width: self.view.frame.width/1.25, height: 1)
             self.learningProgressView.center.x = self.view.center.x
             //        learningProgressView.progressTintColor = UIColor.redColor()
             //        learningProgressView.progress = 0.0 //dummy progress
             
             
-            self.masteredProgressView.hidden = false
-            self.reviewingProgressView.hidden = false
-            self.learningProgressView.hidden = false
+            self.masteredProgressView.isHidden = false
+            self.reviewingProgressView.isHidden = false
+            self.learningProgressView.isHidden = false
             
-            self.masteredLabel.hidden = false
-            self.reviewingLabel.hidden = false
-            self.learningLabel.hidden = false
+            self.masteredLabel.isHidden = false
+            self.reviewingLabel.isHidden = false
+            self.learningLabel.isHidden = false
             
             },completion: nil)
         
@@ -468,26 +489,26 @@ progressCounter()
     
     func loadProgressViewsWhenInfoClicked(){
         
-        masteredProgressView.hidden = true
-        reviewingProgressView.hidden = true
-        learningProgressView.hidden = true
+        masteredProgressView.isHidden = true
+        reviewingProgressView.isHidden = true
+        learningProgressView.isHidden = true
         
-        masteredLabel.hidden = true
-        reviewingLabel.hidden = true
-        learningLabel.hidden = true
+        masteredLabel.isHidden = true
+        reviewingLabel.isHidden = true
+        learningLabel.isHidden = true
         
         
-        UIView .animateWithDuration(1.0, delay: 0, options:[], animations: {
+        UIView .animate(withDuration: 1.0, delay: 0, options:[], animations: {
             
             
 
         
-        self.masteredLabel.frame = CGRectMake(0, self.view.frame.height/1.5, self.view.frame.width, 20)
+        self.masteredLabel.frame = CGRect(x: 0, y: self.view.frame.height/1.5, width: self.view.frame.width, height: 20)
 //        masteredLabel.text = "Master of: \(masterCounter) out of \(dao.flashCards.count) concepts"
-        self.masteredLabel.textAlignment = NSTextAlignment.Center
+        self.masteredLabel.textAlignment = NSTextAlignment.center
         
         
-        self.masteredProgressView.frame = CGRectMake(self.masteredLabel.frame.origin.x, self.masteredLabel.frame.origin.y + 30, self.view.frame.width/1.25, 1)
+        self.masteredProgressView.frame = CGRect(x: self.masteredLabel.frame.origin.x, y: self.masteredLabel.frame.origin.y + 30, width: self.view.frame.width/1.25, height: 1)
         self.masteredProgressView.center.x = self.view.center.x
 //        self.masteredProgressView.progressTintColor = UIColor.greenColor()
 //        masteredProgressView.progress = 0.0
@@ -495,13 +516,13 @@ progressCounter()
         
         //////
         
-        self.reviewingLabel.frame = CGRectMake(0, self.masteredProgressView.frame.origin.y + 30, self.view.frame.width, 20)
+        self.reviewingLabel.frame = CGRect(x: 0, y: self.masteredProgressView.frame.origin.y + 30, width: self.view.frame.width, height: 20)
         
 //        reviewingLabel.text = "Reviewing: \(reviewCounter) out of \(dao.flashCards.count) concepts"
-        self.reviewingLabel.textAlignment = NSTextAlignment.Center
+        self.reviewingLabel.textAlignment = NSTextAlignment.center
         
 //        reviewingProgressView = UIProgressView.init(progressViewStyle: .Default)
-        self.reviewingProgressView.frame = CGRectMake(self.reviewingLabel.frame.origin.x, self.reviewingLabel.frame.origin.y + 30, self.view.frame.width/1.25, 1)
+        self.reviewingProgressView.frame = CGRect(x: self.reviewingLabel.frame.origin.x, y: self.reviewingLabel.frame.origin.y + 30, width: self.view.frame.width/1.25, height: 1)
         self.reviewingProgressView.center.x = self.view.center.x
 //        reviewingProgressView.progressTintColor = UIColor.orangeColor()
 //        reviewingProgressView.progress = 0.0  //dummy progress
@@ -509,24 +530,24 @@ progressCounter()
         
         /////
         
-        self.learningLabel.frame = CGRectMake(0, self.reviewingProgressView.frame.origin.y + 30, self.view.frame.width, 20)
+        self.learningLabel.frame = CGRect(x: 0, y: self.reviewingProgressView.frame.origin.y + 30, width: self.view.frame.width, height: 20)
 //        learningLabel.text = "Still Learning: \(learningCounter) out of \(dao.flashCards.count) concepts"
-        self.learningLabel.textAlignment = NSTextAlignment.Center
+        self.learningLabel.textAlignment = NSTextAlignment.center
         
 //        learningProgressView = UIProgressView.init(progressViewStyle: .Default)
-       self.learningProgressView.frame = CGRectMake(self.learningLabel.frame.origin.x, self.learningLabel.frame.origin.y + 30, self.view.frame.width/1.25, 1)
+       self.learningProgressView.frame = CGRect(x: self.learningLabel.frame.origin.x, y: self.learningLabel.frame.origin.y + 30, width: self.view.frame.width/1.25, height: 1)
         self.learningProgressView.center.x = self.view.center.x
 //        learningProgressView.progressTintColor = UIColor.redColor()
 //        learningProgressView.progress = 0.0 //dummy progress
         
             
-            self.masteredProgressView.hidden = false
-            self.reviewingProgressView.hidden = false
-            self.learningProgressView.hidden = false
+            self.masteredProgressView.isHidden = false
+            self.reviewingProgressView.isHidden = false
+            self.learningProgressView.isHidden = false
             
-            self.masteredLabel.hidden = false
-            self.reviewingLabel.hidden = false
-            self.learningLabel.hidden = false
+            self.masteredLabel.isHidden = false
+            self.reviewingLabel.isHidden = false
+            self.learningLabel.isHidden = false
         
             },completion: nil)
 
@@ -543,29 +564,29 @@ progressCounter()
         frontTapLabel.removeFromSuperview()
         back.removeFromSuperview()
         
-        flashCardContainerView = UIView.init(frame: CGRectMake(0, 0, view.frame.size.width/1.25, view.frame.height/2))
+        flashCardContainerView = UIView.init(frame: CGRect(x: 0, y: 0, width: view.frame.size.width/1.25, height: view.frame.height/2))
         
         
-        flashCardTextView = UITextView.init(frame: CGRectMake(0, 0,view.frame.size.width/1.25, view.frame.height/4))
-        frontTapLabel =  UILabel.init(frame: CGRectMake(0,flashCardTextView.frame.size.height/2 ,flashCardTextView.frame.size.width, flashCardTextView.frame.height/2))
+        flashCardTextView = UITextView.init(frame: CGRect(x: 0, y: 0,width: view.frame.size.width/1.25, height: view.frame.height/4))
+        frontTapLabel =  UILabel.init(frame: CGRect(x: 0,y: flashCardTextView.frame.size.height/2 ,width: flashCardTextView.frame.size.width, height: flashCardTextView.frame.height/2))
         
         
         flashCardContainerView.center = view.center
         
         
-        flashCardTextView.editable = false
-        flashCardTextView.selectable = false
-        flashCardTextView.userInteractionEnabled = false
-        flashCardTextView.textAlignment = NSTextAlignment.Center
+        flashCardTextView.isEditable = false
+        flashCardTextView.isSelectable = false
+        flashCardTextView.isUserInteractionEnabled = false
+        flashCardTextView.textAlignment = NSTextAlignment.center
         
         
         
         
         frontTapLabel.text = "Tap to see meaning ->"
         frontTapLabel.layer.cornerRadius = 10.0
-        frontTapLabel.textAlignment = NSTextAlignment.Center
+        frontTapLabel.textAlignment = NSTextAlignment.center
         frontTapLabel.adjustsFontSizeToFitWidth = true
-        frontTapLabel.backgroundColor = UIColor.grayColor()
+        frontTapLabel.backgroundColor = UIColor.gray
         
         flashCardContainerView.addSubview(flashCardTextView)
         flashCardTextView.addSubview(frontTapLabel)
@@ -583,10 +604,10 @@ progressCounter()
         
         
         back.delegate = self
-        back.editable = false
-        back.selectable = false
+        back.isEditable = false
+        back.isSelectable = false
         
-        back.userInteractionEnabled = false
+        back.isUserInteractionEnabled = false
         
         //        flashCardContainerView.layer.cornerRadius = 10.0
         flashCardTextView.layer.cornerRadius = 10.0
@@ -599,42 +620,42 @@ progressCounter()
     
     func loadProgressLabelAndProgressViews(){
         ///
-        masteredLabel = UILabel.init(frame: CGRectMake(0, view.frame.height/1.75, view.frame.width, 20))
+        masteredLabel = UILabel.init(frame: CGRect(x: 0, y: view.frame.height/1.75, width: view.frame.width, height: 20))
         masteredLabel.text = "Master of: \(masterCounter) out of \(dao.flashCards.count) concepts"
-        masteredLabel.textAlignment = NSTextAlignment.Center
+        masteredLabel.textAlignment = NSTextAlignment.center
         
         
-        masteredProgressView = UIProgressView.init(progressViewStyle: .Default)
-        masteredProgressView.frame = CGRectMake(masteredLabel.frame.origin.x, masteredLabel.frame.origin.y + 30, view.frame.width/1.25, 1)
+        masteredProgressView = UIProgressView.init(progressViewStyle: .default)
+        masteredProgressView.frame = CGRect(x: masteredLabel.frame.origin.x, y: masteredLabel.frame.origin.y + 30, width: view.frame.width/1.25, height: 1)
         masteredProgressView.center.x = view.center.x
-        masteredProgressView.progressTintColor = UIColor.greenColor()
+        masteredProgressView.progressTintColor = UIColor.green
         masteredProgressView.progress = 0.0
         
         
         //////
         
-        reviewingLabel = UILabel.init(frame: CGRectMake(0, masteredProgressView.frame.origin.y + 30, view.frame.width, 20))
+        reviewingLabel = UILabel.init(frame: CGRect(x: 0, y: masteredProgressView.frame.origin.y + 30, width: view.frame.width, height: 20))
         
         reviewingLabel.text = "Reviewing: \(reviewCounter) out of \(dao.flashCards.count) concepts"
-        reviewingLabel.textAlignment = NSTextAlignment.Center
+        reviewingLabel.textAlignment = NSTextAlignment.center
         
-        reviewingProgressView = UIProgressView.init(progressViewStyle: .Default)
-        reviewingProgressView.frame = CGRectMake(reviewingLabel.frame.origin.x, reviewingLabel.frame.origin.y + 30, view.frame.width/1.25, 1)
+        reviewingProgressView = UIProgressView.init(progressViewStyle: .default)
+        reviewingProgressView.frame = CGRect(x: reviewingLabel.frame.origin.x, y: reviewingLabel.frame.origin.y + 30, width: view.frame.width/1.25, height: 1)
         reviewingProgressView.center.x = view.center.x
-        reviewingProgressView.progressTintColor = UIColor.orangeColor()
+        reviewingProgressView.progressTintColor = UIColor.orange
         reviewingProgressView.progress = 0.0  //dummy progress
         
         
         /////
         
-        learningLabel = UILabel.init(frame: CGRectMake(0, reviewingProgressView.frame.origin.y + 30, view.frame.width, 20))
+        learningLabel = UILabel.init(frame: CGRect(x: 0, y: reviewingProgressView.frame.origin.y + 30, width: view.frame.width, height: 20))
         learningLabel.text = "Still Learning: \(learningCounter) out of \(dao.flashCards.count) concepts"
-        learningLabel.textAlignment = NSTextAlignment.Center
+        learningLabel.textAlignment = NSTextAlignment.center
         
-        learningProgressView = UIProgressView.init(progressViewStyle: .Default)
-        learningProgressView.frame = CGRectMake(learningLabel.frame.origin.x, learningLabel.frame.origin.y + 30, view.frame.width/1.25, 1)
+        learningProgressView = UIProgressView.init(progressViewStyle: .default)
+        learningProgressView.frame = CGRect(x: learningLabel.frame.origin.x, y: learningLabel.frame.origin.y + 30, width: view.frame.width/1.25, height: 1)
         learningProgressView.center.x = view.center.x
-        learningProgressView.progressTintColor = UIColor.redColor()
+        learningProgressView.progressTintColor = UIColor.red
         learningProgressView.progress = 0.0 //dummy progress
         
         

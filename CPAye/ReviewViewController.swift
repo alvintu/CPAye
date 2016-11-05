@@ -15,7 +15,7 @@ class ReviewViewController: UIViewController,UITableViewDelegate,UITableViewData
     override func viewDidLoad() {
         
         self.navigationController?.navigationBar.barTintColor = UIColor(red:0.78, green:0.78, blue:0.80, alpha:1.0)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
         self.title = "Review"
         
@@ -28,9 +28,9 @@ class ReviewViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
 
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("review", forIndexPath: indexPath) as! ReviewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "review", for: indexPath) as! ReviewCell
         
     
         
@@ -42,23 +42,23 @@ class ReviewViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dao.review.count
     }
     
     
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         
         return 0;
     }
     
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         
         let rowHeight :CGFloat = 50.0
@@ -67,12 +67,12 @@ class ReviewViewController: UIViewController,UITableViewDelegate,UITableViewData
         return rowHeight
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
         print(dao.review[indexPath.row].info)
         
-        reviewInfoVC = mainStoryboard.instantiateViewControllerWithIdentifier("reviewInfo")
+        reviewInfoVC = mainStoryboard.instantiateViewController(withIdentifier: "reviewInfo")
         
         let currentReviewSection = dao.review[indexPath.row]
         dao.currentReviewSection = currentReviewSection
@@ -84,9 +84,9 @@ class ReviewViewController: UIViewController,UITableViewDelegate,UITableViewData
         
     }
     
-    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        let cellToDeSelect:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
-        cellToDeSelect.contentView.backgroundColor = UIColor.whiteColor()
+    func tableView(_ tableView: UITableView, didDeselectRowAtIndexPath indexPath: IndexPath) {
+        let cellToDeSelect:UITableViewCell = tableView.cellForRow(at: indexPath)!
+        cellToDeSelect.contentView.backgroundColor = UIColor.white
         
         
         

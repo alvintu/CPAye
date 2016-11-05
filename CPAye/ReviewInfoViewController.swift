@@ -27,14 +27,14 @@ class ReviewInfoViewController: UIViewController,UITableViewDelegate,UITableView
     }
     
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("review", forIndexPath: indexPath) as! ReviewInfoCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "review", for: indexPath) as! ReviewInfoCell
 
         
         
         
-        cell.reviewInfo.text  = dao.currentReviewSection.info[indexPath.row] as! String
+        cell.reviewInfo.text  = dao.currentReviewSection.info[indexPath.row]
         cell.reviewInfo.delegate = self
 
         
@@ -44,23 +44,23 @@ class ReviewInfoViewController: UIViewController,UITableViewDelegate,UITableView
     
     
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dao.currentReviewSection.info.count
     }
     
     
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         
         return 0;
     }
     
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         
         let rowHeight :CGFloat = 100.0
@@ -68,7 +68,7 @@ class ReviewInfoViewController: UIViewController,UITableViewDelegate,UITableView
         return rowHeight
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
         print(dao.review[indexPath.row].info)
@@ -79,7 +79,7 @@ class ReviewInfoViewController: UIViewController,UITableViewDelegate,UITableView
 
 
 
-func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
 
 }
 }

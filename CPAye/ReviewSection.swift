@@ -13,9 +13,9 @@ import Foundation
 class ReviewSection: NSObject {
     
     var title  : String
-    var info = []
+    var info : [String] = []
     
-    init(title:String,info:NSMutableArray) {
+    init(title:String,info:[String]) {
         
         self.title = title
         self.info = info

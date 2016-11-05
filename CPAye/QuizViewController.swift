@@ -12,7 +12,7 @@ import Foundation
 class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UITextViewDelegate{
     
     let dao = DAO.sharedInstance
-    let prefs = NSUserDefaults.standardUserDefaults()
+    let prefs = UserDefaults.standard
     var currentQuestion : MultipleChoice = MultipleChoice(question: "", a: "", b: "", c: "", d: "", correctAnswer: "", info: "")
 
     let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -33,7 +33,7 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         
         self.navigationController?.navigationBar.barTintColor = UIColor(red:0.78, green:0.78, blue:0.80, alpha:1.0)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
 
         
 
@@ -41,17 +41,18 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         loadInfoVC()
 
         self.title = "Quiz"
+        tableView.isScrollEnabled = false
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(QuizViewController.rotated), name: UIDeviceOrientationDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(QuizViewController.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
 
 //        addInfoAndNextButton()
 
         
         rotated()
-        
 
         
-        currentQuestionIndex = prefs.integerForKey("currentQuestionIndex")
+        
+        currentQuestionIndex = prefs.integer(forKey: "currentQuestionIndex")
         dao.currentQuestion = dao.questions[currentQuestionIndex]
         tableView.reloadData()
 
@@ -63,14 +64,14 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     {
         
         
-        if(UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation))
+        if(UIDeviceOrientationIsLandscape(UIDevice.current.orientation))
         {
             print("landscape")
             addInfoAndNextButtonForLandScape()
 
         }
         
-        if(UIDeviceOrientationIsPortrait(UIDevice.currentDevice().orientation))
+        if(UIDeviceOrientationIsPortrait(UIDevice.current.orientation))
         {
             print("Portrait")
 //            addInfoAndNextButton()
@@ -81,8 +82,8 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         
         
-        UIView .animateWithDuration(0.3, animations: {
-            self.infoVC.view.frame = CGRectMake(0, -700, self.view.frame.size.width, self.view.frame.size.height/1.33)})
+        UIView .animate(withDuration: 0.3, animations: {
+            self.infoVC.view.frame = CGRect(x: 0, y: -700, width: self.view.frame.size.width, height: self.view.frame.size.height/1.33)})
     
     }
     
@@ -111,10 +112,10 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
    
             
             tableView.allowsSelection = false
-            tableView.separatorStyle = .None
+            tableView.separatorStyle = .none
             
             
-            restartButton.hidden = false
+            restartButton.isHidden = false
             
         currentQuestionIndex = 0
             prefs.setValue(currentQuestionIndex, forKey: "currentQuestionIndex")
@@ -132,8 +133,8 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             openedInfo = false
             
             
-            UIView .animateWithDuration(0.3, animations: {
-                self.infoVC.view.frame = CGRectMake(0, -700, self.view.frame.size.width, self.view.frame.size.height/1.33)
+            UIView .animate(withDuration: 0.3, animations: {
+                self.infoVC.view.frame = CGRect(x: 0, y: -700, width: self.view.frame.size.width, height: self.view.frame.size.height/1.33)
                 
             })
         }
@@ -149,8 +150,8 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     func restartQuiz(){
 
         tableView.allowsSelection = true
-        tableView.separatorStyle = .SingleLine
-        restartButton.hidden = true
+        tableView.separatorStyle = .singleLine
+        restartButton.isHidden = true
 
         
         dao.currentQuestion = dao.questions[currentQuestionIndex]
@@ -162,36 +163,36 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     
     //tableview delegate methods
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("quizCell", forIndexPath: indexPath) as! QuizCell
-        cell.selectionStyle = UITableViewCellSelectionStyle.Default
+        let cell = tableView.dequeueReusableCell(withIdentifier: "quizCell", for: indexPath) as! QuizCell
+        cell.selectionStyle = UITableViewCellSelectionStyle.default
         cell.questionInfoTextView.delegate = self
         
         
-        cell.questionInfoTextView.userInteractionEnabled = false
+        cell.questionInfoTextView.isUserInteractionEnabled = false
         cell.questionInfoTextView.textColor = UIColor(red:0.00, green:0.48, blue:1.00, alpha:1.0)
         
         
         switch indexPath {
-        case NSIndexPath(forRow: 0, inSection: 0) :
+        case IndexPath(row: 0, section: 0) :
             
             
             cell.questionInfoTextView.text = dao.currentQuestion.question
             
-        case NSIndexPath(forRow: 0, inSection: 1) :
+        case IndexPath(row: 0, section: 1) :
             cell.questionInfoTextView.textColor = UIColor(red:0.00, green:0.48, blue:1.00, alpha:1.0)
             
             cell.questionInfoTextView.text = dao.currentQuestion.a
             
-        case NSIndexPath(forRow: 0, inSection: 2) :
+        case IndexPath(row: 0, section: 2) :
             
             cell.questionInfoTextView.text = dao.currentQuestion.b
-        case NSIndexPath(forRow: 0, inSection: 3) :
+        case IndexPath(row: 0, section: 3) :
             
             cell.questionInfoTextView.text = dao.currentQuestion.c
             
-        case NSIndexPath(forRow: 0, inSection: 4) :
+        case IndexPath(row: 0, section: 4) :
             
             cell.questionInfoTextView.text = dao.currentQuestion.d
             
@@ -206,46 +207,46 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 5
     }
     
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
     
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         
         return 0;
     }
     
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         
         var rowHeight :CGFloat = 0.0
         
         switch indexPath {
 
-        case NSIndexPath(forRow: 0, inSection: 0) :
+        case IndexPath(row: 0, section: 0) :
             
         rowHeight = self.view.frame.height/4
-        case NSIndexPath(forRow: 0, inSection: 1) :
+        case IndexPath(row: 0, section: 1) :
             
         rowHeight = self.view.frame.height/9
 
         
-        case NSIndexPath(forRow: 0, inSection: 2) :
+        case IndexPath(row: 0, section: 2) :
         
             rowHeight = self.view.frame.height/9
             
-        case NSIndexPath(forRow: 0, inSection: 3) :
+        case IndexPath(row: 0, section: 3) :
         
             rowHeight = self.view.frame.height/9
         
-        case NSIndexPath(forRow: 0, inSection: 4) :
+        case IndexPath(row: 0, section: 4) :
         
             rowHeight = self.view.frame.height/9
         
@@ -258,27 +259,27 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         return rowHeight
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
         
         
         
-        let selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
+        let selectedCell:UITableViewCell = tableView.cellForRow(at: indexPath)!
         selectedCell.contentView.backgroundColor = UIColor(red:0.98, green:0.17, blue:0.41, alpha:1.0)
         
         let tempCell = selectedCell as! QuizCell
         tempCell.questionInfoTextView.textColor = UIColor(red:0.00, green:0.48, blue:1.00, alpha:1.0)
 
         
-        UIView.animateWithDuration(1.0, animations: {
+        UIView.animate(withDuration: 1.0, animations: {
             
-            self.infoButton.hidden = true
-            self.nextButton.hidden = true
+            self.infoButton.isHidden = true
+            self.nextButton.isHidden = true
 
 
-        self.infoButton.hidden = false
-        self.nextButton.hidden = false
+        self.infoButton.isHidden = false
+        self.nextButton.isHidden = false
 
             })
         
@@ -286,28 +287,28 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             //cell.titleLabel.text = "\(currentShop.categoryDeal) - 09/12/2016 - Hunter College" //specifics later
             
             
-        case NSIndexPath(forRow: 0, inSection: 0) :
+        case IndexPath(row: 0, section: 0) :
 
             selectedCell.contentView.backgroundColor = UIColor(red:0.84, green:0.84, blue:0.84, alpha:1.0)
 
-            tempCell.questionInfoTextView.textColor = UIColor.whiteColor()
+            tempCell.questionInfoTextView.textColor = UIColor.white
             
 
 
             
-        case NSIndexPath(forRow: 0, inSection: 1) :
+        case IndexPath(row: 0, section: 1) :
             
             enableButtons()
 
-            tempCell.questionInfoTextView.textColor = UIColor.whiteColor()
+            tempCell.questionInfoTextView.textColor = UIColor.white
 
 
             
                     if(dao.currentQuestion.correctAnswer == "a"){
 
-                        UIView.animateWithDuration(0.5, animations: {
+                        UIView.animate(withDuration: 0.5, animations: {
                             
-                        selectedCell.contentView.backgroundColor = UIColor.whiteColor()
+                        selectedCell.contentView.backgroundColor = UIColor.white
 
                         selectedCell.contentView.backgroundColor = UIColor(red:0.64, green:0.91, blue:0.53, alpha:1.0)
 
@@ -321,8 +322,8 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     else{
                         print("incorrect")
 
-                        UIView.animateWithDuration(0.5, animations: {
-                            selectedCell.contentView.backgroundColor = UIColor.whiteColor()
+                        UIView.animate(withDuration: 0.5, animations: {
+                            selectedCell.contentView.backgroundColor = UIColor.white
 
                             selectedCell.contentView.backgroundColor = UIColor(red:1.00, green:0.23, blue:0.19, alpha:1.0)
                             
@@ -332,16 +333,16 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     }
             
             
-        case NSIndexPath(forRow: 0, inSection: 2) :
+        case IndexPath(row: 0, section: 2) :
             enableButtons()
 
-            tempCell.questionInfoTextView.textColor = UIColor.whiteColor()
+            tempCell.questionInfoTextView.textColor = UIColor.white
 
         
                 if(dao.currentQuestion.correctAnswer == "b"){
 
-                    UIView.animateWithDuration(0.5, animations: {
-                        selectedCell.contentView.backgroundColor = UIColor.whiteColor()
+                    UIView.animate(withDuration: 0.5, animations: {
+                        selectedCell.contentView.backgroundColor = UIColor.white
                         
                         selectedCell.contentView.backgroundColor = UIColor(red:0.64, green:0.91, blue:0.53, alpha:1.0)
 
@@ -353,8 +354,8 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 }
                 else{
 
-                    UIView.animateWithDuration(0.5, animations: {
-                        selectedCell.contentView.backgroundColor = UIColor.whiteColor()
+                    UIView.animate(withDuration: 0.5, animations: {
+                        selectedCell.contentView.backgroundColor = UIColor.white
                         
                         selectedCell.contentView.backgroundColor = UIColor(red:1.00, green:0.23, blue:0.19, alpha:1.0)
                         
@@ -365,16 +366,16 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
     
             
-        case NSIndexPath(forRow: 0, inSection: 3) :
+        case IndexPath(row: 0, section: 3) :
             enableButtons()
 
-            tempCell.questionInfoTextView.textColor = UIColor.whiteColor()
+            tempCell.questionInfoTextView.textColor = UIColor.white
 
             
             if(dao.currentQuestion.correctAnswer == "c"){
 
-                UIView.animateWithDuration(0.5, animations: {
-                    selectedCell.contentView.backgroundColor = UIColor.whiteColor()
+                UIView.animate(withDuration: 0.5, animations: {
+                    selectedCell.contentView.backgroundColor = UIColor.white
                     
                     selectedCell.contentView.backgroundColor = UIColor(red:0.64, green:0.91, blue:0.53, alpha:1.0)
 
@@ -385,8 +386,8 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             }
             else{
 
-                UIView.animateWithDuration(0.5, animations: {
-                    selectedCell.contentView.backgroundColor = UIColor.whiteColor()
+                UIView.animate(withDuration: 0.5, animations: {
+                    selectedCell.contentView.backgroundColor = UIColor.white
                     
                     selectedCell.contentView.backgroundColor = UIColor(red:1.00, green:0.23, blue:0.19, alpha:1.0)
                                     })
@@ -395,16 +396,16 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 
                 
             }
-        case NSIndexPath(forRow: 0, inSection: 4) :
+        case IndexPath(row: 0, section: 4) :
             enableButtons()
 
-            tempCell.questionInfoTextView.textColor = UIColor.whiteColor()
+            tempCell.questionInfoTextView.textColor = UIColor.white
 
             
             if(dao.currentQuestion.correctAnswer == "d"){
 
-                UIView.animateWithDuration(0.5, animations: {
-                    selectedCell.contentView.backgroundColor = UIColor.whiteColor()
+                UIView.animate(withDuration: 0.5, animations: {
+                    selectedCell.contentView.backgroundColor = UIColor.white
                     
                     selectedCell.contentView.backgroundColor = UIColor(red:0.64, green:0.91, blue:0.53, alpha:1.0)
 
@@ -416,8 +417,8 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             }
             else{
 
-                UIView.animateWithDuration(0.5, animations: {
-                    selectedCell.contentView.backgroundColor = UIColor.whiteColor()
+                UIView.animate(withDuration: 0.5, animations: {
+                    selectedCell.contentView.backgroundColor = UIColor.white
                     
                     selectedCell.contentView.backgroundColor = UIColor(red:1.00, green:0.23, blue:0.19, alpha:1.0)
                     
@@ -442,9 +443,9 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 
     }
     
-     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        let cellToDeSelect:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
-        cellToDeSelect.contentView.backgroundColor = UIColor.whiteColor()
+     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cellToDeSelect:UITableViewCell = tableView.cellForRow(at: indexPath)!
+        cellToDeSelect.contentView.backgroundColor = UIColor.white
         
         
         
@@ -455,8 +456,8 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             //cell.titleLabel.text = "\(currentShop.categoryDeal) - 09/12/2016 - Hunter College" //specifics later
             
             
-        case NSIndexPath(forRow: 0, inSection: 0) :
-            tempCell.questionInfoTextView.textColor =  UIColor.blackColor()
+        case IndexPath(row: 0, section: 0) :
+            tempCell.questionInfoTextView.textColor =  UIColor.black
         
         default:
 
@@ -504,22 +505,22 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 
         
         
-        infoButton = UIButton(frame: CGRect(x: 0, y: self.view.frame.height-100, width: self.view.frame.width/2, height: 50))
+        infoButton = UIButton(frame: CGRect(x: 0, y: self.view.frame.height-120, width: self.view.frame.width/2, height: 70))
         infoButton.backgroundColor = UIColor(red:0.20, green:0.67, blue:0.86, alpha:1.0)
         
         
-        infoButton.setTitle("Info", forState: .Normal)
-        infoButton.addTarget(self, action: #selector(infoOnQuestion), forControlEvents: .TouchUpInside)
+        infoButton.setTitle("Info", for: UIControlState())
+        infoButton.addTarget(self, action: #selector(infoOnQuestion), for: .touchUpInside)
         infoButton.layer.cornerRadius = 10.0
         
         self.view.addSubview(infoButton)
         
-        nextButton = UIButton(frame: CGRect(x: self.view.frame.width/2, y: self.view.frame.height-100, width: self.view.frame.width/2, height: 50))
+        nextButton = UIButton(frame: CGRect(x: self.view.frame.width/2, y: self.view.frame.height-120, width: self.view.frame.width/2, height: 70))
         nextButton.backgroundColor = UIColor(red:0.35, green:0.83, blue:0.15, alpha:1.0)
         
         
-        nextButton.setTitle("Next", forState: .Normal)
-        nextButton.addTarget(self, action: #selector(nextQuestion), forControlEvents: .TouchUpInside)
+        nextButton.setTitle("Next", for: UIControlState())
+        nextButton.addTarget(self, action: #selector(nextQuestion), for: .touchUpInside)
         nextButton.layer.cornerRadius = 10.0
         
         self.view.addSubview(nextButton)
@@ -527,9 +528,9 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         
         restartButton = UIButton(frame: CGRect(x: self.view.frame.width/2-50, y: self.view.frame.height/2, width: 100, height: 100))
-        restartButton.backgroundColor = .redColor()
-        restartButton.setTitle("Restart", forState: .Normal)
-        restartButton.addTarget(self, action: #selector(restartQuiz), forControlEvents: .TouchUpInside)
+        restartButton.backgroundColor = .red
+        restartButton.setTitle("Restart", for: UIControlState())
+        restartButton.addTarget(self, action: #selector(restartQuiz), for: .touchUpInside)
         restartButton.layer.cornerRadius = 10.0
         
         self.view.addSubview(restartButton)
@@ -550,7 +551,7 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         //
         
-        restartButton.hidden = true
+        restartButton.isHidden = true
         
         
         
@@ -570,22 +571,22 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 
         
         
-        infoButton = UIButton(frame: CGRect(x: 0, y: self.view.frame.height-160, width: self.view.frame.width/2, height: 100))
+        infoButton = UIButton(frame: CGRect(x: 0, y: self.view.frame.height-140, width: self.view.frame.width/2, height: 100))
         infoButton.backgroundColor = UIColor(red:0.20, green:0.67, blue:0.86, alpha:1.0)
         
 
-        infoButton.setTitle("Info", forState: .Normal)
-        infoButton.addTarget(self, action: #selector(infoOnQuestion), forControlEvents: .TouchUpInside)
+        infoButton.setTitle("Info", for: UIControlState())
+        infoButton.addTarget(self, action: #selector(infoOnQuestion), for: .touchUpInside)
         infoButton.layer.cornerRadius = 10.0
         
         self.view.addSubview(infoButton)
         
-        nextButton = UIButton(frame: CGRect(x: self.view.frame.width/2, y: self.view.frame.height-160, width: self.view.frame.width/2, height: 100))
+        nextButton = UIButton(frame: CGRect(x: self.view.frame.width/2, y: self.view.frame.height-140, width: self.view.frame.width/2, height: 100))
         nextButton.backgroundColor = UIColor(red:0.35, green:0.83, blue:0.15, alpha:1.0)
         
         
-        nextButton.setTitle("Next", forState: .Normal)
-        nextButton.addTarget(self, action: #selector(nextQuestion), forControlEvents: .TouchUpInside)
+        nextButton.setTitle("Next", for: UIControlState())
+        nextButton.addTarget(self, action: #selector(nextQuestion), for: .touchUpInside)
         nextButton.layer.cornerRadius = 10.0
         
         self.view.addSubview(nextButton)
@@ -593,9 +594,9 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         
         restartButton = UIButton(frame: CGRect(x: self.view.frame.width/2-50, y: self.view.frame.height/2, width: 100, height: 100))
-        restartButton.backgroundColor = .redColor()
-        restartButton.setTitle("Restart", forState: .Normal)
-        restartButton.addTarget(self, action: #selector(restartQuiz), forControlEvents: .TouchUpInside)
+        restartButton.backgroundColor = .red
+        restartButton.setTitle("Restart", for: UIControlState())
+        restartButton.addTarget(self, action: #selector(restartQuiz), for: .touchUpInside)
         restartButton.layer.cornerRadius = 10.0
         
         self.view.addSubview(restartButton)
@@ -623,7 +624,7 @@ fadeEM()
 
 //
         
-        restartButton.hidden = true
+        restartButton.isHidden = true
 
 
 
@@ -633,15 +634,15 @@ fadeEM()
     func hideInfoAndNextButtons(){
         
 
-        UIView.animateWithDuration(0.5, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
 
-            self.infoButton.hidden = false
-            self.nextButton.hidden = false
+            self.infoButton.isHidden = false
+            self.nextButton.isHidden = false
             self.view.layoutIfNeeded()
 
             
-            self.infoButton.hidden = true
-            self.nextButton.hidden = true
+            self.infoButton.isHidden = true
+            self.nextButton.isHidden = true
             self.view.layoutIfNeeded()
 
             
@@ -653,8 +654,8 @@ fadeEM()
         
         infoButton.alpha = 0.2
         nextButton.alpha = 0.2
-        infoButton.userInteractionEnabled = false
-        nextButton.userInteractionEnabled = false
+        infoButton.isUserInteractionEnabled = false
+        nextButton.isUserInteractionEnabled = false
         
 
     }
@@ -662,8 +663,8 @@ fadeEM()
     func enableButtons(){
         infoButton.alpha = 1.0
         nextButton.alpha = 1.0
-        infoButton.userInteractionEnabled = true
-        nextButton.userInteractionEnabled = true
+        infoButton.isUserInteractionEnabled = true
+        nextButton.isUserInteractionEnabled = true
     }
     
     
@@ -673,8 +674,8 @@ fadeEM()
             openedInfo = false
             
             
-            UIView .animateWithDuration(0.3, animations: {
-                self.infoVC.view.frame = CGRectMake(0, -700, self.view.frame.size.width, self.view.frame.size.height/1.33)
+            UIView .animate(withDuration: 0.3, animations: {
+                self.infoVC.view.frame = CGRect(x: 0, y: -700, width: self.view.frame.size.width, height: self.view.frame.size.height/1.33)
                 
             })
             
@@ -683,9 +684,9 @@ fadeEM()
             openedInfo = true
             
             
-            UIView .animateWithDuration(0.3, animations: {
+            UIView .animate(withDuration: 0.3, animations: {
                 
-                self.infoVC.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/1.33)
+                self.infoVC.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height/1.33)
                 
                 
             })
@@ -696,11 +697,11 @@ fadeEM()
     
     func loadInfoVC(){
         
-        infoVC = mainStoryboard.instantiateViewControllerWithIdentifier("infoViewController")
+        infoVC = mainStoryboard.instantiateViewController(withIdentifier: "infoViewController")
     
         self .addChildViewController(infoVC) //popover content is settingsvc
         
-        infoVC.view.frame = CGRectMake(0, -700, self.view.frame.size.width, self.view.frame.size.height/1.33)
+        infoVC.view.frame = CGRect(x: 0, y: -700, width: self.view.frame.size.width, height: self.view.frame.size.height/1.33)
         
         self.view.addSubview(infoVC.view)
         

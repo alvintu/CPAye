@@ -14,7 +14,7 @@ class DAO: NSObject{
     
     
     static let sharedInstance = DAO()
-    let prefs = NSUserDefaults.standardUserDefaults()
+    let prefs = UserDefaults.standard
 
     
     var questions :[MultipleChoice] = []
@@ -119,7 +119,7 @@ class DAO: NSObject{
     
     
     func shuffleQuestons() {
-        questions = GKRandomSource.sharedRandom().arrayByShufflingObjectsInArray(questions) as! [MultipleChoice]
+        questions = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: questions) as! [MultipleChoice]
         
         //this method is not being used
         //it properly shuffles but because nsuserdefaults cannot store custom objects like an array full of custom objects
