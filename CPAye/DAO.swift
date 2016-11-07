@@ -21,8 +21,8 @@ class DAO: NSObject{
     var currentQuestion : MultipleChoice = MultipleChoice(question: "", a: "", b: "", c: "", d: "", correctAnswer: "", info: "")
     
     
-    var flashCards : [FlashCardClass] = []
-    var currentFlashCard : FlashCardClass = FlashCardClass.init(concept: "",definition: "")
+    var flashCards : [FlashCard] = []
+    var currentFlashCard : FlashCard = FlashCard(concept: "",definition: "")
     
     
     
@@ -46,31 +46,96 @@ class DAO: NSObject{
     
     func loadFlashCards(){
         
-        let flashCard1 = FlashCardClass.init(concept: "IFRS Qualitative characteristics of Financial Statement", definition:"1)Understandability2) Relevance3) Reliability4) Comparability")
+        let flashcard1 = FlashCard(concept: "Objectives of Financial Reporting", definition:"1)To provide info that is useful 2)Info about economic resources 3) Changes in economic resources 4) Financial performance reflected by Accrual Accounting 5) Financial Performance reflected by cash flows 6)Changes in economic resources NOT resulting from financial performance(like stock)")
         
-        let flashCard2 = FlashCardClass.init(concept: "accounting defintion 2", definition: "accounting definition 2")
+        let flashcard2 = FlashCard(concept: "Primary Qualitative Characteristics", definition: "Relevance and Faithful Representation")
         
-        let flashCard3 = FlashCardClass.init(concept: "10 Basic Elements of Financial Statement", definition: "1) Assets; 2) Liabilities; 3) Equity; 4) Revenues; 5) Expenses 6) Gains (losses); 7) Accrual accounting; 8) Investments by owners; 9) Distributions to owners; 10) Comprehensiveincome")
-        
-        
-        
-        let flashCard4 = FlashCardClass.init(concept: "Characteristics of Useful Information", definition: "Relevance, Reliability")
+        let flashcard3 = FlashCard(concept: "Relevance", definition: "Predicictive and Confirmatory Values capable of making a difference in the User's Decision Making Process")
         
         
         
-        let flashCard5 = FlashCardClass.init(concept: "Pervasive Constraint", definition: "Cost/Benefit constraint")
+        let flashcard4 = FlashCard(concept: "Enhancing Qualitative Characteristics", definition: "Timeliness, Understandability, Completeness, and Comparability")
         
+        
+        
+        let flashcard5 = FlashCard(concept: "Elements of Financial Statements", definition: "1)Statement of Position (Balance Sheet) 2) Statement of Earnings Financial & Comprehensive Income (Income Statement) 3) Statement of Cash Flows 4) Statement of Changes in Owners' Equity (statement of Investments by And Distributions to Owners")
+        
+        let flashcard6 = FlashCard(concept: "10 Key Elements of Financial Statements", definition: "1)Assets 2) Liabilities 3)Equity 4)Invesetments by Owners 5)Distributions to Owners 6)Comprehensive Income 7)Revenue 8)Expenses 9)Gains 10) Losses")
+        
+        let flashcard7 = FlashCard(concept: "3 Basic Elements", definition: "1)Assets-an economic resource\n2)Liabilities - an economic obligation\n3)Equity or Net Assets-assets left over after deducting Liabilities")
+        
+        let flashcard8 = FlashCard(concept: "Equity consists of...", definition: "Contributions/investments by Owners, Distribution to Owners(dividends),Comprehensive Income")
+        
+        let flashcard9 = FlashCard(concept: "Comprehensive Income", definition: "Derivactive cash flow hedges, Translatioin Adjustments for foreign currency, Excess adjustment of Pension PBO and FV of plan assets at year end, and Net unrealized gains or losses on \"available-for-sale\" securities")
+        
+        let flashcard10 = FlashCard(concept: "Historical Cost", definition: "amount you paid for it (Plant, property, & Equipment")
+        
+        let flashcard11 = FlashCard(concept: "Replacement Cost", definition: "what it wwould cost to replace an item (Inventory")
+        
+        let flashcard12 = FlashCard(concept: "Fair Market Value(FMV)", definition: "the price that would be received to sell an asset or paid to transfer a liability in an orderly transaction between market participates at measurement date")
+        
+        let flashcard13 = FlashCard(concept: "Net Realizable Value(NRV)", definition: "amount expected to be converted into A/R")
+        
+        let flashcard14 = FlashCard(concept: "Present Value (PV)", definition: "discounted cash flows due to the time value  of money (Notes Receviable, Bonds Payable, Leases")
+
+        let flashcard15 = FlashCard(concept: "All derivatives are reported at _ value", definition: "All derivatives are always reported at fair value")
+        
+        let flashcard16 = FlashCard(concept: "Impairment losses are calculated by", definition: "the reduction in the carrying value of any asset to its fair value in the period of the impairment")
+        
+        let flashcard17 = FlashCard(concept: "Three Valuation Techniques", definition: "1)Market Approach 2)Income Approach 3)Cost Approach")
+        
+        let flashcard18 = FlashCard(concept: "Market Approach", definition: "involves using information generated by market transactions that invovle identical or comparable assets or liabilites")
+        
+
+        let flashcard19 = FlashCard(concept: "Income Approach", definition: "involves analyzing future amounts in the form of revenues, cost savings, earnings, or some other item")
+        
+        let flashcard20 = FlashCard(concept: "Cost Approach", definition: "involes measuring the cost that would be incurred to replace the benefit derived from the asset")
+        
+        
+        let flashcard21 = FlashCard(concept: "Under accrual accounting, revenues and gains are recognize when...", definition: "Earned(goods delivered) and Realizable(cash collected")
+        
+        let flashcard22 = FlashCard(concept: "Based on Revenue Recognition Principle, revenue is recognized when..",definition:"A binding arrangement exists,Services rendered or delivery has occured, Fixed or determinable price exists, or collection nis reasonably assured")
+        
+        let flashcard23 = FlashCard(concept: "Current Assets", definition: "Assets that will be used up or converted into cash within one year of the operationg cycle\n(examples- cash, temporary trading securities, A/R, N/R, inventories, and prepaid expenses")
+        
+        let flashcard24 = FlashCard(concept: "Current Liabilities", definition: "Liabilities that will be settled within one year or the operating cycle")
+        
+        let flashcard25 = FlashCard(concept: "Cash", definition: "The most liquid asset of an enterprise, thus is sually the first item presented in the Current Assets section of the Balance Sheet")
+        
+        let flashcard26 = FlashCard(concept: "Cash Equivalent", definition: "A security that is easily converted into cash with an origin maturity of 90 days or less. Cash equivalents are :1)easily convertible into a known amount of cash(highly liquid)\n2)Original maturity of 3 months or less from the date of purchase.")
+        let flashcard27 = FlashCard(concept: "Examples of Cash Equivalents", definition: "Coin currency on hand(petty cash)\nMoney Market Accounts\nUnmailed Checks\nSavings Accounts\nCDs and negotiable paper(like bank checks, traveler checks and money orders")
+        
+        
+        let flashcard28 = FlashCard(concept: "Balance on Bank Statement equals", definition: "Deposits in Transit - Outstanding checks +/- Errors made by Bank = Corret bank Balance")
+        
+        let flashcard29 = FlashCard(concept: "Checkbook Balance", definition: "Amounts collected by bank - unrecorded bank charges +/- Errors made in recording transactions = Correct Checkbook Balance")
+        
+    
         
         
 
         
-    
         
-        flashCards.append(flashCard1)
-        flashCards.append(flashCard2)
-        flashCards.append(flashCard3)
-        flashCards.append(flashCard4)
-        flashCards.append(flashCard5)
+        flashCards.append(flashcard1)
+        flashCards.append(flashcard2)
+        flashCards.append(flashcard3)
+        flashCards.append(flashcard4)
+        flashCards.append(flashcard5)
+        flashCards.append(flashcard6)
+        flashCards.append(flashcard7)
+        flashCards.append(flashcard8)
+        flashCards.append(flashcard9)
+        flashCards.append(flashcard10)
+        flashCards.append(flashcard11)
+        flashCards.append(flashcard12)
+        flashCards.append(flashcard13)
+        flashCards.append(flashcard14)
+        flashCards.append(flashcard15)
+        flashCards.append(flashcard16)
+        flashCards.append(flashcard17)
+        flashCards.append(flashcard18)
+        flashCards.append(flashcard19)
+        flashCards.append(flashcard20)
 
 
         
@@ -95,6 +160,32 @@ class DAO: NSObject{
         
         let question8 = MultipleChoice(question: "According to the IASB Framework, the financial statement element that is defined as \"a present obligation of the entity arising from past events, the settlement of which is expected to result in an outflow form the entity\", is which of the following", a: "Equity", b: "Liability", c: "Expense", d: "Cost", correctAnswer: "b", info: "According to the IASB Framework, there are 5 elements that make up the financial statements, they include: asset, liability, equity, income, and expense.")
         
+        let question9 = MultipleChoice(question: "According to the FASB conceptual framework, which of the following is an essential charactertistic of an asset?", a: "The claims to an asset's benefits are legally enforceable", b: "An assset is tangible", c: "The asset is obtained at a cost", d: "An asset provides future benefits", correctAnswer: "d", info: "An asset is an economic resource with three essential characteristics: it provides a probable future benefit, it is under the control of the entity, and it results from a past transaction or event. An asset may be tangible or intangible")
+        
+        let question10 = MultipleChoice(question: "According to the FASB conceptual framework, an entity's revenue may result from", a: "A decrease in an asset from primary operations", b: "An increase in an asset from incidental transactions", c: "An increase in a liability from incidental transactions", d: "A decrease in a liability from primary operations", correctAnswer: "d", info: "A decrease in an asset from primary operations will result in an expense. Increases or decreases in assets or liabilities from incidental transactions result in gains or losses. An increase in an asset or a decrease in an liability form primary operations will result in revenue.")
+        
+        let question11 = MultipleChoice(question: "According to the FASB conceptual framework, comprehensive income includes which of the following?", a: "Loss on discontinued operations - Yes, Investments by Owner- Yes", b: "Loss on discontinued operations - Yes, Investments by Owner- No", c: "Loss on discontinued operations - No, Investments by Owner- Yes", d: "Loss on discontinued operations - No, Investments by Owner- No", correctAnswer: "b", info: "Comprehensive income includes all changes to equity other than owner-related items. A loss on discontinued operations reduces net income, which is a component of comprehensive income.An investment by owners is an owner-related transaction, and is not included in comprehensive income.")
+        
+        let question12 = MultipleChoice(question: "According to the FASB conceptual framework, the objectives of financial reporting for business enterprises are based on", a: "The need for conservatism", b: "Reporting on management's stewardship", c: "Generally accepted accounting principles", d: "The needs of the users of the information", correctAnswer: "d", info: "The objectives  of financial reporting are based on the needs of the users of the information. They establish a framework on which generally accepted accoutning principles are based. One of objectives of finanical reporting is to provide indirect information about the management's performance in meeting its responsibilities for the stewardship of the entity. The objectives of financial reporting are not based on conservatism, but can best be met when accounting information is recognized and measured applying the concept of conservatism.")
+        
+        let question13 = MultipleChoice(question: "What are the Statements of Financial Accounting Concepts inteneded to establish?", a: "Generally accepted accounting principles in financial reporting by business enterprises", b: "The meaning of \"Present Fairly in accordance with generally accepted accounting principles\"", c: "The objectives and cocnepts for use in developing standards of financial accounting and reporting", d: "The hierarchy of sources of generally accepted accounting principles", correctAnswer: "c", info: "Statements of Finacial Accounting Concepts are intended to create a conceptual framework for accounting. Althought they do not establish GAAP, they do establish the objectives and concepts of which the standards of financial accounting and reporting are based.")
+        
+        let question14 = MultipleChoice(question: "During a period when an enterprise is under the direction of a particular management, its financial statements will directly provide information about", a: "Both enterprise performance and management performance", b: "Management performance but not directly provide information about enterprise performance", c: "Enterprise performance but not directly provide information about management performance", d: "Neither enterprise performance nor management performance", correctAnswer: "c", info: "The objectives of finanical reporting include providing direct information about an entity's cash flows, financial position, and performance. The financial statements also provide indirect information about management's performance")
+        
+        let question15 = MultipleChoice(question: "According to the FASB conceptual framework, predictive value is an part of", a: "Faithful Representation-Yes,Relevance-Yes", b: "Faithful Representation-No,Relevance-Yes", c: "Faithful Representation-No,Relevance-No", d: "Faithful Representation-Yes,Relevance-No", correctAnswer: "b", info: "According to the conceptual framework of accounting,there are two primary qualitative characteristics of accounting information. One is Faithful Representation, which consists of free from error, neutrality and completeness.The other is relevance, which consists of ingredients of predictive value and confirmatory value")
+        
+        let question16 = MultipleChoice(question: "According to the FASB conceptual framework, which of the following relates to both relevances and faithful representation", a: "Comparability", b: "Confirmatory value", c: "Neutrality", d: "Completeness", correctAnswer: "a", info: "Confirmatory value is one of the ingredients of the primary qualitative characteristic of relevance while completeness and neutrality are ingredients of faithful representation. The need for comparablity is an enhancing qualitative characteristic that pertains to the financial statements as a whole and related to both relevance and faithful representation")
+        
+        let question17 = MultipleChoice(question: "According to the FASB conceptual framework, which of the following situations violates the concept of verifability?", a: "Financial Statements were issued nine months late", b: "Report data on segments having the same expected risks and growth rates to analysts estimating future profits", c: "Financial statement included property with a carrying amount increased to management's estimate of market value", d: "Management's reports to stokcholders regularly refer to new projects undretaken, but the financial statements never report", correctAnswer: "c", info: "The reporting of data to analysts estimating future profits on segments having the same expected risks and growth rates relates to the concept of predictive value which is part of Relevance.")
+        
+        let question18 = MultipleChoice(question: "According to the FASB conceptual framework, the usefulness of providing information in financial statements is subject to the constraint of ", a: "Compariability", b: "Cost benefit", c: "Relevance", d: "Representational faithfulness", correctAnswer: "b", info: "To meet the objectives of financial reporting, the information must be useful. Relevance and faithful representation are both qualitative characteristics that make information useful. An enhacning quailty that makes information useful is consistency. To avoid spending more to obtain information than it is worht, usefulness is subject to the constraint of const benefit indicating that the cost of obtaining the information should not exceed th ebenefit.")
+        
+        
+        let question19 = MultipleChoice(question: "FASB's conceptual framework explains both financial and physical capital maintenance concepts. Which capital maintenance concept is more commonly associated with currently reported net income, and which is more commonly associated with comprehensive income?", a: "Currently Report net Income - Financial Capital,Comprehensive Income- Physical Capital", b: "Currently Report net Income - Physical Capital,Comprehensive Income- Physical Capital", c: "Currently Report net Income - Financial Capital,Comprehensive Income- Financial Capital", d: "Currently Report net Income - Physical Capital - Comprehensive Income- Financial Capital", correctAnswer: "c", info: "Under the physical capital maintenance concept, gains and losses are recognized only when assets are disposed of or liabilities are settled, which is generally when gains or losses are recognized in reporting net income for the ucrrent period. Under financial capital maintenance approach, holding gains and losses are recognized, such as an unrealized gain in the market value of available for sale securities, which is more commonly associated with comprehensive income.")
+        
+        let question20 = MultipleChoice(question: "According to the FASB conceptual network, which of the following statements conforms to the realization concept?", a: "Equipment depreciation was assigned to a production department and then to product unit costs", b: "Depreicated equiment was sold in exchange for a note receivable", c: "Cash was collected on accounts receivable", d: "Product unit costs were assigned to cost of goods sold when the united were sold", correctAnswer: "b", info: "Realization is th econversion of an item or service into cash or a claim to cash as would be the case when equipment is sold for a note receivable. Realization occurs at the time that an entity converts goods or services into accounts receivable, not when th ereceivable is collected. The assignment of costs to production or to cost of goods sold is a form of allocation rather than realization.")
+        
+        
         
         questions.append(question1)
         questions.append(question2)
@@ -104,7 +195,18 @@ class DAO: NSObject{
         questions.append(question6)
         questions.append(question7)
         questions.append(question8)
-
+        questions.append(question9)
+        questions.append(question10)
+        questions.append(question11)
+        questions.append(question12)
+        questions.append(question13)
+        questions.append(question14)
+        questions.append(question15)
+        questions.append(question16)
+        questions.append(question17)
+        questions.append(question18)
+        questions.append(question19)
+        questions.append(question20)
 
         
 

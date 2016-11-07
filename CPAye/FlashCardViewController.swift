@@ -362,7 +362,6 @@ progressCounter()
         let attrs = [NSFontAttributeName : UIFont.boldSystemFont(ofSize: 20)]
         let boldString = NSMutableAttributedString(string:dao.currentFlashCard.concept, attributes:attrs)
         
-        
         flashCardTextView.attributedText = boldString
         
         
@@ -550,7 +549,6 @@ progressCounter()
         
         
         back =  UITextView(frame: CGRect(x: flashCardTextView.frame.origin.x, y: flashCardTextView.frame.origin.y, width: flashCardTextView.frame.size.width, height: flashCardTextView.frame.size.height * 1.5  ))
-        
         
         
         

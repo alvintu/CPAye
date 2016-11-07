@@ -11,7 +11,7 @@ import Foundation
 
 
 
-class FlashCardClass: NSObject {
+class FlashCard: NSObject {
     let prefs = UserDefaults.standard
 
     var concept  : String

@@ -12,6 +12,7 @@ class InfoViewController: UIViewController {
     
     override func viewDidLoad() {
         print("info")
+        
     }
     
     
