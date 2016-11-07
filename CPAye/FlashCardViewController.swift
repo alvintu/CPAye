@@ -260,7 +260,7 @@ progressCounter()
 //        back.backgroundColor = UIColor.blackColor()
 
         if(!showingAnswer){
-        UIView.transition(from: flashCardTextView, to: back, duration: 1, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
+        UIView.transition(from: flashCardTextView, to: back, duration: 0.5, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
             loadProgressViewsWhenInfoClicked()
             loadHiddenButtons()
 
@@ -340,16 +340,19 @@ progressCounter()
         
         
         knowButton = UIButton(frame: CGRect(x: 0, y: (back.frame.height - back.frame.height/2), width: back.frame.width, height: back.frame.height/4))
-        knowButton.backgroundColor = UIColor.green
-        knowButton.setTitle("✅ I know this word", for: UIControlState())
+        knowButton.backgroundColor = UIColor(red:164/244, green:231/244, blue:131/244, alpha:0.8)
+//        knowButton.setTitleColor UIColor(red:90/244, green:212/244, blue:39/244, alpha:0.8)
+        
+        knowButton.setTitleColor(UIColor(red:90/244, green:212/244, blue:39/244, alpha:1.0), for: UIControlState())
+        knowButton.setTitle("✓ I knew this concept", for: UIControlState())
         knowButton.addTarget(self, action: #selector(knowThisWord), for: .touchUpInside)
         
         self.flashCardContainerView.addSubview(knowButton)
         
         dontKnowButton = UIButton(frame: CGRect(x:0, y: (knowButton.frame.origin.y + knowButton.frame.size.height), width: knowButton.frame.width, height: knowButton.frame.height))
-        dontKnowButton.backgroundColor = UIColor(red:1.00, green:0.48, blue:0.48, alpha:1.0)
+        dontKnowButton.backgroundColor = UIColor(red:1.00, green:0.20, blue:0.40, alpha:1.0)
         
-        dontKnowButton.setTitle("❌ I don't know this word", for: UIControlState())
+        dontKnowButton.setTitle("✘ I didn't know this concept", for: UIControlState())
         dontKnowButton.addTarget(self, action: #selector(dontKnowThisWord), for: .touchUpInside)
         
         self.flashCardContainerView.addSubview(dontKnowButton)
@@ -379,7 +382,7 @@ progressCounter()
         learningLabel.isHidden = true
         
         
-        UIView .animate(withDuration: 1.0, delay: 0, options:[], animations: {
+        UIView .animate(withDuration: 0.5, delay: 0, options:[], animations: {
             
             
             
@@ -448,7 +451,7 @@ progressCounter()
         learningLabel.isHidden = true
         
         
-        UIView .animate(withDuration: 1.0, delay: 0, options:[], animations: {
+        UIView .animate(withDuration: 0.5, delay: 0, options:[], animations: {
             
             
 
@@ -573,6 +576,7 @@ progressCounter()
         ///
         masteredLabel = UILabel.init(frame: CGRect(x: 0, y: view.frame.height/1.75, width: view.frame.width, height: 20))
         masteredLabel.text = "Master of: \(masterCounter) out of \(dao.flashCards.count) concepts"
+        masteredLabel.textColor = UIColor.white
         masteredLabel.textAlignment = NSTextAlignment.center
         
         
@@ -588,6 +592,8 @@ progressCounter()
         reviewingLabel = UILabel.init(frame: CGRect(x: 0, y: masteredProgressView.frame.origin.y + 30, width: view.frame.width, height: 20))
         
         reviewingLabel.text = "Reviewing: \(reviewCounter) out of \(dao.flashCards.count) concepts"
+        reviewingLabel.textColor = UIColor.white
+
         reviewingLabel.textAlignment = NSTextAlignment.center
         
         reviewingProgressView = UIProgressView.init(progressViewStyle: .default)
@@ -601,6 +607,8 @@ progressCounter()
         
         learningLabel = UILabel.init(frame: CGRect(x: 0, y: reviewingProgressView.frame.origin.y + 30, width: view.frame.width, height: 20))
         learningLabel.text = "Still Learning: \(learningCounter) out of \(dao.flashCards.count) concepts"
+        learningLabel.textColor = UIColor.white
+
         learningLabel.textAlignment = NSTextAlignment.center
         
         learningProgressView = UIProgressView.init(progressViewStyle: .default)

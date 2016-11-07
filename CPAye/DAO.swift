@@ -20,8 +20,6 @@ class DAO: NSObject{
     var questions :[MultipleChoice] = []
     var currentQuestion : MultipleChoice = MultipleChoice(question: "", a: "", b: "", c: "", d: "", correctAnswer: "", info: "")
     
-    var review :[ReviewSection] = []
-    var currentReviewSection : ReviewSection = ReviewSection.init(title: "", info: [])
     
     var flashCards : [FlashCardClass] = []
     var currentFlashCard : FlashCardClass = FlashCardClass.init(concept: "",definition: "")
@@ -36,8 +34,6 @@ class DAO: NSObject{
         self.loadQuestions()
         self.currentQuestion = questions[0]
         
-        self.loadReview()
-        self.currentReviewSection = review[0]
         
         self.loadFlashCards()
         self.currentFlashCard = flashCards[0]
@@ -51,8 +47,6 @@ class DAO: NSObject{
     func loadFlashCards(){
         
         let flashCard1 = FlashCardClass.init(concept: "IFRS Qualitative characteristics of Financial Statement", definition:"1)Understandability2) Relevance3) Reliability4) Comparability")
-        
-        
         
         let flashCard2 = FlashCardClass.init(concept: "accounting defintion 2", definition: "accounting definition 2")
         
@@ -82,36 +76,35 @@ class DAO: NSObject{
         
     }
 
-    
-    func loadReview(){
-        let review1 = ReviewSection.init(title: "Individual Taxation", info: ["can a nigga get more than two lines, can a nigga get more than 3, can a nigga get more than 4 lines?,can a nigga get more than two lines, can a nigga get more than 3, can a nigga get more than 4 lines?,can a nigga get more than two lines, can a nigga get more than 3, can a nigga get more than 4 lines?","wiasdfads hello there my name is mjr johnsonll","be","tasdkjhaskl  kdashflkashfdlha s lkfhaslf  sdalfhasljkfhaslkfjdhdalsdkfh x"])
-        let review2 = ReviewSection.init(title: "Corporation Taxation", info: ["you","will","be","corporate"])
-        let review3 = ReviewSection.init(title: "Estate Taxation", info: ["you","will","be","estated"])
-        
-        review.append(review1)
 
-        review.append(review2)
-
-        review.append(review3)
-
-
-    }
-    
     
     func loadQuestions(){
-        let question1 = MultipleChoice(question: "A government makes a contribution to its pension plan in the amount of $10,000 for year 1. The actuarially-determined annual required contribution for year 1 was $13,500. The pension plan paid benefits of $8,200 and refunded employee contributions of $800 for year 1. What is the pension expenditure for the general fund for year 1?", a: "8,200", b: "9,000", c: "10,000", d: "13,500", correctAnswer: "c", info: "Because the question is about the General Fund, which uses the modified accrual basis of accounting, only the $10,000 contribution to the pension plan, which is a use of financial resources in year 1, is recognized as pension expenditure. The Pension Trust Fund would report the $10,000 received from the General Fund as an “Addition” and not as revenue.")
+        let question1 = MultipleChoice(question: "The enhancing qualitative characteristics of financial reporting are", a: "Relevance, reliability, and faithful representation", b: "Cost-Benefit and Materiality", c: "Comparability,Understandability, Timeliness, and Verifibiilty", d: "Completeness, neutrality, and free from error", correctAnswer: "c", info: "The enhancing qualitative characteristics of financial reporting are copmarability, timeliness, understandability, and verifibility.")
         
-        let question2 = MultipleChoice(question: "The City of Macon maintains a defined contribution pension plan for its employees. During the year, the city contributed $5,000,000 to the plan, which represented 100% of its required contribution for the year. City employees contributed $1,800,000 to the plan. In addition, plan assets earned $4,500,000. What amount should the City report as Additions in its Pension Trust Fund?", a: "$11,300,000", b: "$9,500,000", c: "$6,800,000", d: "$4,500,000", correctAnswer: "d", info: " In addition to the actual earnings on plan assets, both employer and employee contributions are recognized as Additions in the Pension Trust Fund.")
+        let question2 = MultipleChoice(question: "According to Statements of Financial Accounting Concepts, neutrality is an ingredient of ", a: "Faithful Representation- YES, Relevance- YES", b: "Faithful Representation- YES, Relevance- NO", c: "Faithful Representation- NO, Relevance- YES", d: "Faithful Representation- NO, Relevance- NO", correctAnswer: "b", info: "Faithful represntation consists of Free from Error,Neutrality, and Completeness.")
         
-        let question3 = MultipleChoice(question: "The $500,000 is to be used to create an endowment that will be invested and retained in perpetuity and the earnings used to provide college scholarships to outstanding local high school graduates selected by the Rotary Club. The City has agreed to manage the investment and disbursement of these monies on behalf of the Rotary Club. The City should account for the $500,000 corpus of the endowment in a(n):", a: "Agency Fund", b: "Private-Purpose Trust Fund", c: "Permanent Fund.", d: "Special Revenue Fund.", correctAnswer: "b", info: "A Private-Purpose Trust Fund is used to account for resources, both expendable and non-expendable, which either must be used for a non-governmental purpose or the earnings from which have to be used for a non-governmental purpose. As in this case, Private-Purpose Trust Funds usually disburse monies to individuals or organizations outside the governmental entity.")
+        let question3 = MultipleChoice(question: "According to the FASB conceptual framework, which of the following is an enhancing quality that relates to both relevance and faith representation",a:"Comparability",b:"Confirmatory Value", c: "Predicative Value", d: "Neutrality", correctAnswer: "a", info: "The enhancing qualitative characteristics of financial reporting are comparability, timeliness, understandability, and verifibility.")
         
-        let question4 = MultipleChoice(question: "In 2005, a state government collected income taxes of $8,000,000 for the benefit of one of its cities that imposes an income tax on its residents. The state remitted these collections periodically to the city. The state should account for the $8,000,000 in the:", a: "General Fund.", b: "Agency Funds.", c: "Internal Service Funds.", d: "Special Assessment Funds", correctAnswer: "b", info: "An Agency Fund accounts for assets held by a government unit acting as an agent for individuals, private organizations, other governmental units, and/or other funds. The state government is simply acting as a collection agent for the city. It has no right to the monies collected, and simply passes the taxes collected along to the city.")
+        let question4 = MultipleChoice(question: "According to the FASB conceptual framework, the process of reporting an item in the financial statements of an entity is ", a:"Allocation", b: "Matching", c: "Realization", d: "Recognition", correctAnswer: "d", info: "Recognition is the process of reporting an item on the financial statements")
+        
+        let question5 = MultipleChoice(question: "According to the FASB conceptual framework, which of the following is an essential characteristic of an asset?", a: "The asset is tangible", b: "An asset is obtained at a cost", c: "The claims to an asset's benefit are legally enforceable", d: "An asset provides a future benefit", correctAnswer: "d", info: "Recognition is the process of reporting an item on the financial statements")
+        
+        let question6 = MultipleChoice(question: "Which of the following is not a valuation technique used to measure or estimate fair value?", a: "Income approach", b: "Asset Creation Approach", c: "Market Approach", d: "Cost Approach", correctAnswer: "b", info: "There are 3 approaches to measure fair value, the market approach, income approach, and cost approach.")
+        
+        let question7 = MultipleChoice(question: "According to the IASB Framework, the qualitative characteristic of relevance includes:", a: "Comfirmatory Value, Predictive Value, and Comparability", b: "Free from error,Neutrality, and Completeness", c: "Predictive Value, Confirmatory Value, and Materiality", d: "Neutrality, Copmleteness, and Comparability", correctAnswer: "c", info: "The qualitative charactertics for Relevance under IASB Framework are Predictive Value, Confirmatory Value, and Materiality, which is very similar under the FASB Conceptual framework.")
+        
+        let question8 = MultipleChoice(question: "According to the IASB Framework, the financial statement element that is defined as \"a present obligation of the entity arising from past events, the settlement of which is expected to result in an outflow form the entity\", is which of the following", a: "Equity", b: "Liability", c: "Expense", d: "Cost", correctAnswer: "b", info: "According to the IASB Framework, there are 5 elements that make up the financial statements, they include: asset, liability, equity, income, and expense.")
         
         
         questions.append(question1)
         questions.append(question2)
         questions.append(question3)
         questions.append(question4)
+        questions.append(question5)
+        questions.append(question6)
+        questions.append(question7)
+        questions.append(question8)
+
 
         
 
