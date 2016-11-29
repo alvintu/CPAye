@@ -70,7 +70,7 @@ class DAO: NSObject{
         
         let flashcard10 = FlashCard(concept: "Historical Cost", definition: "amount you paid for it (Plant, property, & Equipment")
         
-        let flashcard11 = FlashCard(concept: "Replacement Cost", definition: "what it wwould cost to replace an item (Inventory")
+        let flashcard11 = FlashCard(concept: "Replacement Cost", definition: "amount it would cost to replace an item (Inventory")
         
         let flashcard12 = FlashCard(concept: "Fair Market Value(FMV)", definition: "the price that would be received to sell an asset or paid to transfer a liability in an orderly transaction between market participates at measurement date")
         
@@ -78,7 +78,7 @@ class DAO: NSObject{
         
         let flashcard14 = FlashCard(concept: "Present Value (PV)", definition: "discounted cash flows due to the time value  of money (Notes Receviable, Bonds Payable, Leases")
 
-        let flashcard15 = FlashCard(concept: "All derivatives are reported at _ value", definition: "All derivatives are always reported at fair value")
+        let flashcard15 = FlashCard(concept: "All derivatives are reported at ??? value", definition: "All derivatives are always reported at fair value")
         
         let flashcard16 = FlashCard(concept: "Impairment losses are calculated by", definition: "the reduction in the carrying value of any asset to its fair value in the period of the impairment")
         
@@ -111,31 +111,235 @@ class DAO: NSObject{
         let flashcard29 = FlashCard(concept: "Checkbook Balance", definition: "Amounts collected by bank - unrecorded bank charges +/- Errors made in recording transactions = Correct Checkbook Balance")
         
     
+        let flashcard30 = FlashCard(concept: "Cost Method or Marketable Securities", definition: "1) No influence over the investee company exists\n2)If security isn't marketable, use the cost method")
+        
+        let flashcard31 = FlashCard(concept: "Equity Method", definition: "The implication is that the investor has significant voting influence over the investee")
+        
+        let flashcard32 = FlashCard(concept: "Consolidation", definition: "1)Investor has control over the investee \n2)Members of the investor company constitute a maority of the board of directors of the investee")
+        
+        
+        let flashcard33 = FlashCard(concept: "Trading Securities(HFT)", definition: "Investments in equity, such as stocks, options, rights warrants, or debt instruments, such as bonds, which the investor has acquired in an attempt to make profits by buying and selling within a short period of time. These are normally classified as normal assets.")
+        
+        let flashcard34 = FlashCard(concept: "Available-For-Sale Securities (AFS)", definition: "All investments in marketable equity or debt instruments that do not fit the definitions of HTM or trading secuirties. These maybe classified as current or noncurrent assets, depending on the expected date of sale")
+        
+        let flashcard35 = FlashCard(concept: "Held-To-Maturity (HTM)", definition: "Investments in bonds and other debt instruments which the investor has the ability and intent to hold until the due date for repayment")
+        
+        let flashcard36 = FlashCard(concept: "Financial instruments", definition:"Financial Instruments include Cash, Ownership Interests in Stock, and Derivative contracts that create a a right and obligation to transer other financial instruments ")
+        
+        let flashcard37 = FlashCard(concept: "Foreign Currency Transactions", definition: "When an entity enters in an transaction that will be settled through the payment or receipt of foreign currency, it is initially recognized in the funcial currency of the enitty using the exchange rate in effect of the DATE OF TRANSACTION")
+        
+        let flashcard38 = FlashCard(concept: "Financial Instruments Denominated into Foreign Currency", definition: "When an entity has financial instruments, such as accounts receivable or payable, or notes and loans receivable or payable, that are denominated in a foreign currency, they are adjusted for changes in exchange rates as of each balance sheet date")
+        
+        let flashcard39 = FlashCard(concept: "Foreign Currency Exchange Transactions", definition: "An entity may enter into a transaction in which they agree to exchange one currency for another at a specific exchange rate at a specific point in time")
+        
+        let flashcard40 = FlashCard(concept: "Foreign Investees", definition: "When a company has an investment in ao freign division or subsidiary that will be included in the company's consolidated financial statements , it must convert the foreign entity's financial information from its local currency, the currency in which it maintains its books and records, into the parent's reporting currency, presumably US Dollars")
+
+        let flashcard41 = FlashCard(concept: "Translation", definition: "If functional currency is the local currency")
+        
+        let flashcard42 = FlashCard(concept: "Remeasurement", definition: "If functional currency is the US Dollar")
+        
+        let flashcard43 = FlashCard(concept: "Transactional Currency", definition: "Local(recording currency)- the currency of a particular country, usually books and records are kept")
+        
+        let flashcard44 = FlashCard(concept: "Functional Currency", definition: "Greatest economic impact on company(currency in which the entity generates and expends cash")
+        
+        let flashcard45 = FlashCard(concept: "Reporting Currency", definition: "Currency in which th eneterprise prepares its financial statements(usually $US)")
+        
+        let flashcard46 = FlashCard(concept: "Cost of Inventory", definition: "Includes all costs of acquisition and preparation of sale like warehouse costs prior to sale, insurance, repackaging, modifications, freight-in paid by buyer, transporation costs paid by seller on consignment (abnormal costs not incldued")
+
+        let flashcard47 = FlashCard(concept: "FOB Shipping Point", definition: "Title passes to the buyer when the seller delivers the goods to a common carrier (shipped) \n Included in BUYER'S books at year end")
+        
+
+        let flashcard48 = FlashCard(concept: "FOB Destination", definition: "Title passes to the buyer when the buyer receives the goods from the common carrier (received\nIncluded in SELLER'S books at year end")
+        
+        let flashcard49 = FlashCard(concept:"Consignment Inventory ", definition:"Seller and buyer will enter into a consignment arrangement. This takes place when a buyer is acquiring goods for resale, but only wants to purchsae those goods once they have been able to arrange the resale")
+    
+        
+        let flashcard50 = FlashCard(concept:"Consignor", definition: "Includes inventory in his balance sheet\nHas ownership, but not possession of the goods\nCosts incurred by consignor in transferring goods to the consignee\n ")
+        
+        let flashcard51 = FlashCard(concept: "Cosignee", definition: "Items are not included in history inventory balance\nHas possession, but not ownership of the goods\nWhen sold, the sales price is given to the consignor after deducting")
+        
+        let flashcard52 = FlashCard(concept: "Periodic Inventory System", definition: "Inventory Quantity is determined by a physical count, usually done a year end")
+
+        
+        let flashcard53 = FlashCard(concept: "Perpetual Inventory System", definition: "Inventory purchases are debited to Inventory. The quantity on hand can be determined by any point in time")
+        
+        let flashcard54 = FlashCard(concept: "Lower of Cost or Market Rule (LCM)", definition: "Cost = Orignal Cost\nMarket = The median of Ceiling, Floor and Replacement Cost\nThe rule is to take the middle market cost and original cost and take the lower of the two numbers ")
+        
+        let flashcard55 = FlashCard(concept:"Market Price", definition: "CEILING = Net Realizable Value (NRV)(selling price - disposal costs)\nFLOOR = Net Realizable Value - normal profit margin")
+        
+        let flashcard56 = FlashCard(concept: "Replacement Cost", definition: "Cost it would take to Purchase or Reproduce")
+        
+        
+        let flashcard57 = FlashCard(concept: "Gross Profit (margin) Method", definition: "Gross profit can be used to prepare interim financial statements or as an estimate if ending inventory is missing or destroyed. First, calculate an estimate of COGS, then back into ending inventory")
+        
+        let flashcard58 = FlashCard(concept: "Acquisition Costs(intended use)", definition: "Include all costs of acquisition or construction as well as preparation for use(purchase price, legal fees, delinquent taxes, title insurance, transportation(freign in), installation, test runs, and sales taxes")
+        
+        let flashcard59 = FlashCard(concept: "Cost of Land includes:", definition: "Cost of Land includes: Purchase Price, Surveying Costs, Clearing, Grading, Landscaping, Costs of Razing or demolishing an old building are added to the land cost. Proceeds from the sale of any scrap(old bricks) are subtracted from the land cost")
+        
+        let flashcard60 = FlashCard(concept: "Repairs and Maintenance Expense(Revenue Expenditure)", definition: "Costs incurred to keep or restore an asset to its normal operating condition. These costs are expensed as incurred")
+        
+        let flashcard61 = FlashCard(concept: "Asset Betterment(Capital Expenditure)" , definition:"If costs makes the asset bigger, better or longer, one would capitalize the asset betterment cost rather than expensing it")
+        
+        let flashcard62 = FlashCard(concept:"Straight-Line Method", definition: "(Cost-Salvage Value)/Useful Life = Depreciation Expense")
+        
+        let flashcard63 = FlashCard(concept: "Sum of Years Digits Method(SYD)", definition: "An accelerated depreciation method that is considred less aggressive than th ddouble-decline method\n(Cost - Savlage Value) * (# of years left in asset's life/sum of years in asset's life) = depreciation Expense")
+        
+        let flashcard64 = FlashCard(concept: "Double Decline Balance Method", definition: "A depreciation rate that is twice the straight-line rate is applied against the book value of the asset\n(ex. 1/5 = 20% (straight-line rate) * 2 = 40%(Double Decline Balance rate)")
+        
+        let flashcard65 = FlashCard(concept: "Intangibles", definition: "Intangible assets refer to assets of a company which lack physical substance and provide economic benefits through the rights and privleges associated with their possession. They may be identifiable or unidentifiable. They may also be externally acquired(purchased at FV) or internally developed. ")
+        
+        let flashcard66 = FlashCard(concept: "Forms of Intangibles", definition: "Three basic forms of Intangibles:\nKnowledge\nLegal Rights & Identifiable intangibles\nGoodwill(unidentifiable intangible)")
+        
+        
+        let flashcard67 = FlashCard(concept: "Knowledge Intangibles", definition: "Knowledge is developed by a procerss of research and development and expensed as incurred")
+
+        let flashcard68 = FlashCard(concept: "Identifiable Intangibles", definition: "Identifiable Tangibles include patents, copyrights, trademarks, franchises, leasehold improvements and licenses")
+        
+        
+        let flashcard69 = FlashCard(concept: "Goodwill Intangibles", definition: "Goodwill is known as the unidentifiable intangible since its value cannot be direct determined. It is represented by the excess of what a buyer is willing to pay for a business over the value of the net identifiable assets")
+        
+        
+        let flashcard70 = FlashCard(concept: "Accounting for Intangibles", definition: "COST METHOD - asset depreciated to residual value\nREVALUATION METHOD - asset is periodically adjusted to its estimated fair value")
+        
+        let flashcard71 = FlashCard(concept: "Pledging (Receivables)", definition: "The client borrows the neccesary cash, and offers the receivable to the lender as collateral to secure the loan. When this occurs it must be adequately disclosed in a footenote in the financial statements")
+
+        let flashcard72 = FlashCard(concept: "Assigning (Receivables)", definition: "The client borrows the neccesary cash and agrees to use the proceeds from the receivable to repay the lender. Sometimes, the customer is notified to make payment directly to the lender instead of the client")
+
+        let flashcard73 = FlashCard(concept: "Factoring(Receivables)", definition: "A company converts A/R into cash by assigning or selling it either with or without recourse to a factor")
+
+        let flashcard74 = FlashCard(concept: "Sale without Recourse", definition: "The client sells the receivable to another party(a factor) with the buyer assuming the risk that the ceivable may not be collectible")
+        
+        let flashcard75 = FlashCard(concept: "Sale with Recourse", definition: "The client sells the receivable to another party, with the buyer retaining the right to demand the client make good on the receivable if the customer does not pay as promised")
+
+        
+        let flashcard76 = FlashCard(concept: "Term Bond", definition: "A bond that will pay the entire principal upon maturity at the end of the term")
+        
+        let flashcard77 = FlashCard(concept: "Serial Bond", definition: "A bond in which the principal matures installments")
+        
+        let flashcard78 = FlashCard(concept: "Debenture Bonds", definition: "Unsecured bonds that are not supported by any collateral")
+        
+        let flashcard79 = FlashCard(concept: "Stated,face,coupon, and nominal rate", definition: "The rate printed on the bond. It represents the amount of cash the investor will receive every payment")
+        
+        let flashcard80 = FlashCard(concept: "Carrying Amount", definition: "Net amount as which bond  being reported on the balance sheet, and equals th face value of the bond plus the premium or minus the discount. Carrying amount is called the book value or reported amount ")
+        
+        let flashcard81 = FlashCard(concept: "Effective rate, Yield, and Market Interest Rate", definition: "The actual rate of interest the company is paying on the bond based on the issue price. The effective rate is often called the market rate of interest or yield")
+        
+        let flashcard82 = FlashCard(concept: "Convertible Bond", definition: "A bond that is convertible into common stock of th debtor at the bondholders option")
+        
+        let flashcard83 = FlashCard(concept: "Callable Bond", definition: "A bond which the issuer has the right to redeem prior to its maturity date")
+        
+        let flashcard84 = FlashCard(concept: "Covenants", definition: "Restrictions that borrowers must often agree to")
+        
+        let flashcard85 = FlashCard(concept: "Present Value of Amount(lump sum)", definition: "This is used to examine a single cash flow that will occur at a future date and determine its equivalent value today. The amount you need to invest today, for how many years, at what interest rate, to get back $1 back in the future")
+        
+        let flashcard86 = FlashCard(concept: "Present Value of Ordinary Annuity", definition: "This refers to repeated cash flows on a systematic basis, which amounts being paid at the end of each period(aka annuity in arrears). Bond interest payments are commonly made at the end of each period and use these factors")
+
+        let flashcard87 = FlashCard(concept: "Present Value of Annuity Due(Now)", definition: "This refers to repeated cash flows on a systematic basis, with amounts being paid at the beginning of each period(aka annuity in advance or special annuity). Rent payments are commonly made at the beginning of each period and use the factors")
+        
+        let flashcard88 = FlashCard(concept: "Future Values (compound interest)", definition: "Future values look at cash flows and project them to some future date, and include all three variations applicable to present values. This is the amount that would accumulate at a future point in time if $1 were invested now. The future value factor is equal to 1 divided by the present value factor. For example, an investment of $10,000 in two years at 10% would accumulate to the principal multiplied by the future value factor. In this case, the $10,000 * 1.0/0.8265 = $12,100")
+
+        
+        let flashcard89 = FlashCard(concept: "Bond Issue Costs", definition: "Costs directly associated with the issurance of the bonds are a non-current asset (deferred charge) and are amortized straight line over the period of time the bonds are outstanding. This includes printing and engraving of the bond certificates, legal and accounting fees, underwriter commissions, and promotion costs(printing the prospectus)")
+        
+        let flashcard90 = FlashCard(concept: "Lease", definition: "A lease is a contract, which conveys the right to pssess and use the lessor's property for a specified period of time in return for periodic cash payments by the lessee to the lessor. Our goal is to recognize the true substance over the form of the lease. It may be true rental(operating lease) or purchase and sale (capital lease-non operating)")
+        
+        let flashcard91 = FlashCard(concept: "Operating Lease", definition: "A lease where the rights and risks of ownership don't transfer, considered as \"true rental\". Lessor depreciates asset and lessees' rent expense is recognized uniformly (evenly)")
+
+        let flashcard92 = FlashCard(concept: "Capital Lease", definition: "A lease where the rights and risks of ownership have transferred from the lessor to the lessee. In substance, it's a purchase, although in form it's a lease. The lessee therefore recognizes both an asset and a liability at the present value of the minimum lease payments not to exceed fair market value")
+        
+        let flashcard93 = FlashCard(concept: "Criteria for Lease", definition: "If lease meets 1 criteria, it is a capital lease. If not, it is a operating lease. 1) Lease transfers ownership 2) Written lease cotanins a bargain purchase option 3) non-cancellable lease term is >75%+ of estimated economic life 4)PV of the minimum lease payments is equal to 90% of FMV of property at inception")
+        
+        let flashcard94 = FlashCard(concept: "Current Liabilities", definition: "Liabilities that will be settled within one year or the Operating cycle whichever is longer. This includes accounts payable, accrued expenses, dividends payable, income taxes payable, current portion of L/T Debt")
+        
+        let flashcard95 = FlashCard(concept: "Accounts Payable", definition: "Liabilities incurred in obtaining goods and services from vendors in the ordinary course of business")
+        
+        let flashcard96 = FlashCard(concept: "Accrued Liabilities/Expenses (Current Liability)", definition: "An expense that is incurred but not yet paid in cash. Examples include unpaid salaries or taxes at year end.")
+        
+        let flashcard97 = FlashCard(concept: "Prepaid Expenses (Current Assets)", definition: "Expenses paid in cash, but not yet incurred")
+        
+        let flashcard98 = FlashCard(concept: "Deferred Revenues(Current Liability)", definition: "Revenue collected but not yet earned. Examples include, rent collected or subscriptions collected in advance or gift certificates issued, but not yet redeemed")
+        
+        let flashcard99 = FlashCard(concept: "Revenue Receivable (Current Asset)", definition: "Revenue earned but not yet collected")
+        
+        let flashcard100 = FlashCard(concept: "Contingencies", definition: "A gain or loss that may occur in the futre as a result of an existing condition")
+        
+        let flashcard101 = FlashCard(concept: "Contingent Liabilities", definition: "Events that occur before balanc esheet date ,but the resolution is contingent on a future event. Examples include, obligations to product warranties, pending litigation, suretyship, obligations for product defects, threat of expropriation of assets, and collection of receivables")
+        
+        let flashcard102 = FlashCard(concept: "Loss Contingencies(Remote)", definition: "Slight chance of occuring\n Treatment- Don't Disclose/Don't Accrue")
+        
+        let flashcard103 = FlashCard(concept: "Loss Contingencies(Reasonably Possible)", definition: "more than Remote, but less than Probable\n Treatment- Do Disclose - disclose nature and range of loss/Don't Accrue")
+        
+        
+        let flashcard104 = FlashCard(concept: "Loss Contingencies(Probable)", definition: "Likely to Occur\n Treatment- If estimable(disclose & accrue) and if NOT estimable (disclose, don't accrue")
+
+        let flashcard105 = FlashCard(concept: "Pension Plan", definition: "An agreement between an employer and employee to give employee benefits once they retire" )
+        
+        let flashcard106 = FlashCard(concept: "Definted Contribution Plan", definition: "Plan where employer sets aside specific amounts during the time of service, and the retired employee receives whatever sum these contributions and earnings produce")
+        
+        let flashcard107 = FlashCard(concept: "Defined Benefit Plan", definition: "Plan where employer guarantees certain benefits to be paid to retired employees, and is responsible for setting aside sufficient amounts to fulfill these promises")
+        
+        let flashcard108 = FlashCard(concept: "Vested benefit obligation (VBO)", definition: "What is owed if an employee is terminated immediately. The VBO is the actuarial present value of vested benefits, which are those benefits that the employee is entitled to that are not contingent of remaining on employment of the entity (if quit")
+        
+        let flashcard109 = FlashCard(concept: "Accumulated benefit obligatoin (ABO)", definition: "What is owed for service to date if the employee continues in employment until normal retirement age at current wage rages. The actuarial present value of benefits attributed by the pension benefit formula to employee services and compensation prior to that date")
+        
+        let flashcard110 = FlashCard(concept: "Projected benefit obligation (PB)", definition: "What is owed for service to date if the employee continues in employment until normal retirement age and receives periodic adjustments to pay for increased experience and general inflation based on future wage rates. The PBO is actuarial present value as of a date of all benefits attributed by the persion benefit formula to employee service rendered prior to that date")
+        
+        let flashcard111 = FlashCard(concept: "Pension Expense", definition: "Pension Cost = Service Cost +/- Prior Service Cost + Interest Cost - Actual Return on Plan Assets + Deferred gain - Excess Amortization +/- Amortization of Existing Net Obligation or Net asset at Pension Plan Implementation")
+        let flashcard112 = FlashCard(concept: "Stockholders' Equity", definition: "Stockholders' Equity includes Preferred Stock, Common Stock, APIC, Non-Controlling interest in Subsidary, Retained Earnings, Accumulated Other Comprehensive Income,  and Treasury Stock")
+        
+        let flashcard113 = FlashCard(concept: "Common Stock", definition: "Common stock is issued in order to raise funds for a corporation to begin operations")
+        
+        let flashcard114 = FlashCard(concept: "Preferred Stock", definition: "Preferred stock refers to stock similar to a debt instrument with two advantages over common stock \nDividends- preferred shares must be paid a dividend before the company is allowed to pay the common shareholders a dividend\nLiquidation- if the corporation liquidates, preferred shareholders mus be paid before the common shareholders")
+        
+        let flashcard115 = FlashCard(concept: "Cumulative Preferred Stock", definition: "Dividends missed in earilier years must also be paid before common shareholders receive anything")
+        let flashcard116 = FlashCard(concept: "Participating Preferred Stock", definition: "If common shareholders get a dividend that is a higher rate on nits par value than the stated rate of th preferred shares, the preferred shareholders must get the same higher rate")
+        let flashcard117 = FlashCard(concept: "Convertible Preferred Stock", definition: "The preferred shareholder has the option of converting their stock for common stock at a specific ratio")
+        let flashcard118 = FlashCard(concept: "Callable Preferred Stock", definition: "The corporation has the option of repurchasing the preferred stock at a specific price")
+        let flashcard119 = FlashCard(concept: "Preferred Stock with Warrants", definition: "The stocks warrants are convertible into shares of common stock")
+
+
+        let flashcard120 = FlashCard(concept: "Treasury Stock", definition: "Treasury Stock are not paid dividends and not voted. They are considered authorized, issued, but not outstanding")
+
+        let flashcard121 = FlashCard(concept: "Retained Earnings", definition: "Retained Earnings represents the accumulated earnings since the inception of the company that have not been paid out to shareholders in the form of dividend. At the end of each accounting year, net income is closed into retained earnings. In addition, retained earnings is perdiocally reduced for dividends.")
+
+        let flashcard122 = FlashCard(concept: "Non-Controlling Interest in Subsidiary", definition: "Non-controlling interest(aka minority interest) arises when a reporting entity prepares consolidated financial statmeents that include a subsidiary in which the parent owns less than 100%")
+        
+
+        let flashcard123 = FlashCard(concept: "Accumulated Ohter Comprehensive Income", definition: "Accumulated Other Comprehensive Income includes derivative cash flow hediges, excess adjustment of Pension PBO and Fair Value of Plan Assets at year end, net unrealized changes in the value of marketable securities, and translation gains and losses from foreign currency")
+        
+
+
+        let flashcard124 = FlashCard(concept: "APIC", definition: "Additional paid-in capital i slisted immediateloy after the stock accounts and includes all capital in excess of the legal capital of the company")
+
+        let flashcard125 = FlashCard(concept: "APIC - Common Stock", definition: "The portion of the issue price of common stock that exceeded the par (or stated) value of the shares")
+
+        let flashcard126 = FlashCard(concept: "APIC - Preferred Stock", definition: "The portion of the issue price of preferred stock that exceed the par (or stated) value of th eshares")
+        let flashcard127 = FlashCard(concept: "APIC - Retired Stock", definition: "Repurchase and retirement of shares below the original issue price")
+        let flashcard128 = FlashCard(concept: "APIC - Treasury Stock", definition: "Repurchase of shares below the original issue price under the par value metho dand resale of shares above the repurchase of price under the cost method")
+        let flashcard129 = FlashCard(concept: "APIC - Warrants", definition: "The amount allocated to the value of detachable warrants that are issued with bonds or preferred stock")
+        let flashcard130 = FlashCard(concept: "Stock Rights", definition: "Stock rights, preemptive rights or subscriptions rights are contractual rights held by existing shareholders to purchase proportional share of new shares in th esam eclass, to preserve existing ownership percentage(to prevent dilution of current ownership")
+        
+        
         
         
 
         
         
-        flashCards.append(flashcard1)
-        flashCards.append(flashcard2)
-        flashCards.append(flashcard3)
-        flashCards.append(flashcard4)
-        flashCards.append(flashcard5)
-        flashCards.append(flashcard6)
-        flashCards.append(flashcard7)
-        flashCards.append(flashcard8)
-        flashCards.append(flashcard9)
-        flashCards.append(flashcard10)
-        flashCards.append(flashcard11)
-        flashCards.append(flashcard12)
-        flashCards.append(flashcard13)
-        flashCards.append(flashcard14)
-        flashCards.append(flashcard15)
-        flashCards.append(flashcard16)
-        flashCards.append(flashcard17)
-        flashCards.append(flashcard18)
-        flashCards.append(flashcard19)
-        flashCards.append(flashcard20)
+        
+   flashCards = [flashcard1,flashcard2,flashcard3,flashcard4,flashcard5,flashcard6,flashcard7, flashcard8,flashcard9,flashcard10,
+        flashcard11,flashcard12,flashcard13,flashcard14,flashcard15,flashcard16,flashcard17, flashcard18,flashcard19,flashcard20,
+        flashcard21,flashcard22,flashcard23,flashcard24,flashcard25,flashcard26,flashcard27, flashcard28,flashcard29,flashcard30,
+        flashcard31,flashcard32,flashcard33,flashcard34,flashcard35,flashcard36,flashcard37, flashcard38,flashcard39,flashcard40,
+        flashcard41,flashcard42,flashcard43,flashcard44,flashcard45,flashcard46,flashcard47, flashcard48,flashcard49,flashcard50,
+        flashcard51,flashcard52,flashcard53,flashcard54,flashcard55,flashcard56,flashcard57, flashcard58,flashcard59,flashcard60,
+        flashcard61,flashcard62,flashcard63,flashcard64,flashcard65,flashcard66,flashcard67, flashcard68,flashcard69,flashcard70,
+        flashcard71,flashcard72,flashcard73,flashcard74,flashcard75,flashcard76,flashcard77, flashcard78,flashcard79,flashcard80,
+        flashcard81,flashcard82,flashcard83,flashcard84,flashcard85,flashcard86,flashcard87, flashcard88,flashcard89,flashcard90,
+        flashcard91,flashcard92,flashcard93,flashcard94,flashcard95,flashcard96,flashcard97, flashcard98,flashcard99,flashcard100,
+        flashcard101,flashcard102,flashcard103,flashcard104,flashcard105,flashcard106,flashcard107, flashcard108,flashcard109,flashcard110,
+        flashcard111,flashcard112,flashcard113,flashcard114,flashcard115,flashcard116,flashcard117, flashcard118,flashcard119,flashcard120,
+        flashcard121,flashcard122,flashcard123,flashcard124,flashcard125,flashcard126,flashcard127, flashcard128,flashcard129,flashcard130,]
+        
 
 
         
@@ -144,7 +348,7 @@ class DAO: NSObject{
 
     
     func loadQuestions(){
-        let question1 = MultipleChoice(question: "The enhancing qualitative characteristics of financial reporting are", a: "Relevance, reliability, and faithful representation", b: "Cost-Benefit and Materiality", c: "Comparability,Understandability, Timeliness, and Verifibiilty", d: "Completeness, neutrality, and free from error", correctAnswer: "c", info: "The enhancing qualitative characteristics of financial reporting are copmarability, timeliness, understandability, and verifibility.")
+        let question1 = MultipleChoice(question: "The enhancing qualitative characteristics of financial reporting are", a: "Relevance, reliability, and faithful representation", b: "Cost-Benefit and Materiality", c: "Comparability,Understandability, Timeliness, and Verifibiilty", d: "Completeness, neutrality, and free from error", correctAnswer: "c", info: "The enhancing qualitative characteristics of financial reporting are comparability, timeliness, understandability, and verifibility.")
         
         let question2 = MultipleChoice(question: "According to Statements of Financial Accounting Concepts, neutrality is an ingredient of ", a: "Faithful Representation- YES, Relevance- YES", b: "Faithful Representation- YES, Relevance- NO", c: "Faithful Representation- NO, Relevance- YES", d: "Faithful Representation- NO, Relevance- NO", correctAnswer: "b", info: "Faithful represntation consists of Free from Error,Neutrality, and Completeness.")
         
@@ -156,7 +360,7 @@ class DAO: NSObject{
         
         let question6 = MultipleChoice(question: "Which of the following is not a valuation technique used to measure or estimate fair value?", a: "Income approach", b: "Asset Creation Approach", c: "Market Approach", d: "Cost Approach", correctAnswer: "b", info: "There are 3 approaches to measure fair value, the market approach, income approach, and cost approach.")
         
-        let question7 = MultipleChoice(question: "According to the IASB Framework, the qualitative characteristic of relevance includes:", a: "Comfirmatory Value, Predictive Value, and Comparability", b: "Free from error,Neutrality, and Completeness", c: "Predictive Value, Confirmatory Value, and Materiality", d: "Neutrality, Copmleteness, and Comparability", correctAnswer: "c", info: "The qualitative charactertics for Relevance under IASB Framework are Predictive Value, Confirmatory Value, and Materiality, which is very similar under the FASB Conceptual framework.")
+        let question7 = MultipleChoice(question: "According to the IASB Framework, the qualitative characteristic of relevance includes:", a: "Comfirmatory Value, Predictive Value, and Comparability", b: "Free from error,Neutrality, and Completeness", c: "Predictive Value, Confirmatory Value, and Materiality", d: "Neutrality, Completeness, and Comparability", correctAnswer: "c", info: "The qualitative charactertics for Relevance under IASB Framework are Predictive Value, Confirmatory Value, and Materiality, which is very similar under the FASB Conceptual framework.")
         
         let question8 = MultipleChoice(question: "According to the IASB Framework, the financial statement element that is defined as \"a present obligation of the entity arising from past events, the settlement of which is expected to result in an outflow form the entity\", is which of the following", a: "Equity", b: "Liability", c: "Expense", d: "Cost", correctAnswer: "b", info: "According to the IASB Framework, there are 5 elements that make up the financial statements, they include: asset, liability, equity, income, and expense.")
         

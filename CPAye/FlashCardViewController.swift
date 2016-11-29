@@ -561,7 +561,6 @@ progressCounter()
         
         back.isUserInteractionEnabled = false
         
-        //        flashCardContainerView.layer.cornerRadius = 10.0
         flashCardTextView.layer.cornerRadius = 10.0
         flashCardContainerView.layer.cornerRadius = 10.0
         singleTap = UITapGestureRecognizer(target: self, action: #selector(tapped))
@@ -571,7 +570,8 @@ progressCounter()
     }
     
     func loadProgressLabelAndProgressViews(){
-        ///
+    
+        
         masteredLabel = UILabel.init(frame: CGRect(x: 0, y: view.frame.height/1.75, width: view.frame.width, height: 20))
         masteredLabel.text = "Master of: \(masterCounter) out of \(dao.flashCards.count) concepts"
         masteredLabel.textColor = UIColor.white
