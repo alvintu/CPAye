@@ -80,7 +80,6 @@ progressCounter()
         
 //        loadHiddenButtons()
         
-        print("flashCard")
     }
     
 
@@ -89,7 +88,6 @@ progressCounter()
 
     func knowThisWord(){
         
-        print("√ I know")
         
 
         
@@ -133,7 +131,6 @@ progressCounter()
 
     func dontKnowThisWord(){
         
-        print("X I don't know.")
         
         
         
@@ -194,7 +191,6 @@ progressCounter()
             else{
                 masterCounter+=1
             }
-            print(flashcard.grade)
         }
         
         let castedFlashCardCount = Float(dao.flashCards.count)
@@ -203,7 +199,6 @@ progressCounter()
         masteredLabel.text = "Master of: \(masterCounter) out of \(dao.flashCards.count) concepts"
         
         let castedReviewCounter = Float(reviewCounter)
-        print("reviewingProgress is \(reviewingProgressView.progress)")
         reviewingLabel.text = "Reviewing: \(reviewCounter) out of \(dao.flashCards.count) concepts"
         
         let castedLearningCounter = Float(learningCounter)
@@ -236,7 +231,6 @@ progressCounter()
     
     func tapped() {
 
-        print("tapped")
 
         
         let normalText = "\n\n" + dao.currentFlashCard.definition
